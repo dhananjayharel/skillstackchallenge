@@ -1,0 +1,23 @@
+.m-list {
+    margin-bottom: 24px;
+    
+    &--fa {
+        list-style: none;
+        padding-left: 0;
+
+        .m-list__item {
+
+            .fa {
+                margin-right: 24px;
+            }
+        }
+    }
+
+    &__item {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

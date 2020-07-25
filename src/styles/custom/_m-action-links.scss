@@ -1,0 +1,22 @@
+.action-list {
+
+	&.list-inline {
+		
+		.action-list-item {
+			display: block;
+			color: $secondary;
+	
+			.kk-icon {
+				margin: 0 auto;
+			}
+
+			&:hover {
+
+				> .kk-icon,
+				> small {
+				color: $primary !important;
+				}
+			}
+		}
+	}
+}

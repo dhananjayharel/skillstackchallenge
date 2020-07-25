@@ -1,0 +1,52 @@
+<div class="position-relative d-none d-md-block">
+    <div *ngIf="results.length > 0 && candidates" class="candidate-status-content">
+        <div class="row">
+            <div class="col-sm-10">
+                <h4> Candidate Status </h4>
+            </div>
+            <div class="col-sm-2 mb-2" (click)="onFilter('all')">
+               <a class="text-info" href="javascript:void(0)">{{candidates.length}}</a>
+            </div>
+        </div>
+        <div *ngFor="let result of results" class="row cursor-pointer" (click)="onFilter(result.key)">
+            <div class="col-sm-4  mb-2">
+                {{result.title}}: 
+            </div>
+            <div class="col-sm-6 pt-1 mb-2">
+                <div class="progress">
+                    <div class="progress-bar bg-{{result.class}}" role="progressbar" [style.width]="result.perc + '%'"  aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="col-sm-2  mb-2">
+                <a class="text-{{result.class}}" href="javascript:void(0)">{{result.count}}</a>
+            </div>
+        </div>
+    </div>
+    <img *ngIf="loading" class="loading align-item-center justify-content-center" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+</div>
+<div class="position-relative d-md-none" id="candidatestatusmobile" style="margin-left:5%;margin-top:5%;">
+    <div *ngIf="results.length > 0 && candidates" class="candidate-status-content">
+        <div class="row">
+            <div class="col-10">
+                <h4> Candidate Status </h4>
+            </div>
+            <div class="col-2 mb-2" (click)="onFilter('all')">
+               <a class="text-info" href="javascript:void(0)">{{candidates.length}}</a>
+            </div>
+        </div>
+        <div *ngFor="let result of results" class="row cursor-pointer" (click)="onFilter(result.key)">
+            <div class="col-4  mb-2">
+                {{result.title}}: 
+            </div>
+            <div class="col-6 pt-1 mb-2">
+                <div class="progress">
+                    <div class="progress-bar bg-{{result.class}}" role="progressbar" [style.width]="result.perc + '%'"  aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="col-2  mb-2">
+                <a class="text-{{result.class}}" href="javascript:void(0)">{{result.count}}</a>
+            </div>
+        </div>
+    </div>
+    <img *ngIf="loading" class="loading align-item-center justify-content-center" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+</div>

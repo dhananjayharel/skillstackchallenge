@@ -1,0 +1,35 @@
+.countdown-wrapper{
+        margin: 0px auto;
+}
+.trouble-link {
+        display: block;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+                text-decoration: underline;
+        }
+}
+
+.launch-machine-wrapper,
+.card-header {
+        position: relative;
+}
+.machine-loading-wrapper {
+        width: 550px;
+        height: 100%;
+        position: absolute;
+        background: #ec971f;
+        color: #FFF;
+        right: 0px;
+        top: 0px;
+
+        span {
+                font-size: 18px;
+                font-weight: bold;
+                float: left;
+                line-height: 30px;
+                padding: 10px 15px;
+        }
+}
+

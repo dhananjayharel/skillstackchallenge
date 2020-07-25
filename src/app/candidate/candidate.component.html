@@ -1,0 +1,664 @@
+<div class="l-page l-page--screen bg-banner" style="min-height: 0">
+    <div class="container">
+
+        <div class="l-page__header">
+            <app-logo [type]="'header-logo'" [hidden]="status==='LOADING_STACKBLITZ'"></app-logo>
+        </div>
+        <div class="l-page__content">
+            <div class="l-page_content__loading" *ngIf="status==='TEST_LOAD'">
+                <div class="card m__test f-14">
+                    <div class="card-body p-36">
+                        <div id="loader-wrapper">
+                            <div id="loader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="l-page__content__inner" *ngIf="!loading">
+                <div class="card m__test f-14">
+                    <div *ngIf="onlineTest.testType!='web'"  class="card-body p-36 d-md-none" >
+                            <span class="h4"> Dear {{candidate.fullname}}</span>,
+
+                            <p> Since this test involves writing actual code, it can be taken only from a desktop or a laptop.</p>
+                                    <p>Please try again from one of these devices.</p>
+                    </div>
+                    <div [ngClass]="onlineTest.testType=='web' ? 'card-body p-36 ' : 'card-body p-36 d-none d-md-block'" >
+                        <div class="m-test__top" *ngIf="status==='TEST_INITIAL'">
+                            <div class="row mb-36">
+                                <div class="col mx-auto text-center">
+                                    <div class="greeting mb-3">
+                                        <span class="text-primary h3 font-thin strong">
+                                            Hello 
+                                        </span> <span class="h4">{{candidate.fullname}}</span>
+                                    </div>
+							
+                                    <div class="welcome" *ngIf="!showMachineDetails">
+                                        <p>Welcome to your skill assessment for <strong><em><u>{{onlineTest.name}}</u></em>&nbsp;{{previewMode ? '(Preview)':''}}</strong>.</p>
+                                        <p *ngIf="technology">Technology - {{ technology  }}</p>
+                                        <p>Total Test time - {{secondsToHms(totalTestDuration)  }}</p>
+                                    </div>
+                                    <div class="welcome" *ngIf="showMachineDetails && !launchStarted && !testFinished" >
+                                        <p> Please wait while we prepare your test environment. Machine is booting ...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-36">
+                                <div class="col mx-auto text-center">
+                                    <div class="row justify-content-center">
+                                        <div *ngIf="!onlineTest['hideMcqTest']" class="align-middle">
+                                            <i class="kk-icon kk-icon--code"></i><br/>
+                                            <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                                            <br>
+                                            <span *ngIf="candidate.mcqQuestionResponse" class="text-success"><strong>Done</strong></span>
+                                        </div>
+                                        <div *ngIf="!onlineTest['hideMcqTest']" class="align-self-center strong mx-2">
+                                            &
+                                        </div>
+                                        <div class="align-middle">
+                                            <i class="kk-icon kk-icon--code"></i><br/>
+                                            <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                                        </div>
+                                        <div *ngIf="!onlineTest['hideVideoTest']" class="align-self-center strong mx-2">
+                                            &
+                                        </div>
+                                        <div *ngIf="!onlineTest['hideVideoTest']"  class="align-middle">
+                                            <i class="kk-icon kk-icon--video"></i><br/>
+                                            <span><strong>{{ onlineTest.videoTestDuration }}</strong> mins Video Interview Test</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-test__body" *ngIf="status==='TEST_INITIAL'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form [formGroup]="enrollTestForm" novalidate (ngSubmit)="onTestEnrolled(enrollTestForm.value, enrollTestForm.valid)">
+                                        <div *ngIf="candidate.fullname==='Anonymous user'" class="basic-information mb-24 row">
+                                            <div class="col-12"><p class="strong">Before you start, please enter your basic details:</p></div>
+                                            <div class="form-group col-md-6">
+                                                <label for="email" class="control-label">Email</label>
+                                                <input formControlName="email" class="form-control input-secondary-bg input-round" id="email" placeholder="Email" required pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+                                                <small [hidden]="enrollTestForm.controls.email.valid || (enrollTestForm.controls.email.pristine && !submitted)" class="text-danger">
+                                                    Email is not valid.
+                                                </small>   
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="fullname" class="control-label">Full Name</label>
+                                                <input id="fullname" type="text"  formControlName="fullname" class="form-control  input-secondary-bg input-round"  placeholder="Full Name">
+                                                <small [hidden]="enrollTestForm.controls.fullname.valid || (enrollTestForm.controls.fullname.pristine && !submitted)" class="text-danger">
+                                                    Full Name is not valid.
+                                                </small>   
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="mobno" class="control-label">Mobile Number</label>
+                                                <input id="mobno" type="text"  ng-pattern="/^[0-9]{1,10}$/" formControlName="mobilenumber" class="form-control  input-secondary-bg input-round"  placeholder="Mobile Number">
+                                                <small [hidden]="enrollTestForm.controls.mobilenumber.valid || (enrollTestForm.controls.mobilenumber.pristine && !submitted)" class="text-danger">
+                                                    Mobile Number is not valid.
+                                                </small>   
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="linkedinurl" class="control-label">Linkedin Profile</label>
+                                                <input id="linkedinurl" type="text" ng-pattern="/http(s)?:\/\/([w]{3}\.)?linkedin\.com\/in\/([a-zA-Z0-9-]{5,30})\/?/" formControlName="linkedinprofile" class="form-control  input-secondary-bg input-round"  placeholder="Linkedin Profile">
+                                                <small [hidden]="enrollTestForm.controls.linkedinprofile.valid || (enrollTestForm.controls.linkedinprofile.pristine && !submitted)" class="text-danger">
+                                                    Linkedin Profile Url is not valid.
+                                                </small>   
+                                            </div>
+                                        </div>
+									    <p class="strong"><span *ngIf="candidate.fullname!=='Anonymous user'">Before you start,</span> please read the following:</p>
+                                        <ul class="m-list m-list--fa">
+                                            <li class="m-list__item">
+                                                <i class="fa fa-arrow-right text-primary"></i>
+                                                This test consists of 3 modules - an objective test, a coding test and a video test. 
+                                                <br/>You will be guided through each of the 3 modules one-by-one once you start the test.
+                                            </li>
+                                            <li class="m-list__item">
+                                                <i class="fa fa-arrow-right text-primary"></i>
+                                                Please set aside atleast one hour for taking this complete test.
+                                            </li>
+                                            <li class="m-list__item">
+                                                <i class="fa fa-arrow-right text-primary"></i>
+                                                The video test can be accomplished by webcam or phone - based on your convenience.
+                                                <br/>You will be guided accordingly once you reach that module.
+                                            </li>
+                                            <li class="m-list__item">
+                                                <i class="fa fa-arrow-right text-primary"></i>
+                                                Cheating is strictly against the rules of taking this test.
+                                            </li>
+                                        </ul>									
+                                        <div class="form-group mb-36">
+                                            <div class="checkbox">
+                                                <input id="acceptTC" type="checkbox" formControlName="accept"><label for="acceptTC" class="fa"></label>
+                                                
+                                                <label for="acceptTC">I have read and agreed to the above terms and conditions of taking this test.</label>
+                                            </div>
+                                            <small [hidden]="(enrollTestForm.controls.accept.valid || (enrollTestForm.controls.accept.pristine && !submitted) ) && enrollTestForm.controls.accept.value" class="text-danger">
+                                                You havent accepted the T&C's.
+                                            </small>
+                                        </div>
+                                        <button type="submit" [disabled]="!enrollTestForm.valid" class="btn btn-primary btn-round">Start Test</button>
+                                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="m-test__body" *ngIf="(status==='OBJECTIVE_TEST_BEGIN') && (onlineTest.mcqQuestions)">
+                            <div class="row">
+                                <div class="col">
+                                    <h2 class="font-weight-normal"> Quiz for {{ technology }}</h2>
+                                </div>
+                            </div>
+                            <hr class="mb-36" />
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row mb-36">
+                                        <div class="col-auto mx-auto text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <div *ngIf="!onlineTest['hideMcqTest']" [ngClass]="{'test-taken': candidate.mcqQuestionResponse}" class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                                                    <br>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideMcqTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                    </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-middle">
+                                                    <i class="kk-icon kk-icon--video"></i><br/>
+                                                    <span><strong>{{onlineTest.videoTestDuration}}</strong> mins Video Interview Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="strong">
+                                                The next module is the Objective (multiple choice questions) test.<br/>
+                                                Before you start, please read the following:
+                                            </p>
+                                            <ul class="m-list m-list--fa">
+                                                <li class="m-list__item">
+                                                    <i class="fa fa-arrow-right text-primary"></i>
+                                                    You will be shown an objective question one-by-one on each page. Click the right answer and move ahead.
+                                                </li>
+                                                <li class="m-list__item">
+                                                    <i class="fa fa-arrow-right text-primary"></i>
+                                                    When done, click Submit Test to move on to the next round.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <a (click)="startMcqTest()" target="_blank"class="btn btn-primary btn-lg btn-round">Start Test </a>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="m-test__body" *ngIf="(status==='OBJECTIVE_TEST_START') && (onlineTest.mcqQuestions)">
+                            <div class="row">
+                                <div class="col-12">
+                                    <app-quiz [candidateName]="candidate.fullname" [testName]="onlineTest.name" [mode]="'quiz'" [quizJson]="onlineTest.mcqQuestions" (onQuizFinished)="ifObjectiveTestFinished($event)"></app-quiz>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="m-test__body" *ngIf="(status==='OBJECTIVE_TEST_END') && (onlineTest.mcqQuestions)">
+                            <div class="row">
+                            <div class="col">
+                                <h2 class="font-weight-normal"> Quiz for {{ technology }}</h2>
+                            </div>
+                            </div>
+                            <hr class="mb-36" />
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row mb-36">
+                                        <div class="col-auto mx-auto text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <div *ngIf="!onlineTest['hideMcqTest']" [ngClass]="{'test-taken': candidate.mcqQuestionResponse}" class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                                                    <br>
+                                                    <span class="text-success"><strong>Done</strong></span>
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideMcqTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                  </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-middle">
+                                                    <i class="kk-icon kk-icon--video"></i><br/>
+                                                    <span><strong>{{onlineTest.videoTestDuration}}</strong> mins Video Interview Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <h3> Your MCQ response is saved succesfully.<br/> Click Continue to begin on the programming test.</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <a (click)="_continueToProgramming()" target="_blank"class="btn btn-primary btn-lg btn-round">Continue</a>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-test__body" *ngIf="(status==='CODING_TEST_START')">
+                            <div class="row">
+                                <div class="col">
+                                    <h2 class="font-weight-normal"> Coding Test for {{ technology }}</h2>
+                                </div>
+                            </div>
+                            <hr class="mb-36" />
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row mb-36">
+                                        <div class="col-auto mx-auto text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <div *ngIf="!onlineTest['hideMcqTest']" [ngClass]="{'test-taken': candidate.mcqQuestionResponse}" class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                                                    <br>
+                                                    <span class="text-success"><strong>Done</strong></span>
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideMcqTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div class="align-middle">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                    </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-middle">
+                                                    <i class="kk-icon kk-icon--video"></i><br/>
+                                                    <span><strong>{{onlineTest.videoTestDuration}}</strong> mins Video Interview Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="strong">
+                                                The next module is the Coding test.<br/>
+                                                Before you start, please read the following:
+                                            </p>
+                                            <ul class="m-list m-list--fa">
+                                                <li class="m-list__item">
+                                                    <i class="fa fa-arrow-right text-primary"></i>
+                                                    Once you start the coding test, you will be shown the test problem definition as well as an online IDE with a working project.
+                                                    <br/>Your assignment would be to solve the test problem by writing code in the IDE.
+                                                </li>
+                                                <li class="m-list__item">
+                                                    <i class="fa fa-arrow-right text-primary"></i>
+                                                    When done, click the Finish Test button.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <a (click)="_startProgrammingTest()" target="_blank"class="btn btn-primary btn-lg btn-round">Start Coding Test</a>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+
+
+						<div class="m-test__body" *ngIf="(status==='WEBCAM_CHECKING' || status==='WEBCAM_CHECKING') && (onlineTest.enableWebCamRecording==true)">
+                            <div class="row">
+                                <div class="col-12">                                  
+                                    <ul class="list-unstyled text-center">
+                                        <li><i class="kk-icon video-interview-icon"></i><span class="text-info f-24"><b>Test Your Camera</b></span></li>
+                                    </ul>	
+								    <br/>
+                                    <div class="col-8 mx-auto">
+                                        <p class="strong">Before you can proceed to test we need to make sure
+											your webcam is working and your video session can be recorded.</p>                                                
+                                    </div>
+									<br/>
+                                    <div  class="col-8 mx-auto">
+                                        <p class="strong">Click on Start Webcam to start recording your webcam session.
+											Make sure you give any browser permissions accordingly.</p>                                               
+                                    </div>  
+									<br/>
+                                    <div [ngStyle]="{'visibility':webcamSuccess ? 'hidden' : 'visible'}" class="text-center action">
+                                        <a (click)="getPermission()" target="_blank"class="btn btn-primary btn-lg btn-round">Start Webcam</a>
+                                    </div>
+									<br/><br/><br/>
+									<div class="video-recording-wrapper" >
+                                    
+                                        <video #video class="embed-responsive-item" style="visibility:hidden;position:absolute;height:200px;width:250px;top:20%;left:60%;"></video>
+                                    
+                                </div>
+									<div class="col-8 mx-auto">
+										<div class="row">
+											<div  [ngStyle]="{'visibility':webcamSuccess ? 'visible' : 'hidden'}" class="col-4 my-auto text-info">
+												Webcam Success!
+											</div>
+											
+											<div class="col-4 my-auto">
+												<a [ngStyle]="{'visibility':webcamSuccess ? 'visible' : 'hidden'}" (click)="feed()" target="_blank"class="btn btn-danger btn-lg btn-round"><b>Feed</b></a>
+											</div>
+											<div class="col-4">
+												<a [ngStyle]="{'visibility':webCamPermissionAsked ? 'visible' : 'hidden'}" (click)="_continue()" target="_blank"class="btn btn-danger btn-lg btn-round">Continue</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+                        </div>
+                        <div class="m-test__body" *ngIf="status==='TEST_INITIALIZED' || status==='TEST_LOAD_WINDOW'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div style="height: 466px;" class="challenge-wrapper position-relative rounded mb-24">
+                                        <div class="scroll-area">
+                                            <div *ngIf="onlineTest.objective" class="challenge__section">
+                                                <p class="strong">Objective</p>
+                                                <div [innerHTML]="onlineTest.objective"></div>
+                                            </div>
+                                            <div *ngIf="onlineTest.description" class="challenge__section">
+                                                <p class="strong">Description</p>
+                                                <div [innerHTML]="onlineTest.description"></div>
+                                            </div>
+                                            <div *ngIf="onlineTest.hints" class="challenge__section">
+                                                <p class="strong">Hints</p>
+                                                <div [innerHTML]="onlineTest.hints"></div>
+                                            </div>
+                                            <div *ngIf="onlineTest.otherNotes" class="challenge__section">
+                                                <p class="strong">Other notes</p>
+                                                <div [innerHTML]="onlineTest.otherNotes"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="action d-inline-block">
+                                        <a (click)="startTest()" target="_blank"class="btn btn-primary btn-lg btn-round">Start Test</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="m-test__body" *ngIf="(status==='CODING_TEST_END')">
+                            <div class="row">
+                                <div class="col">
+                                    <h2 class="font-weight-normal">Coding Test for {{ technology }}</h2>
+                                </div>
+                            </div>
+                            <hr class="mb-36" />
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row mb-36">
+                                        <div class="col-auto mx-auto text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <div *ngIf="!onlineTest['hideMcqTest']" class="align-middle test-taken">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                                                    <br>
+                                                    <span class="text-success"><strong>Done</strong></span>
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideMcqTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div class="align-middle test-taken">
+                                                    <i class="kk-icon kk-icon--code"></i><br/>
+                                                    <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                                                    <br/>
+                                                    <span class="text-success"><strong>Done</strong></span>
+                                                    </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-self-center strong mx-2">
+                                                    &
+                                                </div>
+                                                <div *ngIf="!onlineTest['hideVideoTest']" class="align-middle">
+                                                    <i class="kk-icon kk-icon--video"></i><br/>
+                                                    <span><strong>{{onlineTest.videoTestDuration}}</strong> mins Video Interview Test</span>
+                                                    <br/>
+                                                    <span class="text-danger"><strong>Pending</strong></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="col-12 text-center">
+                                                <h3> Your Coding test response is saved succesfully.</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <a (click)="proceedToVideoInterview()" target="_blank"class="btn btn-primary btn-lg btn-round">Continue</a>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-test__body" *ngIf="status==='TEST_CLOSE_WINDOW' && !previewMode && webCamEnabled">
+                         <div class="row text-center" style="font-size:22px;">
+							<div class="col">
+								<p>Please Wait... uploading your video recording</p>
+								<p id="uploadstatus">Uploading...0%</p>
+							</div>
+						</div>
+                    </div>
+                    <div class="m-test__body" *ngIf="status==='TEST_COMPLETED'">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <i class="kk-icon kk-icon--success mb-24"></i>
+                            <p class="f-36">Congratulations! You have finished your interview.</p>
+                        </div>
+                    </div>
+                    <div class="m-test__body" *ngIf="status==='TEST_PREVIEW_COMPLETED'">
+                        <div class="col-lg-6 mx-auto text-center">
+                            <i class="kk-icon kk-icon--success mb-24"></i>
+                            <p class="f-36">Thank You - Preview has ended!</p>
+                        </div>
+                    </div>
+                    <div class="m-test__body" *ngIf="status==='LOADING_STACKBLITZ'">
+                         <div class="row text-center" style="font-size:22px;">
+							<div class="col">
+								<!-- <img src="/assets/images/nintysectimer.gif" style="width:275px"> -->
+		
+											<div id="loader-box" style="text-align: left !important">
+				<div id="loader-complete-circle"></div>
+				<div id="loader-wrapper">
+					<svg class="loader">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#8ad3ff" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-2">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#ce9178" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-3">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#b869a0" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-4">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#5d8a4e" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-5">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="black" stroke-width="6" stroke-linecap="round"></circle>
+					</svg>
+					<svg class="loader loader-6">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#4387cf" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-7">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="b86cb4" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+					<svg class="loader loader-8">
+						<circle cx="75" cy="75" r="60" fill="transparent" stroke="#d4d797" stroke-width="6" stroke-linecap="round" stroke-dasharray="385" stroke-dashoffset="385"></circle>
+					</svg>
+				</div>
+			</div>
+
+								<p>Starting dev server ...</p>
+								
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<video #video2 class="embed-responsive-item" style="visibility:hidden;position:absolute;height:200px;width:250px;top:20%;left:60%;z-index:99999;"></video>
+<div id="custom-id"></div>
+<!--Pipe recorder-->
+<div id="pipe-recorder" style="position:absolute;visibility:hidden;top:56%;left:42%;z-index:99999;" ></div>
+<div id="uploadstatus" style="position:absolute;visibility:hidden;top:60%;left:20%;z-index:99999;" >Uploading the video {{uploadPercentage}} % </div>
+<!--chrome app widget-->
+
+<div *ngIf="!testFinished" class="container-fluid" id="chromeapp" style="z-index:99999;position:absolute;top:-402px; transition-property: top;transition-duration: 0.3s;transition-timing-function: ease-in-out;background:#ffffff;left:0px;right:0px;box-shadow: 1px 1px 1px #ececec;">
+	<div class="row candidate-view">
+      <div class="test-details col-2">
+        <div _ngcontent-c5="" class="logo">
+          <a class="navbar-brand" ><strong _ngcontent-c5="" class="text-info">Skill</strong> Stack</a>
+        </div>
+      </div> 	
+      <div class="test-details col-2"><div class="testdetails mt-2 f-14"><a class="text-primary" (click)="viewQuestion()" >Test: <span *ngIf="onlineTest" class="underline">{{onlineTest.name}}</span></a></div></div> 	
+		<div class="test-countdown col-1" *ngIf="webCameEnabled"><div class="testdetails mt-2 f-14"><img *ngIf="!webCamEnabled" class="" title="Webcam is not recording" src="/assets/images/brokenvideo.png" style="width:18px;height:18px;"><i *ngIf="webCamEnabled" class="fa fa-circle text-danger" style="display: inline-block;"></i><a *ngIf="webCamEnabled" class="text-primary" (click)="feed2()" style="display: inline-block;margin-left:3px" >Feed</a></div></div>
+		<div class="test-countdown col-3" [style.visibility]="status==='LOADING_STACKBLITZ' ? 'hidden' : 'visible'" >
+			<div id="clockdiv">
+				<div><img src="/assets/images/timer.png"></div>
+				<div><span class="hours">00</span></div>
+				<div><div class="smalltext">h</div></div>						
+				<div><span class="minutes">00</span></div>
+				<div><div class="smalltext">m</div></div>						
+				<div><span class="seconds">00</span></div>
+				<div><div class="smalltext">s</div></div>						
+			</div>
+		</div>
+		<div class="actions col-4" > <!-- [hidden]="status==='LOADING_STACKBLITZ'" -->
+	        <div class="row mt-1"><div class="col-6">
+			<button (click)="viewQuestion()" id="view-question" class="button-view-question">View Question</button>
+		    </div><div class="col-6">
+			 <button (click)="stopTestCountdown()" id="finish-test" class="button-finish-test">Finish Test</button>
+		    </div> </div>
+		</div>
+	</div>
+</div>
+<!--STACKBLITZ-->
+<div #myDiv id="myDiv" style="position:absolute;top:0px;"></div>
+<div class="fullscreen" *ngIf="status==='TEST_OPEN_WINDOW'" style="top:40px">
+  <div *ngIf="onlineTest.isWebBasedTest" class="theia-mini-browser-load-indicator" style="display: block;">
+     <div class="row text-center" style="font-size:22px;">
+							<div class="col">
+							Loading Visual Studio in the cloud ..
+							</div>
+		</div>					
+  </div>
+  <iframe id="testWindow" frameBorder="0" [src]="rdpLink | safe"   (load)="yourLoadFunction()" width="100%" height="100%"></iframe>
+</div>
+
+<ng-template #launchMachineModal let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="content mx-auto text-center">
+      <div class="icon mb-36">
+        <div style='position:relative;padding-bottom:54%'>
+            <img id="loadingWindow" src="/assets/images/loadingconsole.gif" height="280" width="470" style='position:absolute;top:0;left:0' />
+        </div>
+      </div>
+      <app-countdown [totalSecs]="countDownTimer" (onCountDownFinish)="showRDPDetails($event)"></app-countdown>
+      <p class="f-14 strong">Please wait while we prepare your test environment.<br/>
+        Your test machine is booting...
+      </p>
+    </div>
+  </div>
+</ng-template>
+<ng-template #testDetailsModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<span class="strong">Test:</span>&nbsp;&nbsp;{{onlineTest.name}} ({{onlineTest.category}})
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+    <div style="height: 115px;" class="challenge-wrapper position-relative rounded mb-24">
+      <div class="scroll-area w-100" >
+        
+      </div>
+    </div>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #testQuestionModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<span class="strong">Test type:</span>&nbsp;&nbsp;{{onlineTest.category}} ({{onlineTest.testLevel}} level)
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		  <div style="height: 467px;" class="challenge-wrapper position-relative rounded mb-24">
+        <div class="scroll-area">
+            <div *ngIf="onlineTest.codingTestImage" class="mb-11 pull-right">
+                <a [href]="onlineTest.codingTestImage" class="relative cursor" target="_blank">
+                   <img width="300" [src]="onlineTest.codingTestImage" />
+                </a>
+            </div>
+            <div *ngIf="onlineTest.objective" class="row mt-2 mx-0 challenge__section">
+            <div class="col strong">Objective:</div>
+                <div class="col" [innerHTML]="onlineTest.objective"></div>
+            </div>
+            <div *ngIf="onlineTest.description" class="row mt-2 mx-0 challenge__section">
+                <div class="col strong">Duration:</div>
+                <div class="col">{{onlineTest.durationHours}} hours, {{onlineTest.durationMins}} mins</div>
+            </div>
+            <div class="row mt-2 mx-0 challenge__section">
+                <div class="col strong">Technology:</div>
+                <div class="col">{{ technology }}</div>
+            </div>
+            <div *ngIf="onlineTest.description" class="challenge__section">
+                <div [innerHTML]="onlineTest.description"></div>
+            </div>
+            <div *ngIf="onlineTest.hints" class="challenge__section">
+                <p class="strong">Hints</p>
+                <div [innerHTML]="onlineTest.hints"></div>
+            </div>
+            <div *ngIf="onlineTest.otherNotes" class="challenge__section">
+                <p class="strong">Other notes</p>
+                <div [innerHTML]="onlineTest.otherNotes"></div>
+            </div>
+        </div>
+    </div>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

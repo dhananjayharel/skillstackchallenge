@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/bootstrap";
+@import "spinner";
+@import "utils";
+@import "rtl";
+@import "responsive";
+@import "~jsoneditor/dist/jsoneditor.min.css";
+
+@import "custom/_custom";
+
+.loading_dots{    
+	background: url('/assets/images/loading_dots.gif');
+    background-position: 10px 0px;
+    background-size: 48px;
+    background-repeat: no-repeat;
+}	

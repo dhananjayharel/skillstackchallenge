@@ -1,0 +1,89 @@
+$form-field-internal-spacing: 20px;
+$form-fields-bottom-spacing: 48px;
+$form-actions-bottom-spacing: 48px;
+$form-field-description-spacing: 11px;
+
+.m-form {
+	
+	&__fields {
+		margin-bottom: $form-fields-bottom-spacing;
+
+		.form-group,
+		.input-group {
+			margin-bottom: $form-field-internal-spacing;
+
+			.form-control + .description {
+				margin-top: $form-field-description-spacing;
+			}
+		}
+	}
+
+	&__actions {
+		width: 100%;
+		text-align: right;
+		margin-bottom: $form-actions-bottom-spacing;
+
+		.btn {
+			margin-right: 20px;
+			text-transform: uppercase;
+			font-size: 13px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.icons-option {
+
+	input {
+		margin: 0;padding: 0;
+    	-webkit-appearance: none;
+        -moz-appearance: none;
+			appearance: none;
+			
+		&:active,
+		&:checked {
+
+			+ .radio-option {
+				-webkit-filter: none;
+       			-moz-filter: none;
+            	filter: none;
+			}
+		}
+	}
+
+	.junior {
+		background: url('./static/junior.png') no-repeat;
+	}
+
+	.senior {
+		background: url('./static/senior.png') no-repeat;
+	}
+
+	.middle {
+		background: url('./static/middle.png') no-repeat;
+	}
+
+	.radio-option{
+		cursor: pointer;
+		background-size: contain;
+		background-repeat: no-repeat;
+		display: inline-block;
+		width: 31px; 
+		height: 31px;
+		-webkit-transition: all 100ms ease-in;
+		   -moz-transition: all 100ms ease-in;
+				transition: all 100ms ease-in;
+		-webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+		   -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+				filter: brightness(1.8) grayscale(1) opacity(.7);
+				
+		&:hover {
+			-webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+			   -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+				filter: brightness(1.2) grayscale(.5) opacity(.9);
+		}
+	}
+}

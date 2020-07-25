@@ -1,0 +1,135 @@
+<!-- <div *ngIf="!environment" class="timeline-wrapper">
+    <div class="timeline-item">
+        <div class="animated-background">
+            <div class="background-masker header-top"></div>
+            <div class="background-masker header-left"></div>
+            <div class="background-masker header-right"></div>
+            <div class="background-masker header-bottom"></div>
+            <div class="background-masker subheader-left"></div>
+            <div class="background-masker subheader-right"></div>
+            <div class="background-masker subheader-bottom"></div>
+            <div class="background-masker content-top"></div>
+            <div class="background-masker content-first-end"></div>
+            <div class="background-masker content-second-line"></div>
+            <div class="background-masker content-second-end"></div>
+            <div class="background-masker content-third-line"></div>
+            <div class="background-masker content-third-end"></div>
+        </div>
+    </div>
+</div> -->
+
+
+<div *ngIf="environment" class="content pl-3 {{animationClass}} animated" >
+        <div>
+            <div class="row">
+                <div class="col-md-7">
+                    <h5 class="mt-3">{{environment.name}}</h5>
+                </div>
+                <div class="col"></div>
+                <div class="col-auto">
+                    <ul class="list-inline action-list mt-2 mb-0">
+                        <li class="list-inline-item text-center text-primary">
+                          <a class="action-list-item" (click)="openPreviewMachineModal()">
+                              <i class="kk-icon kk-icon--md kk-icon--preview"></i><br/>
+                              <small>Preview</small>                              
+                          </a>
+                        </li>
+                        <!-- <li class="list-inline-item text-center text-primary">
+                          <a class="action-list-item" (click)="openCloneTestModal()" >
+                              <i class="kk-icon kk-icon--md kk-icon--clone"></i><br/>
+                              <small>Clone</small>  
+                          </a>
+                        </li> -->
+                        <li class="list-inline-item text-center text-primary">
+                          <a class="action-list-item" [routerLink]="['/environment/edit', environment.id]">
+                            <i class="kk-icon kk-icon--md kk-icon--edit"></i><br/>
+                              <small>Edit</small>  
+                          </a>
+                        </li>
+                        <li class="list-inline-item text-center text-primary">
+                          <a class="action-list-item" (click)="onDelete(environment.id)">
+                              <i class="kk-icon kk-icon--md kk-icon--delete"></i><br/>
+                              <small>Delete</small>  
+                          </a>
+                        </li>
+                     </ul>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-5">
+                          <div class="row">
+                            <div class="col-sm-6  mb-2">
+                                Category:
+                            </div>
+                            <div class="col-sm-6  mb-2 text-uppercase strong">
+                                {{environment.category}} Test
+                            </div>
+                            <div class="col-sm-6  mb-2">
+                                Tags:
+                            </div>
+                            <div class="col-sm-6 f-14 mb-2">
+                                <label *ngFor="let tag of environment.tags" class="badge badge-primary badge-sm badge-round"> {{tag.name}}</label>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+                <div class="col-sm-12">
+                  <ngb-tabset #t="ngbTabset">
+                    <ngb-tab title="Environment Description" id="environment-description">
+                      <ng-template ngbTabContent>
+                          <div [innerHTML]="environment.description"></div>
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div *ngIf="!environment" class="no-content pl-3 {{animationClass}} animated" >
+    <div class="container mt-80">
+      <div class="row align-items-center">
+          <div class="col-6 mx-auto">
+              <div class="jumbotron text-center">
+                  <i class="kk-icon kk-icon--empty"></i>
+                  <p class="f-24 strong font-thin">Theres no Environment Found.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #cloneTestModal let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <form>
+      <div class="form-row align-items-center my-6 mx-3">
+        <div class="col-sm-7">
+          <label class="sr-only" for="inlineFormInputGroup">Name:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Clone of {{environment.name}}">
+          </div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2">Clone</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #launchMachineModal let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

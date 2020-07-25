@@ -1,0 +1,129 @@
+<div class="card">
+    <div class="card-body">
+        <form #basicDataForm="ngForm" *ngIf="!loading" class="m-form editForm" novalidate>
+            <div class="tab-pane active">
+                <div class="m-form__fields">
+                    <div class="form-group">
+                        <label class="control-label" for="testname">Coding Test Title</label>  
+                        <input class="form-control input-md" #testname="ngModel" required id="testname" name="testname" type="text" placeholder="Online Test Name" [(ngModel)]="basicData.name">   
+                        <div class="text-danger" [hidden]="testname.valid">Title is required</div>
+                    </div>					
+              
+  
+                    <div class="form-group">
+                        <label class="control-label" for="testLevel">Level</label><br/>
+                        <div class="form-check form-check-inline icons-option mr-80">
+                            <label class="text-center">
+                                <input id="junior" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="junior">
+                                <label class="radio-option junior" for="junior"></label><br/>
+                                Low
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline icons-option mr-80">
+                            <label class="text-center">
+                                <input id="middle" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="middle">
+                                <label class="radio-option middle" for="middle"></label><br/>
+                                Medium
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline icons-option">
+                            <label class="text-center">
+                                <input id="senior" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="senior">
+                                <label class="radio-option senior" for="senior"></label><br/>
+                                High
+                            </label>
+                        </div>
+                        <div class="description text-primary"> Junior is generally for 0-2 years of experience, Middle is 2-5 years, Senior is 5+ years.</div>
+                        <div class="text-danger" [hidden]="testLevel.valid">Online Test Level is required and must be valid</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="category">Language</label>
+                        <select #category="ngModel" [(ngModel)]="basicData.category" required name="category" class="form-control" placeholder="Category">
+                            <option disabled="disabled" selected [ngValue]="null" >Category</option>
+                            <option *ngFor="let category of categoryData" [ngValue]="category.key">
+                             {{ category.value }}
+                            </option>
+                        </select>
+                        <div class="description text-primary">Select the programming framework the test is based on.</div>
+                        <div class="text-danger" [hidden]="category.valid">Category is required and must be valid</div>
+                    </div>
+					<div  class="form-group">
+                        <label class="control-label" for="testname">GITHUB URL OF CODE</label>  
+                        <input class="form-control input-md" #GitHubUrl="ngModel" required id="GitHubUrl" name="GitHubUrl" type="text" placeholder="GitHub URL" [(ngModel)]="basicData.GitHubUrl">   
+                        <div class="text-danger" [hidden]="GitHubUrl.valid">Github url is required</div>
+                    </div>	
+            <div class="form-group question-wrapper">
+                        <label class="control-label" for="description">Problem Definition</label>  
+                        <app-tinymce #description="ngModel" required minlength="200"  name="problemDefination" [(ngModel)]="basicData.problemDefination"></app-tinymce>
+                        <!--input class="form-control input-md" #description="ngModel"  id="description" name="description" type="text" placeholder="Description" [(ngModel)]="questionData.description"-->
+                        <div class="text-danger" *ngIf="description.errors?.required">Problem definition is required</div>
+                        <div class="text-danger" *ngIf="description.errors?.minlength">Minimum character count required: {{ description.errors.minlength.actualLength }} / {{ description.errors.minlength.requiredLength }}.</div>
+                    </div>          			
+                  	
+                     <div class="form-group">
+					<div id="testcase-input-wrapper">
+						  <div id="inputs-wrapper" class="form-item">
+						  <div><h3>Testcases:</h3>
+						  <div class="description">Create input/output testcases to test the user's solution.<br><br>
+
+						When the user submits his solution, our engine will provide your specified inputs to the user's program and capture the outputs of his program.<br>
+						If the outputs of the user's program do not match your specified expected outputs, the testcase fails and the corresponding error message is displayed.<br>
+						Feel free to add as many testcases you want for extremely granular testing.<br>
+						</div><br></div>
+
+						  <div *ngFor="let testcase of basicData.testcases; let i = index">
+						  <h3> Testcase {{i+1}}</h3>
+						  <label> Testcase Name: </label>
+						  <input class="form-control input-md" #testcasename="ngModel" required id="testcasename" name="testcasename-{{i}}" type="text" placeholder="name" [(ngModel)]="testcase.name">
+						  <div class="text-danger" [hidden]="testcasename.valid">Testcase Name is required</div>
+						  <div class="description">Enter a suitable name for this testcase.<br>
+							
+						  Example: Adding two positive numbers</div><br>
+						  <label> Inputs: </label> 
+						  <input class="form-control input-md" #testcaseinput="ngModel" required id="testcaseinput" name="input-{{i}}" type="text" placeholder="Input" [(ngModel)]="testcase.input">   
+						    <div class="text-danger" [hidden]="testcaseinput.valid">Input is required</div>
+						  <div class="description">Enter the input values to be given to the program. Each input should be on a new line.<br>
+						Example:<br>
+						5<br>
+						7</div><br>
+						  <label> Expected Outputs: </label>
+						  <input class="form-control input-md" #testcaseoutput="ngModel" required id="testcaseoutput" name="output-{{i}}" type="text" placeholder="output" [(ngModel)]="testcase.output">
+						  <div class="text-danger" [hidden]="testcaseoutput.valid">Output is required</div>
+						  <div class="description">Enter the expected output for the given inputs. Each expected value should be on a new line.<br>
+						Example:<br>
+						13<br>
+						true<br>
+						9.0<br>Note that output lines ending with a ":" are filtered out while checking for expected outputs.<br>
+						You can use this mechanism to add prompts for the user.<br>
+						Example: The line "The output elements are:" will be filtered out and will not be considered while checking for expected outputs.</div><br>
+						  <label> Error Message: </label><input class="form-control input-md" #testcaseoutput="ngModel" required id="testcaseerror" name="testcaseerror-{{i}}" type="text" placeholder="error message" [(ngModel)]="testcase.error"><div class="description">Enter an error message to be displayed if the output of the user's program does not match the expected output.<br>
+						Example: Your program fails when trying to add 2 positive numbers</div><br>
+						  <label style="display:none"> Marks 1: </label><input style="display:none" type="text" value="0" name="options[]/"><div style="display:none" class="description">Example: 5</div>
+						  </div>
+						  </div>
+						  
+							<button type="button" class="btn btn-outline-primary" (click)="addMoreTestcases()"> Add more testcases. </button>
+							<button  *ngIf="basicData.testcases.length > 1" type="button" class="btn btn-outline-primary" (click)="removeLastTestcase()"> Remove testcase.{{basicData.testcases.length}} </button>
+
+  </div> 
+                    </div>
+                    <!-- <div  class="form-group">
+                        <label class="control-label" for="testname">GITHUB URL OF PROJECT</label>  
+                        <input class="form-control input-md" #GitHubUrl="ngModel" required id="GitHubUrl" name="GitHubUrl" type="text" placeholder="GitHub URL" [(ngModel)]="basicData.GitHubUrl">   
+                        <div class="text-danger" [hidden]="GitHubUrl.valid">Github url is required</div>
+                    </div>					 -->
+               
+                </div>
+
+                <div class="m-form__actions">
+                    
+                    <div class="form-group text-right">
+                        <button type="button" class="btn btn-outline-primary" (click)="onCancel()"> Cancel </button>
+                        <button type="button" class="btn btn-primary" [disabled]="!basicDataForm.valid" (click)="goToNext(basicDataForm)"> {{this.formDataService.getMode() === 'EDIT' ? 'Update' : 'Create'}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

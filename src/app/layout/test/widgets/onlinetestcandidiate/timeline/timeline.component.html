@@ -1,0 +1,16 @@
+<div class="card-block">
+    <h6 class="text-center strong">Candidate Timeline:</h6>
+    <ul *ngIf="timelines" class="timeline">
+        <li *ngFor="let timeline of timelines; let i = index" [attr.data-index]="i" class="{{ i % 2 ? 'timeline-inverted' : ''}}">
+            <div [ngClass]="{'success': timeline.event.toLowerCase()==='accepted', 'danger': timeline.event.toLowerCase()==='rejected'}"  class="timeline-badge"><i class="fa fa-check"></i>
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h6 class="timeline-title text-uppercase">{{timeline.event}}</h6>
+                    <p class="mb-0"><small class="text-muted"><i class="fa fa-clock-o"></i> {{timeline.date | date :  "MMMM d, y hh : mm" }}</small>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

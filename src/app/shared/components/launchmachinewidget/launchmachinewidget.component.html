@@ -1,0 +1,88 @@
+<div class="launch-machine-wrapper">
+    <div *ngIf="!showLoginDetails" class="action action-launch-machine">
+        <button *ngIf="!launchStarted && !autoLaunch" type="button" class="btn btn-danger btn-lg" (click)="launchMachine()" title="{{beforeLaunchTooltip}}">
+            Launch Machine?
+        </button>
+    </div>
+    <div *ngIf="showLoginDetails && rdpLink && !autoLaunch" class="action action-open-rdp-link" >
+        <a [href]="rdpLink" target="_blank" class="btn btn-success btn-lg" title="{{afterLaunchTooltip}}">
+            <span class="fa fa-external-link"></span>Machine Launched!
+        </a>
+        <a class="trouble-link" (click)="openRDPDetails()">
+            <small class="text-info">Trouble having RDP link opened?</small>
+        </a>
+
+        <ng-template #rdpDetailsModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">RDP Details</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">							
+                    <div class="row slideInUp" *ngIf="showLoginDetails">
+                    <table class="table"> 
+                        <tbody>
+                            <tr>
+                                <td> Checking Remote Status:</td> 
+                                <td [ngClass]="{'loading_dots':!statusText}">{{statusText}}</td>               
+                            </tr>
+                            <tr>
+                                <td> Instance state:</td> 
+                                <td>{{currentStatus}}</td>               
+                            </tr>
+                            
+                            <tr>
+                                <td> RDP File:</td> 
+                                <td *ngIf="currentStatus=='initializing'||currentStatus=='ok'">
+                                    <a href="http://ec2-34-226-213-112.compute-1.amazonaws.com:3000/rdpdetails/{{currentInstanceId}}"  class="">
+                                        <span class=""></span>{{currentInstanceId}}}.rdp
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Remote Connect(Password):</td> 
+                                <td >
+                                    <span *ngIf="machinePassword">{{machinePassword}}</span>
+                                    <span *ngIf="!machinePassword">********************</span>
+                                
+                                
+                                    <a *ngIf="!loading && !machinePassword && (currentStatus=='initializing'||currentStatus=='ok')" (click)="getPassword()"  >(Show)</a>
+                                    <span style='display:inline-block;width:50px;height:15px;background-size: 20px;background-position: 0px 0px;'[ngClass]="{'loading_dots':loading}"></span>
+                                </td>  
+                            </tr>		
+                
+                            <tr>
+                                <td> Web Link:</td> 
+                                <td *ngIf="rdpLink">
+                                    
+                                    <a [href]="rdpLink" target="_blank"class="btn btn-success"><span class="fa fa-external-link"></span>Open Web Link</a>
+                
+                                </td>
+                            </tr>	
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<ng-template #countdownModal>
+    <div class="modal-body">
+        <div class="content mx-auto text-center">
+            <div class="icon mb-36">
+                <!-- <i class="kk-icon kk-icon--fact1"></i> -->
+                <div style='position:relative;padding-bottom:54%'><img id="loadingWindow" src="/assets/images/loadingstep1.gif" height="280" width="470" style='position:absolute;top:0;left:0' /></div>
+            </div>
+            <app-countdown [totalSecs]="countDownTimer" [size]="'lg'" (onCountDownFinish)="showRDPDetails($event)"></app-countdown>
+            <p class="mb-24 strong">Your test machine is booting ...</p>
+            <div *ngIf="launchMode==='RECRUITER'" class="help-block small">
+                <i class="fa fa-info-circle"></i> Booting is required only once per test. You will not have to wait again while viewing the solutions of other candidates of the same test.
+            </div>
+        </div>
+    </div>
+</ng-template>

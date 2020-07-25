@@ -1,0 +1,172 @@
+<div class="l-page l-page--screen bg-banner">
+  <div class="container">
+    <div class="l-page__header">
+      <div class="row">
+        <div class="col">
+          <app-logo [type]="'header-logo'"></app-logo>
+        </div>
+      </div>
+    </div>
+
+    <div class="l-page__content">
+      <div class="row">
+        <div class="col-auto mx-auto">
+          <div class="card card--onboarding rounded-0">
+            <div class="card-body">
+              <h1 class="text-primary text-center h2 mb-5 font-thin strong"> Sign Up </h1>
+              <form class="m-form" role="form" [formGroup]="signUpForm" novalidate
+                (ngSubmit)="onSignUp(signUpForm.value, signUpForm.valid)">
+                <div class="m-form__fields form-content">
+                  <div class="input-group">
+                    <input type="text" formControlName="fullname"
+                      class="form-control form-control-lg input-underline input-lg" id=""
+                      placeholder="Full Name">
+                    <div class="input-group-addon"><i class="kk-icon kk-icon--name"></i></div>
+                    <p [hidden]="signUpForm.controls.fullname.valid || (signUpForm.controls.fullname.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Full Name is not valid.
+                      </small>
+                    </p>
+                  </div>
+
+                  <div class="input-group">
+                    <input formControlName="email"
+                      class="form-control form-control-lg input-underline input-lg" id=""
+                      placeholder="Business Email" required
+                      pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+                    <div class="input-group-addon"><i class="kk-icon kk-icon--mail"></i></div>
+                    <p [hidden]="signUpForm.controls.email.valid || (signUpForm.controls.email.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Email is not valid.
+                      </small>
+                    </p>
+                  </div>
+
+                  <div class="input-group">
+                    <input type="password"
+                      class="form-control form-control-lg input-underline input-lg"
+                      formControlName="password" required placeholder="Password"
+                      validateEqual="confirmPassword" reverse="true">
+                    <div class="input-group-addon"><i class="kk-icon kk-icon--key"></i></div>
+                    <p [hidden]="signUpForm.controls.password.valid || (signUpForm.controls.password.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Password should be minimum 4 characters in length.
+                      </small>
+                    </p>
+                  </div>
+                  <div class="input-group">
+                    <input type="password"
+                      class="form-control form-control-lg input-underline input-lg"
+                      formControlName="confirmPassword" required placeholder="Confirm Password"
+                      validateEqual="password" required>
+                    <div class="input-group-addon"><i class="kk-icon kk-icon--key"></i></div>
+                    <p [hidden]="signUpForm.controls.confirmPassword.valid || (signUpForm.controls.confirmPassword.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Password mismatch.
+                      </small>
+                    </p>
+                  </div>
+
+                  <!-- <div class="input-group">
+                    <input type="text"
+                      class="form-control form-control-lg input-underline input-lg"
+                      formControlName="phoneno" required placeholder="Phone Number"
+                    >
+                    <p [hidden]="signUpForm.controls.phoneno.valid || (signUpForm.controls.phoneno.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Phone Number should be valid.
+                      </small>
+                    </p>
+                  </div> -->
+
+                  <div class="input-group">
+                    <select class="form-control form-control-lg input-underline input-lg"
+                      formControlName="country" required placeholder="Country">
+                      <option [ngValue]="null" >Country</option>
+                      <option *ngFor="let countryItem of countryOptions" [ngValue]="countryItem.value">
+                       {{ countryItem.label }}
+                      </option>
+                    </select>
+                    <p [hidden]="signUpForm.controls.country.valid || (signUpForm.controls.country.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Country should be valid.
+                      </small>
+                    </p>
+                  </div>
+
+                  <div class="input-group">
+                    <input type="text"
+                      class="form-control form-control-lg input-underline input-lg"
+                      formControlName="companyname" required placeholder="Company Name"
+                    >
+                    <p [hidden]="signUpForm.controls.companyname.valid || (signUpForm.controls.companyname.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Company Name should be valid.
+                      </small>
+                    </p>
+                  </div>
+
+                  <div class="input-group">
+                    <select class="form-control form-control-lg input-underline input-lg"
+                      formControlName="companysize" required placeholder="Company Size">
+                      <option [ngValue]="null" >Company Size</option>
+                      <option [ngValue]="'1-100'" >1 - 100</option>
+                      <option [ngValue]="'100-200'" >100 - 200</option>
+                      <option [ngValue]="'200-500'" >200 - 500</option>
+                      <option [ngValue]="'500-1000'" >500 - 1000</option>
+                      <option [ngValue]="'1000-5000'" >1000 - 5000</option>
+                      <option [ngValue]="'5000+'" >5000+</option>
+                    </select>
+                    <p [hidden]="signUpForm.controls.companysize.valid || (signUpForm.controls.companysize.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Company Size should be valid.
+                      </small>
+                    </p>
+                  </div>
+
+                  <!-- <div class="input-group">
+                    <input type="text"
+                      class="form-control form-control-lg input-underline input-lg"
+                      formControlName="jobtitle" required placeholder="Job Title"
+                    >
+                    <p [hidden]="signUpForm.controls.jobtitle.valid || (signUpForm.controls.jobtitle.pristine && !submitted)"
+                      class="w-100">
+                      <small class="text-danger">
+                        Job Title should be valid.
+                      </small>
+                    </p>
+                  </div> -->
+
+                  <div class="form-group text-right">
+                    <a class="text-underline " [routerLink]="['/forgot-password']"><small>forgot
+                        password?</small></a>
+                  </div>
+                </div>
+                <button type="submit" [disabled]="loading"
+                  class="btn btn-primary btn-block btn-round btn-lg mb-4">
+                  Sign Up
+                  <img *ngIf="loading"
+                  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </button>
+                
+
+                <p class="text-center">
+                  <span class="text-default">Already have an account? <a
+                      [routerLink]="['/login']">Sign In</a></span>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

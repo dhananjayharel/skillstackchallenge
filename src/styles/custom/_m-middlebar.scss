@@ -1,0 +1,22 @@
+.m-middlebar {
+	
+	&__search {
+
+		&__input {
+
+		}
+	}
+
+	&__list {
+
+		&__item {
+			list-style-type: none;
+			padding-left: $s5;
+
+			&__vertical {
+
+			}
+
+		}
+	}
+}

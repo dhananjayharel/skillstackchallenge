@@ -1,0 +1,100 @@
+<section id="pricing-plans" class="pricing px-4">
+  <div class="container">
+      <div class="f-36 pt-2 text-center strong font-thin mb-24">Pricing<span class="text-primary font-regular"> Plans</span></div>
+      <div class="row mb-24">
+          <div class="col mx-auto text-center font-thin">
+              <p *ngIf="isActivePlan" class="f-24">
+                  Currently youre on an active plan and have <strong>{{ inviteCounts }}</strong> user invites left.<br/>
+                  Your plan will expire on <strong>{{ expiryDate | date: 'dd/MM/yyyy' }}.</strong><br/>
+                  Upgrade if you require more user invites.
+              </p>
+              <p *ngIf="isNoActivePlan" class="f-24">
+                Your plan has expired. Click on any of the suitable plans to start inviting the candidates.
+              </p>
+              <p *ngIf="isNoFreePlanTaken" class="f-24">
+                You dont have an active plan. Click on the Free plan for 7 day Free trial which allows you to invite 10 candidates.
+              </p>
+          </div>
+      </div>
+      <div class="row">
+          <div *ngIf="isNoFreePlanTaken" class="col-md-3 col-sm-6">
+              <div class="pricingTable11 default">
+                  <div class="pricingTable-header">
+                      <i class="fa fa-adjust"></i>
+                      <div class="price-value"> $0.00 <span class="month">one week</span> </div>
+                  </div>
+                  <h3 class="heading">Free</h3>
+                  <div class="pricing-content">
+                      <ul>
+                          <li><b>7 Days</b> Validity</li>
+                          <li><b>10</b> Invites</li>
+                          <li><b>All</b> Tech Stacks</li>
+                          <li><b>IDE</b> Support</li>
+                      </ul>
+                  </div>
+                  <div class="pricingTable-signup">
+                      <a [routerLink]="['/buy-plan/free']" >Enroll Now</a>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+              <div class="pricingTable11 default">
+                  <div class="pricingTable-header">
+                      <i class="fa fa-briefcase"></i>
+                      <div class="price-value"> $199.00 <span class="month">per month</span> </div>
+                  </div>
+                  <h3 class="heading">Startup</h3>
+                  <div class="pricing-content">
+                      <ul>
+                          <li><b>30 Days</b> Validity</li>
+                          <li><b>20</b> Invites</li>
+                          <li><b>All</b> Tech Stacks</li>
+                          <li><b>IDE</b> Support</li>
+                      </ul>
+                  </div>
+                  <div class="pricingTable-signup">
+                      <a [routerLink]="['/buy-plan/startup']" >Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+              <div class="pricingTable11 default">
+                  <div class="pricingTable-header">
+                      <i class="fa fa-diamond"></i>
+                      <div class="price-value"> $499.00 <span class="month">per month</span> </div>
+                  </div>
+                  <h3 class="heading">Enterprise</h3>
+                  <div class="pricing-content">
+                      <ul>
+                          <li><b>30 Days</b> Validity</li>
+                          <li><b>60</b> Invites</li>
+                          <li><b>All</b> Tech Stacks</li>
+                          <li><b>IDE</b> Support</li>
+                      </ul>
+                  </div>
+                  <div class="pricingTable-signup">
+                      <a [routerLink]="['/buy-plan/enterprise']" >Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+              <div class="pricingTable11 default">
+                  <div class="pricingTable-header">
+                      <i class="fa fa-cube"></i>
+                      <div class="price-value"> Custom Plan<span class="month">per month</span> </div>
+                  </div>
+                  <h3 class="heading">Custom</h3>
+                  <div class="pricing-content">
+                      <p>
+                          Please reach out to us incase you have custom requirements which is not mentioned in our defined plans.
+                      </p>
+                  </div>
+                  <div class="pricingTable-signup">
+                      <a (click)="triggerFeedbackWidget">contact us</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

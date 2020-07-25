@@ -1,0 +1,732 @@
+
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta property="og:title" content="SkillStack"/>  
+  <meta property="og:description" content="The accurate way to screen your tech candidates"/>  
+  <title>SkillStack</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+
+    <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+  <link rel="stylesheet" href="/assets/static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+<section id="banner" class="bg-primary pb-120 m-banner">
+    <div class="container pt-36">
+  
+        <nav class="navbar navbar-dark navbar-expand-lg navbar-primary bg-primary p-0 mb-36">
+            <a _ngcontent-c3="" class="navbar-brand text-white" href="/"><strong _ngcontent-c3="" class="text-info">Skill</strong> Stack</a>
+    
+            
+                <!-- <span class="navbar-toggler-icon text-white f-36"></span> -->
+          <div class="clear-menu-btn">
+<input id="menuCheckbox" type="checkbox" onclick="toggleMenu(this)"  >
+<span class="top"></span>
+<span class="middle"></span>
+<span class="bottom"></span>
+<!-- <span class="circle"></span> -->
+</div>
+            
+            <div id="navbarNavDropdown" class="navbar-collapse collapsing collapse">
+                <ul class="navbar-nav ml-auto header-links text-uppercase mb-2 d-none d-md-flex">
+                    <li class="nav-item dropdown">
+                        <a onclick="scrollTo2('banner')" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a onclick="scrollTo2('why-kk')" class="nav-link">Why Skillstack?</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a onclick="scrollTo2('how-it-works')" class="nav-link" >HOW IT WORKS</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a onclick="scrollTo2('products-kk')" class="nav-link">PRODUCT</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a onclick="scrollTo2('pricing-plans')" class="nav-link">PRICING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link text-white" href="/trynow/">
+                          try demo test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" onclick="goToLogin()">Register / Login</a>
+                    </li>
+                </ul>
+        <ul class="navbar-nav ml-auto header-links text-uppercase mb-2 pl-2 mb-2 d-md-none">
+                    <li class="nav-item dropdown text-left">
+                        <a onclick="scrollTo3('banner')" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item text-left">
+                        <a onclick="scrollTo3('why-kk')" class="nav-link">Why Skillstack?</a>
+                    </li>
+                    <li  class="nav-item text-left">
+                        <a onclick="scrollTo3('how-it-works')" class="nav-link" >HOW IT WORKS</a>
+                    </li>
+                    <li  class="nav-item text-left">
+                        <a onclick="scrollTo3('products-kk')" class="nav-link">PRODUCT</a>
+                    </li>
+                    <li  class="nav-item text-left">
+                        <a onclick="scrollTo3('pricing-plans')" class="nav-link">PRICING</a>
+                    </li>
+                    <li class="nav-item text-left">
+                        <a target="_blank" class="nav-link " href="/trynow/">
+                          Try demo test
+                        </a>
+                    </li>
+                    <li class="nav-item text-left">
+                        <a class="nav-link" onclick="goToLogin()">Register / Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        
+        <div class="row align-items-center {{animatePulse}}">
+            <div class="col-12 col-lg-7 text-uppercase text-white" style="margin-top: -32px;">
+                <div class="banner-text">
+                    <div class="banner-text-inner">
+                        <div class="f-30 mb-30 fw-600" id="tagline" style="height: 141px;">
+<!--                          The <span class="text-primary bg-white text-glow d-inline-block p-1 px-2 l-1">better</span> way to assess your tech candidates -->
+              <!-- The future of tech assessments -->
+the revolutionary way to screen programmers<!--<br/><span class="js-language-switch font-thin strong"><span class="js-language-toggle"></span></span>-->
+            </div>
+<BR><BR>
+                        <div class="f-18 mb-54 font-thin strong" >
+test your candidates on real tasks - not brainteasers</div>
+                        
+                    </div>
+                </div>
+                <a href="/app/signup" target="_blank" style="background: white;font-size: 16px;width: 250px;" class="btn btn-default btn-round text-primary strong text-uppercase btn-banner d-none d-lg-inline-block mr-3">sign up - free!</a>
+                <a data-toggle="modal" data-target="#codeDemoModal" style="background: white;font-size: 16px;width: 280px;" class="btn btn-default btn-round text-primary strong text-uppercase btn-banner d-none d-lg-inline-block"> 
+                    take the 1-min coding tour
+                </a>
+            </div>
+
+    <div class="modal" id="codeDemoModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="demoVideo" width="100%" height="500" src="https://www.youtube.com/embed/a95R44FPj4Q?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- use commented code on line 101 to hide the image in mobile view -->
+       <!--<div class="d-none d-lg-block col-0 col-lg-5"> -->
+     <div class=" d-sm-block d-none col-0 col-lg-5">
+        <i class="kk-icon kk-icon--home-banner" ></i>
+    </div>  
+            <div class="d-md-none col-0 col-lg-5">
+                <i class="kk-icon kk-icon--home-banner"  style="margin-top: 70px;display:none;background-image: url(./assets/static/css/static/version2.png.png) !important;"></i>
+                <a href="/app/signup" target="_blank" style="background: white;font-size: 16px;margin-bottom: -67px;margin-right: auto;margin-left: auto;display: block;margin-top: 80px; margin-bottom:24px;" class="btn btn-default btn-round text-primary strong text-uppercase btn-banner "> 
+                    sign up - free!
+                </a>
+                <a data-toggle="modal" data-target="#codeDemoModal" style="background: white;font-size: 16px;margin-bottom: -67px;margin-right: auto;margin-left: auto;display: block;" class="btn btn-default btn-round text-primary strong text-uppercase btn-banner "> 
+                    watch coding demo
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="why-kk" class="pb-24 why-kk">
+    <div class="container">
+        <div class="f-36 text-center mt-24 font-thin strong">What makes <span class="text-primary fw-600 font-regular">SkillStack </span>different</div>
+            <div class="justify-content-center row pb-24 ">
+                <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+            </div>
+        <div class="row">
+            <div class="col-12 col-lg-6 text-center real-project-section">
+                <div class="text-primary f-24 strong mb-24 fw-600">
+                        Real-world Projects
+                </div>
+                <!-- <div class="mx-auto bg-gray-6 rounded-circle w-250x250 position-relative">
+                    <i class="kk-icon kk-icon--code-lg center_item"></i>
+                </div> -->
+                <div class="mx-auto bg-gray-6 w-250 ">
+                    <img src="/assets/images/projects.jpg" width="100%" style="height:247px;width: 346px;margin-left:-41px;"/>          
+                </div>
+                <hr class="border-grey-separator w-250 mx-auto" />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 f-16">
+                        <strong>Test your candidates on real projects using the same IDEs they are used to</strong><br/>
+                        No more "web challenges" gimmickery. Watch your candidates solve real-world problems in your chosen environment.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-lg-6 text-center mt-xs-6 video-interview-section">
+                <div class="text-primary f-24 strong mb-24 fw-600">
+                    Video Screening
+                </div>
+                <!-- <div class="mx-auto bg-gray-6 rounded-circle w-250x250 position-relative">
+                    <i class="kk-icon kk-icon--video-lg center_item"></i>
+                </div> -->
+                <div class="mx-auto bg-gray-6 w-250 ">
+                    <img src="/assets/images/video.jpg" width="100%" />         
+                </div>
+                <hr class="border-grey-separator w-250 mx-auto" />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 f-16">
+                        <strong>Allow your candidates to answer your screening questions on video</strong><br/>
+                        Gain more insight on your candidate's skills & authenticity by watching "selfie" videos of them answering your questions.             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-36 m-stack">
+    <div class="container" >
+        <div class="row">
+            <div class="col-12 col-lg-6 m-stack__caption strong">
+                We test your candidates on the latest stacks in actual IDEs - right in the browser.       
+            </div>
+            <div class="col-lg-6 mt-36 language-image animated visibility-off">
+                <img src="/assets/images/languages.png" width="100%" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="ht-120 slant-dark-bottom bg-white"></div>
+<section id="how-it-works" class="bg-secondary">
+   <div class="container ">
+      <div class="f-36 text-white text-center strong font-thin">How It <span class=" font-regular">works</span></div>
+      <div class="justify-content-center row pb-54">
+         <div class="bb-5 bb-5--white wth-50 ht-10">&nbsp;</div>
+      </div>
+      <div class="tab-container">
+         <div class="dashed-line"></div>
+         <ul role="tablist" class="nav nav-tabs justify-content-around">
+            <li class="nav-item">
+               <a class="nav-link active" href="#ngb-tab-0-panel" role="tab" id="ngb-tab-0" aria-controls="ngb-tab-0-panel" aria-expanded="true" aria-disabled="false" data-toggle="tab">
+                  <span class="tab-title">1</span>
+                  <div class="circle w-110x110 rounded-circle position-relative mx-auto">
+                     <i class="kk-icon kk-icon--create-circle center_item"></i>
+                  </div>
+                  <span>Create</span>
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#ngb-tab-1-panel" role="tab" id="ngb-tab-1" aria-expanded="false" aria-disabled="false" data-toggle="tab">
+                  <span class="tab-title">2</span>
+                  <div class="circle w-110x110 rounded-circle position-relative mx-auto">
+                     <i class="kk-icon kk-icon--invite-circle center_item"></i>
+                  </div>
+                  <span>Invite</span>
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#ngb-tab-2-panel" role="tab" id="ngb-tab-2" aria-expanded="false" aria-disabled="false" data-toggle="tab">
+                  <span class="tab-title">3</span>
+                  <div class="circle w-110x110 rounded-circle position-relative mx-auto">
+                     <i class="kk-icon kk-icon--review-circle center_item"></i>
+                  </div>
+                  <span>Review</span>
+               </a>
+            </li>
+         </ul>
+         <div class="tab-content">              
+            <div role="tabpanel" class="tab-pane active" aria-labelledby="ngb-tab-0" id="ngb-tab-0-panel" aria-expanded="true">
+               <div class="row">
+                  <div class="paragraph col-lg-6 text-white f-14 pt-54">
+                     <div class="heading">
+                        <h5 class="text-left strong text-white f-20">Create Online Tests</h5>
+                        <p class="text-left text-white f-16">in a few clicks </p>
+                     </div>
+                     <img src="/assets/images/globebullet.png" class="hw_bullets"><p>Choose a test from our test library</p>
+                     <img src="/assets/images/languagebullet.png" class="hw_bullets"><p>Preview your test in your browser</p>
+                     <img src="/assets/images/sendbullet.png" class="hw_bullets"><p>Customise as required.</p>
+
+                  </div>
+                  <div class="col-lg-6 order-1 order-md-2">
+                     <img class="laptop-img" src="/assets/images/how-it-works-comp.png">
+                  </div>
+               </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" aria-labelledby="ngb-tab-1" id="ngb-tab-1-panel" aria-expanded="true">
+                <div class="row">
+                    <div class="paragraph col-lg-6 text-white f-14 pt-54">
+                        <div class="heading">
+                            <h5 class="text-left strong text-white f-20">Invite Candidates</h5>
+                            <p class="text-left text-white f-16">to solve your tests </p>
+                        </div>
+                        <img src="/assets/images/tickbullet.png" class="hw_bullets"><p>Send invites directly from SkillStack</p>
+                        <img src="/assets/images/languagebullet.png" class="hw_bullets"><p>Your candidate can take the test anywhere at their convenience</p>
+                         <img src="/assets/images/timebullet.png" class="hw_bullets"><p>Get notified when they have finished the test.</p>
+                    </div>
+                    <div class="col-lg-6 order-1 order-md-2">
+                        <img class="laptop-img" src="/assets/images/how-it-works-comp.png">
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" aria-labelledby="ngb-tab-2" id="ngb-tab-2-panel" aria-expanded="true">                <div class="row">
+                <div class="paragraph col-lg-6 text-white f-14 pt-54 ">
+                    <div class="heading">
+                        <h5 class="text-left strong text-white f-20">Review Results</h5>
+                        <p class="text-left text-white f-16">to find the best candidates around </p>
+                    </div>
+                    <img src="/assets/images/globebullet.png" class="hw_bullets"><p>Review performance reports</p>
+                    <img src="/assets/images/editbullet.png" class="hw_bullets"><p>Compare, run code, watch recordings</p>
+                    <img src="/assets/images/embedbullet.png" class="hw_bullets"><p>Shortlist for interview!</p>
+                </div>
+                <div class="col-lg-6">
+                    <img class="laptop-img" src="/assets/images/how-it-works-comp.png">
+                </div>
+            </div>
+        </div>
+         </div>
+      </div>
+   </div>
+</section>
+<div class="ht-120 slant-dark-top bg-secondary"></div>
+
+<section id="products-kk" class="m-feature">
+    <div class="container">
+        <div class="f-36 text-center mt-24 strong font-thin">Product <span class="text-primary font-regular">Overview</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+        <div id="products-kk-0" class="row align-items-top pb-54" style="max-width:100%;overflow-x:hidden">
+            <div class="col-lg-5 text pt-50 animated">
+                <div class="strong f-24">Tests based on real-world projects</div><br/>
+                <div class="f-16">Choose a test from our library or create your own in minutes.
+                        Each test comes wrapped up in a container - with the IDE & stack of your 
+                        choice - all accessible right in the browser.
+                </div>
+            </div>
+            <div class="col-lg-7 animated image visibility-off">
+                <img src="/assets/images/why-kk-3.png" width="100%" />        
+            </div>
+        </div>
+        <div id="products-kk-1" class="row align-items-top justify-content-end pb-54 {{animatePulse}}" style="max-width:100%;overflow-x:hidden">
+            
+            <div class="col-lg-5 order-1 order-md-2 text pt-50 animated">
+                <div class="strong f-24">Granular analytics</div><br/>
+                <div class="f-16">
+                    Watch every keystroke and mouse movement. Run your candidate's code live. See diffs & compare with other candidates. Get auto-graded results too!
+                </div>
+            </div>
+            <div class="col-lg-7 animated  image  visibility-off order-2 order-md-1">
+                <img src="/assets/images/why-kk-2.png" width="100%" />          
+            </div>
+        </div>
+        <div id="products-kk-2" class="row align-items-top justify-content-start pb-54 {{animatePulse}}" style="max-width:100%;overflow-x:hidden">
+            <div class="col-lg-5 text animated pt-50">
+                <div class="strong f-24">Video interviews</div><br/>
+                <div class="f-16">
+                    Choose video questions for each test from our library or add your own. Ask questions specific to the coding test or general questions too. The candidate can record answers from their desktop or mobile.
+                </div>
+            </div>
+            <div class="col-lg-7 animated image visibility-off">
+               <img src="/assets/images/why-kk-1.png" width="100%" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="slant-grey-bottom"></div>
+<section id="testimonials" class="m-testimonials" style="margin-top: 5px;">
+  <div class="container">
+      <div class="f-36 text-center strong font-thin">Client <span class="text-primary font-regular">Testimonials</span></div>
+      <div class="justify-content-center row">
+          <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+      </div>
+      <div id="carouselTestimonials" class="carousel slide" data-interval="false" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselTestimonials" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselTestimonials" data-slide-to="1"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <div class="animated pulse">
+                <div class="row align-items-center">
+                  <div class="col-lg-4">
+          <i class="kk-icon kk-icon--testimonial-profile" style="background:none; padding: 24px;">
+            <div class="circle1"></div>
+            <div class="image-wrapper">
+              <img src="/assets/images/reddy_client.jpg">
+            </div>
+            <div class="circle2"></div>
+          </i>
+                  </div>
+                  <div class="col-lg-8">
+          <div class="col-lg-12 strong font-thin">
+                        <p 
+                        class="f-16">With SkillStack, we've reduced our introductory interviews by over 70% and that's nothing short of remarkable.</p>
+          </div>          
+          <div class="col-lg-12 mb-24">
+            <h3 class="text-primary f-24">Raghava Reddy</h3>
+            <span class="texxt-default text-right">CEO, Invimatic LLP</span>
+          </div>
+          </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item active">
+              <div class="animated pulse">
+                <div class="row align-items-center">
+                  <div class="col-lg-4"> 
+                <i class="kk-icon kk-icon--testimonial-profile" style="background:none; padding: 24px;">
+            <div class="circle1"></div>
+            <div class="image-wrapper">
+              <img src="/assets/images/raj_client3.jpeg"/>
+            </div>
+            <div class="circle2"></div>
+          </i>           
+                  </div>
+                  <div class="col-lg-8">
+            <div class="col-lg-12 strong font-thin">
+                    <p class="f-16">SkillStack has removed all the ambiguity on whether a developer fits our role or not, and has made the hiring decision a no-brainer!<br/>&nbsp;<br/></p>
+                  </div>               
+                  <div class="col-lg-12 mb-24">
+                    <h3 class="text-primary f-24">Raj Raman</h3>
+                    <span class="texxt-default text-right">CEO, Clipit.TV</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselTestimonials" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselTestimonials" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+  </div>
+</section>
+<div class="slant-grey-top bg-grey"></div>
+<section id="press" class="mt-24 visibility-off">
+    <div class="container">
+        <div class="f-36 text-center strong font-thin">Company Press<span class="text-primary font-regular"> & Media</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-12 h5 text-center">
+                SkillStack is still in beta, but we're judiciously tom-tomming some reviews of our flagship product Programmr here. It's in the same space y'all!            </div>
+    
+        </div>
+        
+        <div class="row d-flex pt-40">
+            <div class="col text-center mb-24 mx-auto">
+                <a href="https://www.fastcompany.com/3019658/play-edward-snowden-pac-man-and-other-pro-privacy-games-for-free" target="_blank"><img height="50px" width="120px" src="/assets/images/fc.jpg" /></a> 
+            </div>  
+             <div class="col text-center mb-24 mx-auto">
+                <a href="https://techcrunch.com/2012/04/06/learning-to-code-apps-programr-the-codecademy-for-higher-level-languages-adds-support-for-android/" target="_blank"><img height="90px" width="170px" src="/assets/images/TechCrunchLogo.jpg" /></a>
+            </div>  
+            <div class="col text-center mb-24 mx-auto">
+                <a href="https://thenextweb.com/dd/2012/07/08/inside-programr-the-site-that-lets-you-learn-to-code-by-actually-building-apps/" target="_blank"><img height="50px" width="120px" src="/assets/images/tnw.png" /></a>
+            </div>  
+<!--
+      <div class="col text-center mb-24 mx-auto">
+                <a href="https://venturebeat.com/2012/06/11/programr-ios/#s:programr-1" target="_blank"><img height="40px" width="100px" src="/assets/images/venturebeatsmall.png" /></a>
+            </div>      
+            <div class="col text-center mb-24 mx-auto d-sm-block d-none">
+                <a href="https://thenextweb.com/asia/2012/01/03/programr-the-code-school-with-a-hands-on-community-based-approach/" target="_blank"><img height="50px" width="120px" src="/assets/images/tnw.png" /></a> 
+            </div>   
+-->
+      <div class="col text-center mb-24 mx-auto">
+                <a href="https://www.businesswire.com/news/home/20140729006538/en/Pearson-Partners-Programmr-Power-Interactive-%E2%80%9CLearn-Code%E2%80%9D" target="_blank"><img height="70px" width="120px" src="/assets/images/bwlogo_extreme.png" /></a> 
+            </div>      
+          <div class="col text-center mb-24 mx-auto">
+                <a href="http://www.prweb.com/releases/2015/04/prweb12638170.htm" target="_blank"><img height="50px" width="120px" src="/assets/images/prweb-01.png" /></a>
+            </div>
+  
+        </div>
+    </div>
+</section>
+
+
+<section id="specific-skillset" class="mt-24" style="background:#f0f0f0;">
+    <div class="container pt-40">
+        <div class="f-36 text-center strong font-thin">Looking for  <span class="text-primary font-regular">specific skillsets?</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+        <div class="col-12 h5 text-center">
+            Coming Soon: We're adding tests on these technologies to our library shortly.
+        </div>
+
+        <div class="pt-40">
+            <div class="row no-gutters">
+        <div class="col-xs-3 col-md-2 text-center"><img class="" height="84px" src="/assets/images/icons1.png" /></div>
+        <div class="col-xs-3 col-md-2 text-center"><img class="" height="84px" src="/assets/images/icons5.png" /></div>
+            <div class="col-xs-3 col-md-2 text-center"><img class="" height="84px" src="/assets/images/icons2.png" /></div> 
+              <div class="col-xs-3 col-md-2 text-center d-sm-block d-none"><img class="" height="84px" src="/assets/images/icons3.png" /></div>
+              <div class="col-xs-3 col-md-2 text-center d-sm-block d-none"><img class="" height="84px" src="/assets/images/icons4.png" /></div>       
+        <div class="col-xs-3 col-md-2 text-center d-sm-block d-none"><img class="" height="84px" src="/assets/images/icons6.png" /></div>
+            </div>
+            <div class="row no-gutters">
+          <div class="col-xs-3 col-md-2 f-14 text-center p-2">Blockchain</div>
+        <div class="col-xs-3 col-md-2 f-14 text-center p-2">Artificial Intelligence</div>
+        <div class="col-xs-3 col-md-2 f-14 text-center p-2">Big Data</div> 
+        <div class="col-xs-3 col-md-2 f-14 text-center p-2 d-sm-block d-none">Internet of Things</div>
+        <div class="col-xs-3 col-md-2 f-14 text-center p-2 d-sm-block d-none">Augmented Reality</div>
+                <div class="col-xs-3 col-md-2 f-14 text-center p-2 d-sm-block d-none">Unity Game Development</div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+      <div class="col-xs-3 col-md-2 text-center d-md-none"><img class="" height="84px" src="/assets/images/icons3.png" /></div>
+      <div class="col-xs-3 col-md-2 text-center d-md-none"><img class="" height="84px" src="/assets/images/icons4.png" /></div>       
+      <div class="col-xs-3 col-md-2 text-center d-md-none"><img class="" height="84px" src="/assets/images/icons6.png" /></div>
+        </div>
+    <div class="row no-gutters">
+      <div class="col-xs-3 col-md-2 text-center d-md-none p-2">Internet of Things</div>
+      <div class="col-xs-3 col-md-2 text-center d-md-none p-2">Augmented Reality</div>
+      <div class="col-xs-3 col-md-2 text-center d-md-none p-2">Unity Game Development</div>
+        </div>
+    </div>    
+</section>
+<!-- <div class="ht-120 bg-white">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 41"><polygon class="a" points="0 0, 0 41, 400 41, 400 40, 0 0"></polygon></svg>
+</div> -->
+<section id="pricing-plans" class="pricing">
+    <div class="container">
+        <div class="f-36 pt-2 text-center strong font-thin mb-24">Pricing<span class="text-primary font-regular"> Plans</span></div>
+<!--
+        <div class="row mb-24">
+            <div class="col mx-auto text-center">
+                <p class="f-24">Start trial and test 10 candidates for FREE</p>
+                <p class="f-16">No credit card required.</p>
+            </div>
+        </div>
+        <div class="row mb-24">
+
+            <div class="col mx-auto text-center">
+                <a href="/app/signup" target="_blank" style="font-size: 16px;width: 250px;background: #2aa4f7;border-color:#2aa4f7;" class="btn btn-primary btn-round text-uppercase btn-banner">sign up - free!</a>
+            </div>
+        </div>
+-->
+        <div class="row mb-24">
+            <div class="col mx-auto text-center">
+<!--                <p class="f-24">Note: All plans are 100% free till 1st November 2019. No credit card required!</p> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable11 default">
+                    <div class="pricingTable-header">
+                        <i class="fa fa-adjust"></i>
+                        <div class="price-value"> FREE<span class="month">one week</span> </div>
+                    </div>
+                    <h3 class="heading">Free</h3>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><b>7 Days</b> Validity</li>
+                            <li><b>10</b> Invites</li>
+                            <li><b>All</b> Tech Stacks</li>
+                            <li><b>IDE</b> Support</li>
+                        </ul>
+                    </div>
+                    <div class="pricingTable-signup">
+                        <a href="/app/signup" target="_blank">sign up</a>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable11 default">
+                    <div class="pricingTable-header">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="price-value"> $199<span class="month">per month</span> </div>
+                    </div>
+                    <h3 class="heading">Startup</h3>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><b>30 Days</b> Validity</li>
+                            <li><b>20</b> Invites</li>
+                            <li><b>All</b> Tech Stacks</li>
+                            <li><b>IDE</b> Support</li>
+                        </ul>
+                    </div>
+                    <div class="pricingTable-signup">
+                        <a href="/app/signup" target="_blank">sign up</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable11 default">
+                    <div class="pricingTable-header">
+                        <i class="fa fa-diamond"></i>
+                        <div class="price-value"> $499<span class="month">per month</span> </div>
+                    </div>
+                    <h3 class="heading">Enterprise</h3>
+                    <div class="pricing-content">
+                        <ul>
+                            <li><b>30 Days</b> Validity</li>
+                            <li><b>60</b> Invites</li>
+                            <li><b>All</b> Tech Stacks</li>
+                            <li><b>IDE</b> Support</li>
+                        </ul>
+                    </div>
+                    <div class="pricingTable-signup">
+                        <a href="/app/signup" target="_blank">sign up</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable11 default">
+                    <div class="pricingTable-header">
+                        <i class="fa fa-cube"></i>
+                        <div class="price-value"> Custom Plan<span class="month">per month</span> </div>
+                    </div>
+                    <h3 class="heading">Custom</h3>
+                    <div class="pricing-content">
+                        <p>
+                            Please reach out to us in case you have custom requirements.
+                        </p>
+                    </div>
+                    <div class="pricingTable-signup">
+                        <a href="/app/signup" target="_blank">contact us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="" class="bg-grey pt-24 m-pre-footer" style="background:#f0f0f0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-24 text-center">
+                 <p><i class="kk-icon kk-icon--rocket"></i></p> 
+                <h3 class="my-54">Ready to <span class="text-primary strong">revolutionize your tech hiring?</span></h3>
+                <button id="get-started-btn" style="margin-left: -4px;background: #2aa4f7;color: white;" onclick="goToLogin()" class="btn btn-grey btn-round text-uppercase f-14 mr-2 mb-4 animated">
+                    sign up - Free!
+                </button>
+                <a id="quick-demo-btn" href="/trynow/" target="_blank" style="background: #2aa4f7;" class="btn btn-grey btn-round text-white text-uppercase  f-14 mb-4 animated"> 
+                    try a demo test
+                </a>
+            </div>
+        </div>  
+    </div>
+</section> 
+<section id="footer" class="bg-footer footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h4 class="footer-head">Menu</h4>
+                <ul class="list-unstyled">
+                    <li class="footer-link">
+                        <a onclick="scrollTo2('banner')">Home</a>
+                    </li>
+                    <li class="footer-link">
+                        <a onclick="scrollTo2('why-kk')">Why Skillstack?</a>
+                    </li>
+                    <li class="footer-link">
+                        <a onclick="scrollTo2('how-it-works')">How it works</a>
+                    </li>
+                    <li class="footer-link">
+                        <a onclick="scrollTo2('products-kk')">Product</a>
+                    </li>
+                    <li class="footer-link">
+                        <a onclick="goToLogin()">Register / Login</a>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="offset-lg-4 col-lg-4">
+                <h4  class="footer-head text-uppercase">Contact Us</h4>
+                <p>
+                    Skillstack Technologies Inc.<br/>
+                    616 Corporate Way Suite 2<br/>
+                    Valley Cottage, NY 10989<br/>
+                </p>
+                <p>
+                    support@skillstack.com
+                </p>
+                <p>
+                    (646) 801-3988
+                </p>
+
+                <ul class="list-unstyled my-4">
+                    <li class="list-inline-item">
+                        <a target="_blank" href="//www.instagram.com/skillstackhq">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a target="_blank" href="//www.facebook.com/skillstackhq">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="//www.twitter.com/skillstackhq">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="//www.linkedin.com/company/skillstackhq">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Bootstrap CSS -->
+<!-- jQuery first, then Bootstrap JS. -->
+<!-- Nav tabs -->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+  <script src="/assets/static/js/main.js"></script>
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143283541-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143283541-1');
+    </script>
+  <!-- <script id="roadmap-widget" src="//cdn.roadmap.space/widget/feedback.js"></script>
+    <script>
+        window.onload = function() {
+        RoadmapSettings.load({id: "5d00579c31d74e70139fee2c"});
+        };
+    </script> -->
+</body>
+
+</html>

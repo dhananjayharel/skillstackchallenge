@@ -1,0 +1,27 @@
+.m-sticker {
+    position: absolute;
+    width: 20px;
+    height: 80%;
+    display: block;
+    left: 6px;
+    border: 0;
+    top: 10%;
+    bottom: 10%;
+
+	&__label {
+		position: relative;
+   		display: inline-block;
+    	margin: 0 15px;
+	    width: 20px;
+	    top: 60%;
+	    left: -70%;
+
+    	&__text {
+    		 -moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+			  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+			  transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+			font-weight: $font-weight-normal;
+			text-transform: uppercase;
+    	}
+	}
+}

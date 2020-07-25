@@ -1,0 +1,88 @@
+<app-page-header [heading]="'View Environment'" [icon]="'fa fa-cogs'"></app-page-header>
+<div class="row">
+        <table class="table bounceInLeft animated">
+        <thead class="thead-inverse">
+            
+        </thead>
+        <tbody>
+            <tr>
+                <td>Name:</td>
+                <td *ngIf="environment">{{environment.name}}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td *ngIf="environment">{{environment.description}}
+                </td>
+            </tr>
+            <tr>
+                <td>Base AMI:</td>
+                <td [ngClass]="{'loading_dots':!baseAmiDetails}" >{{baseAmiDetails}}
+                </td>
+            </tr>	
+		   </tbody>
+    </table>
+</div>	
+     <hr>
+<div class="row">	 
+    <h4>Configure Environment</h4>	 
+</div>
+<div class = "row" *ngIf="!showLoginDetails && launchStarted==true">
+    <p  class="text-center test-question"> Please wait while we prepare your test environment...</p>
+    <div  class="countdown-wrapper">
+         <app-countdown [totalSecs]="150" (onCountDownFinish)="showRDPDetails($event)"></app-countdown>
+    </div>
+</div>
+<div class = "row">
+     <div class="center" *ngIf="!environment.instanceid"><a (click)="launchInstance()"  class="btn btn-success"><span class="fa fa-plus"></span>Launch Environment Machine</a></div>              
+</div>
+<div class="row" *ngIf="showLoginDetails">	
+       <table class="table"> 
+        <thead class="thead-inverse">	
+		        </thead>
+        <tbody>
+
+           
+            <tr *ngIf="launchStarted==true" >
+                <td> Checking Remote Status:</td> 
+                <td [ngClass]="{'loading_dots':!statusText}">{{statusText}}</td>               
+            </tr>
+			<tr *ngIf="launchStarted==true" >
+                <td> Instance state:</td> 
+                <td>{{currentStatus}}</td>               
+            </tr>
+			
+			 <tr *ngIf="launchStarted" >
+                <td> RDP File:</td> 
+                <td *ngIf="currentStatus=='initializing'||currentStatus=='ok'"><a href="http://ec2-34-226-213-112.compute-1.amazonaws.com:3000/rdpdetails/{{environment.instanceid}}"  class=""><span class=""></span>{{environment.name}}.rdp</a></td>
+				<!-- <td *ngIf="environment.commited">NA</td>		 -->
+            </tr>
+			 <tr *ngIf="launchStarted" >
+                <td> Remote Connect(Password):</td> 
+                <td >
+				<span *ngIf="machinePassword">{{machinePassword}}</span>
+				<span *ngIf="!machinePassword">********************</span>
+				
+				
+				   <a href="javascript:void();" *ngIf="!loading && !machinePassword && (currentStatus=='initializing'||currentStatus=='ok')" (click)="getPassword()"  >(Show)</a>
+				   <span style='display:inline-block;width:50px;height:15px;background-size: 20px;background-position: 0px 0px;'[ngClass]="{'loading_dots':loading}"></span>
+				   </td>  
+                   
+				  <!-- <td *ngIf="environment.commited || !environment.instanceid">NA</td>  	 -->
+            </tr>
+            <tr *ngIf="launchStarted && (currentStatus=='initializing'||currentStatus=='ok')" >
+                <td> Web Link:</td> 
+                <td *ngIf="rdpLink">
+                    
+                    <a [href]="rdpLink" target="_blank"class="btn btn-success"><span class="fa fa-external-link"></span>Open Web Link</a>
+
+                </td>  
+				  <!-- <td *ngIf="environment.commited || !environment.instanceid">NA</td>  	 -->
+            </tr>			
+             <tr *ngIf="environment.instanceid" >
+                <td> </td> 
+                <td *ngIf="currentStatus=='initializing'||currentStatus=='ok'"><a (click)="commitInstance()"  class="btn btn-success"><span class="fa fa-plus"></span>Commit</a></td>
+				 <!-- <td *ngIf="environment.commited">AMI already commited!</td>              	 -->
+            </tr>
+        </tbody>
+    </table>
+</div>

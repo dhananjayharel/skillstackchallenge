@@ -1,0 +1,65 @@
+<div class="l-page">
+    <div class="l-page__content">
+        <div class="l-page__content__inner">
+            <app-page-header [heading]="'Admin'" [icon]="'fa fa-user'"></app-page-header>
+            <div class="row">
+                <div class="col-auto mx-auto text-center">
+           
+                    <div class="card card--profile text-left">
+                        <div class="card-title strong">
+                            THIS WILL SHOW THE INSTANCE DETAILS                          
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-8">
+					<div class = "card">
+						<div class = "card-body">
+							<table class="table">
+								<thead>
+									<tr>
+									  <th scope="col">#</th>
+									  <th scope="col">Candidate</th>
+									  <th scope="col">Test</th>
+									  <th scope="col">IntanceID</th>
+									  <th scope="col">Test Started</th>
+									</tr>
+								</thead>
+								<tbody *ngIf="machines">
+									<tr *ngFor="let machine of machines;">
+									  <th scope="row">1</th>
+									  <td>{{machine.name}}</td>
+									  <td>{{machine.test}}</td>
+									  <td>{{machine.instanceid}}</td>
+									  <td>{{machine.teststarted}}</td>
+									</tr>   
+								</tbody>  
+							</table>
+						</div>
+					</div>	
+				</div>
+            </div>			
+        </div>
+    </div>
+</div>
+<div id="custom-id" style="position:absolute;visibility:hidden;top:20%;left:20%;" ></div>
+<div id="first-recorder" ></div>
+	
+	<div id="controls" class="controls">
+	<button id="permission" (click)="getPermission()">Start Webcam</button>
+	<button id="permission" (click)="checkInterval()">Interval</button>
+	<button id="permission" (click)="cancelInterval()">cancelInterval</button>
+	
+		<button id="recordbtn" (click)="start()" style="visibility:hidden">Start Recording</button>
+		<button id="feed" (click)="feed()" style="visibility:hidden">Feed</button>
+		<button id="playbtn" style="visibility:hidden">Cintinue</button>
+		<button id="pausebtn" style="visibility:hidden" (click)="stop()"  >Stop</button>
+		<button id="savebtn" style="visibility:hidden">Save</button>
+		<button id="removebtn" style="visibility:hidden" (click)="getRecorder()">Recorder</button>
+	</div>
+	<pre id="log">{{videoUrl}}</pre>
+     <video #video src="" ></video>
+	 <div class="row text-center"><div class = "col"><p id="pip-progress">progress</p></div></div>
+

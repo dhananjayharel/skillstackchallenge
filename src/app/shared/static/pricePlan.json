@@ -1,0 +1,23 @@
+[
+    {
+        "key": "free",
+        "name": "Free",
+        "price": 0,
+        "invites": 10,
+        "days": 1
+    },
+    {
+        "key": "startup",
+        "name": "Startup",
+        "price": 199.0,
+        "invites": 20,
+        "days": 30
+    },
+    {
+        "key": "enterprise",
+        "name": "Enterprise",
+        "price": 499.0,
+        "invites": 60,
+        "days": 30
+    }
+]

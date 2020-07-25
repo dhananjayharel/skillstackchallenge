@@ -1,0 +1,32 @@
+.bb-5 {
+    border-bottom: $primary 5px solid;
+
+    &--white {
+        border-bottom-color: $white;
+    }
+}
+.slant-dark-bottom {
+    @include slant-bg($white, $secondary);
+    margin-bottom: -10px;
+}
+.slant-dark-top {
+    @include slant-bg($secondary, $white);
+    margin-top: -1px;
+}
+
+.slant-grey-top {
+   @include slant-bg( #f0f0f0, $white);
+   background: #f0f0f0;
+}
+
+.slant-grey-bottom {
+    @include slant-bg($white, #f0f0f0);
+ }
+
+ .slant-grey-top-inverse {
+    @include slant-bg-inverse(#f0f0f0, $white);
+ }
+ 
+ .slant-grey-bottom-inverse {
+     @include slant-bg-inverse($white, #f0f0f0);
+  }

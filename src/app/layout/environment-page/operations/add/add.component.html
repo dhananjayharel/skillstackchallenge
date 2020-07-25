@@ -1,0 +1,63 @@
+<div class="l-page__content__inner">
+  <app-page-header [heading]="page_title" [icon]="'fa fa-cogs'"></app-page-header>
+  <div class="card">
+    <div class="card-body">
+      <form *ngIf="!loading" class="m-form" [formGroup]="environmentForm" novalidate (ngSubmit)="save(environmentForm.value, environmentForm.valid)">
+        <div class="m-form__fields">
+          <div class="form-group">
+              <label class="control-label" for="">Container Name:</label>
+              <input type="text" class="form-control" formControlName="name">
+              <small [hidden]="environmentForm.controls.name.valid || (environmentForm.controls.name.pristine && !submitted)" class="text-danger">
+                    Name is required (minimum 5 characters).
+              </small> 
+          </div>
+          <div class="form-group">
+              <label class="control-label" for="">Container Description:</label>
+              <textarea class="form-control" formControlName="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">Container Tags:</label>
+            <tag-input formControlName="tags" [identifyBy]="'id'" [displayBy]="'name'" theme='bootstrap'></tag-input>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">Container Category:</label>
+            <select formControlName="category" name="category" class="form-control" placeholder="Category">
+              <option disabled [ngValue]="null" >Category</option>
+              <option *ngFor="let _category of categories" [ngValue]="_category.key">
+               {{ _category.value }}
+              </option>
+            </select>
+          </div>
+
+          <div *ngIf="!editModel" class="form-group">
+              <label class="control-label" for="">Select Base Technology:</label>
+              <select class="form-control" formControlName="base_imageid" >
+    			      <option *ngFor="let ami of amis" [value]="ami.amiid">
+    				    {{ami.name}}
+                </option>
+              </select>
+          </div>
+          <div *ngIf="!editModel"  class="form-group">
+              <label class="control-label" for="">Base Technology Details:</label>
+              <textarea class="form-control" formControlName="base_technology_details"></textarea>
+          </div>
+          <div  class="form-group">
+              <label class="control-label" for="">Git Repo URL:</label>
+              <input type="text" class="form-control" formControlName="git_url">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">Evaluation Code(JAVA):</label>
+            <textarea id="evalcode_editor" class="form-control" formControlName="evalcode"></textarea>
+            <!--small [hidden]="onlineTestForm.controls.description.valid" class="text-danger">
+                  Description is required.
+            </small-->
+          </div>
+        </div>
+        <div class="m-form__actions">
+          <button [routerLink]="['/environment']" type="button" class="btn btn-outline-primary btn-lg">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

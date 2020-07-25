@@ -1,0 +1,38 @@
+<div class="l-page__content__inner l-page__content__inner--full-width">
+  <div class="row">
+    <div class="sidebar-wrapper border-right col-12 {{sidebarVisiblity ? 'd-block' : 'd-none'}}">
+    
+      <div class="middlebar-wrapper">
+        <div class="row">
+          <div class="col-10 mx-auto">
+              <div class="search-wrapper mt-4 mb-3">
+                <div [hidden]=true class="input-group input-group-round">
+                  <input  [ngModel]="filterData.where.name" name="searchKeyword" (keyup.enter)="searchByName($event)" type="text" class="form-control input-round bg-grey-3" placeholder="Search tests...">
+                  <div class="input-group-addon" ><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 mx-auto">
+            <app-test-sidebar [tests]="tests" ></app-test-sidebar> 
+          </div>
+        </div>
+        <div *ngIf="loading" class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 {{!sidebarVisiblity ? 'd-block' : 'd-none'}}">
+      <div class="main-content">
+          <div *ngIf="loading" class="spinner">
+              <div class="double-bounce1"></div>
+              <div class="double-bounce2"></div>
+          </div>
+          <router-outlet></router-outlet>
+          <app-test-description *ngIf="tests" [onlineTest]="tests[selectedIndex]" [activeTab]="activeTab"></app-test-description>
+      </div>
+    </div>
+  </div>
+</div>

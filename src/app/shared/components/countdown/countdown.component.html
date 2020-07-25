@@ -1,0 +1,15 @@
+<div class="countdown">
+	<span class="text-primary font-thin strong f-48">
+		<span class="countdown-hour">
+			<span class="{{size}}"><span *ngIf="hour<10">0</span>{{hour}}</span>
+		</span>
+		:
+		<span class="countdown-min">
+			<span class="{{size}}"><span *ngIf="min<10">0</span>{{min}}</span>
+		</span>
+		:
+		<span class="countdown-sec">
+			<span class="{{size}}"><span *ngIf="sec<10">0</span>{{sec}}</span>
+		</span>
+	</span>
+</div>

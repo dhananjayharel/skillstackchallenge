@@ -1,0 +1,20 @@
+{
+    "appName" : "SkillStack",
+    "dashboard": "Dashboard",
+    "charts": "Charts",
+    "tables": "Tables",
+    "froms": "Froms",
+    "boostrapElement": "Boostrap Element",
+    "boostrapGrid": "Boostrap Grid",
+    "component": "Component",
+    "menu": "Menu",
+    "submenu": "Submenu",
+    "blankpage": "Blank Page",
+    "moretheme": "More Themes",
+    "downloadNow": "Download Now",
+    "language": "Language",
+    "test": "Test",
+    "environment": "Environment",
+    "tests": "Tests",
+    "environments": "Environments"
+}

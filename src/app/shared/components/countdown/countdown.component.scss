@@ -1,0 +1,18 @@
+.countdown{
+    margin: 10px auto;
+    display: inline;
+}
+
+.badge {
+    &.badge-sm {
+        font-size: 12px;
+    }
+
+    &.badge-lg {
+        font-size: 18px;
+    }
+
+    &.badge-xl {
+        font-size: 24px;
+    }
+}

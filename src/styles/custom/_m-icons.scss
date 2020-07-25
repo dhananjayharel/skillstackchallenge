@@ -1,0 +1,277 @@
+.kk-icon {
+	width: 18px;
+	height: 18px;
+	margin-right: 16px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	background-size: 100%;
+
+	&--no-margin-right {
+		margin-right: 0;
+	}
+
+	&--md {
+		width: 24px;
+	}
+
+	&--dashboard {
+		background-image: url('./static/dashboard.png');
+		@include size(18px, 18px);
+	}
+
+	&--test {
+		background-image: url('./static/test.png');
+		@include size(18px, 21px);
+	}
+
+	&--environment {
+		background-image: url('./static/environment.png');
+		@include size(15px, 18px);
+	}
+
+	&--user {
+		background-image: url('./static/user.png');
+		@include size(18px, 18px);
+	}
+
+	&--report {
+		background-image: url('./static/report.png');
+		@include size(18px, 16px);
+	}
+	
+	&--alert {
+		background-image: url('./static/alert.png');
+		@include size(24px, 28px);
+	}
+
+	&--search {
+		background-image: url('./static/search.png');
+	}
+
+	&--share {
+		background-image: url('./static/share.png');
+		@include size(24px, 25px);
+
+		&:hover {
+			background-image: url('./static/share.svg');
+		}
+	}
+
+	&--edit {
+		background-image: url('./static/edit.png');
+		@include size(24px, 24px);
+
+		&:hover {
+			background-image: url('./static/edit.svg');
+		}
+	}
+
+	&--delete {
+		background-image: url('./static/delete.png');
+		@include size(22px, 27px);
+
+		&:hover {
+			background-image: url('./static/delete.svg');
+		}
+	}
+
+	&--invite {
+		background-image: url('./static/invite.png');
+		@include size(25px, 24px);
+
+		&:hover {
+			background-image: url('./static/invite.svg');
+		}
+	}
+
+	&--preview {
+		background-image: url('./static/preview.svg');
+		@include size(23px, 24px);
+
+		&:hover {
+			background-image: url('./static/preview.svg');
+		}
+	}
+
+	&--clone {
+		background-image: url('./static/clone.png');
+		@include size(20px, 23px);
+
+		&:hover {
+			background-image: url('./static/clone.svg');
+		}
+	}
+
+	&--junior {
+		background-image: url('./static/junior.png');
+	}
+
+	&--middle {
+		background-image: url('./static/middle.png');
+	}
+
+	&--senior {
+		background-image: url('./static/senior.png');
+	}
+
+	&--video {
+		background-image: url('./static/video.png');
+		@include size(77px, 77px);
+	}
+
+	&--video-lg {
+		background-image: url('./static/video-2x.png');
+		@include size(140px, 140px);
+	}
+
+	&--code {
+		background-image: url('./static/code.png');
+		@include size(77px, 77px);
+	}
+
+	&--code-faded {
+		background-image: url('./static/code-faded.png');
+		@include size(77px, 77px);
+	}
+
+	&--code-lg {
+		background-image: url('./static/code-2x.png');
+		@include size(140px, 140px);
+	}
+
+	&--mail {
+		background-image: url('./static/mail.png');
+		@include size(21px, 17px);
+	}
+
+	&--name {
+		background-image: url('./static/user-black.png');
+		@include size(20px, 21px);
+	}
+
+	&--key {
+		background-image: url('./static/loack.png');
+		@include size(18px, 23px);
+	}
+
+	&--404 {
+		background-image: url('./static/404.png');
+		@include size(272px, 140px);
+	}
+
+	&--success {
+		background-image: url('./static/thumb.png');
+		@include size(224px, 209px);
+	}
+
+	&--sms-success {
+		background-image: url('./static/sms.png');
+		@include size(204px, 208px);
+	}
+
+	&--mail-success {
+		background-image: url('./static/mail-success.png');
+		@include size(208px, 208px);
+	}
+
+	&--fact1 {
+		background-image: url('./static/fact1.png');
+		@include size(132px, 132px);
+	}
+
+	&--tick {
+		background-image: url('./static/tick.png');
+		@include size(33px, 33px);
+	}
+
+	&--avatar {
+		background-image: url('./static/avatar.png');
+		@include size(36px, 36px);
+	}
+
+	&--notify {
+		background-image: url('./static/notify.png');
+		@include size(25px, 25px);
+	}
+
+	&--selected {
+		background-image: url('./static/selected.png');
+		@include size(16px, 16px);
+	}
+
+	&--denied {
+		background-image: url('./static/deny.png');
+		@include size(16px, 16px);
+	}
+
+	&--rejected {
+		background-image: url('./static/rejecte.png');
+		@include size(16px, 16px);
+	}
+
+	&--evaluation {
+		background-image: url('./static/evaluation.png');
+		@include size(16px, 16px);
+	}
+
+	&--home-banner {
+		background-image: url('./static/banner-vector.png');
+		@include size(452px, 420px);
+	}
+
+	&--languages {
+		background-image: url('./static/languages.png');
+		@include size(461px, 614px);
+	}
+
+	&--candidates {
+		background-image: url('./static/languages.png');
+		@include size(577px, 372px);
+	}
+
+	&--rocket {
+		background-image: url('./static/start.png');
+		@include size(62px, 62px);
+	}
+
+	&--create-circle {
+		background-image: url('./static/create.png');
+		@include size(75px, 75px);
+	}
+
+	&--invite-circle {
+		background-image: url('./static/invite-blue.png');
+		@include size(75px, 75px);
+	}
+
+	&--review-circle {
+		background-image: url('./static/review.png');
+		@include size(75px, 75px);
+	}
+
+	&--testimonial-profile {
+		background-image: url('./static/testimonial.png');
+		@include size(283px, 304px);
+	}
+
+	&--dummy-screen {
+		background-image: url('./static/KK_Screen.png');
+		@include size(594px, 384px);
+	}
+
+	&--empty {
+		background-image: url('./static/emptybox.png');
+		@include size(70px, 87px);
+	}
+}
+
+.input-group-addon {
+
+	> .kk-icon{
+		position: relative;
+		top: 50%;
+		left: -30px;
+		transform: translateY(-50%);
+	}
+}

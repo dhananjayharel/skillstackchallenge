@@ -1,0 +1,176 @@
+<div *ngIf="status!=='FINISHED'" class="l-page l-page--screen bg-banner">
+  <div class="container">
+    <div class="l-page__header">
+    </div>
+    <div class="l-page__content">
+      <div class="l-page_content__loading">
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status!=='FINISHED'" class="container-fluid" id="chromeapp" style="z-index:99999;position:fixed;top:0px; transition-property: top;transition-duration: 0.3s;transition-timing-function: ease-in-out;background:#ffffff;left:0px;right:0px;box-shadow: 1px 1px 1px #ececec;">
+  <div class="row candidate-view">
+    <div class="test-details col-6 col-md-2">
+      <div class="logo">
+        <a class="navbar-brand" ><strong class="text-info">Skill</strong> Stack</a>
+      </div>
+    </div>
+    <div class="test-details d-none d-md-flex col-md-3 text-right">
+      <div class="testdetails mt-2 f-14"><span class="text-primary" >Coding Test Demo: Marvel Super Heroes</span></div>
+    </div>
+    <div class="test-countdown col-6 col-md-3">
+      <div id="clockdiv">
+        <div><img src="/assets/images/timer.png"></div>
+        <div><span class="hours">00</span></div>
+        <div>
+          <div class="smalltext">h</div>
+        </div>
+        <div><span class="minutes">00</span></div>
+        <div>
+          <div class="smalltext">m</div>
+        </div>
+        <div><span class="seconds">00</span></div>
+        <div>
+          <div class="smalltext">s</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-details d-flex d-md-none col-6">
+      <div class="testdetails mt-2 f-14"><span class="text-primary">Coding Test Demo: Marvel Super Heroes</span></div>
+    </div>
+    <div class="actions col-6 col-md-4">
+      <div class="row mt-1 d-none d-md-flex">
+        <div class="col-6 col-md-6">
+          <button (click)="viewQuestion()" id="view-question" class="button-view-question">View Question</button>
+        </div>
+        <div class="col-6 col-md-6">
+          <button (click)="triggerClose()" id="finish-test" class="button-finish-test">Finish Test</button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around align-items-center d-md-none" style="height:36px;">
+        <a (click)="viewQuestion()" class="small text-primary">View Question</a>
+        <a (click)="triggerClose()" class="small text-primary">Finish Test</a>
+      </div>
+    </div>
+    <div class="col-12 small alert alert-warning p-0 m-0">
+      <marquee behavior="scroll" direction="left" scrollamount="6">This is just a simulation of a sample coding test. Login for the real deal!</marquee>
+    </div>
+  </div>
+</div>
+<div *ngIf="status!=='FINISHED'" #myDiv id="myDiv" style="position:absolute;top:0px;"></div>
+<div *ngIf="status!=='FINISHED'" class="fullscreen embed-widget">
+  <iframe id="testWindow" class="d-md-block d-none" frameBorder="0" src="https://stackblitz.com/github/invincible1388/marvel-superhero" width="100%" height="100%"></iframe>
+  <iframe id="testWindow" class="d-md-none d-block" frameBorder="0" src="https://stackblitz.com/github/invincible1388/marvel-superhero?embed=1" width="100%" height="100%"></iframe>
+</div>
+
+
+
+<div *ngIf="status==='FINISHED'" class="l-page l-page--screen bg-banner">
+    <div class="container">
+      <div class="l-page__header">
+        <div class="logo">
+          <a class="navbar-brand" ><strong class="text-info">Skill</strong> Stack</a>
+        </div>
+      </div>
+      <div class="l-page__content">
+        <div class="l-page_content__loading">
+          <div class="col-12 col-md-8 mx-auto">
+            <div class="card m__test f-14">
+              <div class="card-body p-36">
+                <p class="font-thin f-48 text-primary text-center strong">
+                  Whats More!
+                </p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p><strong>Candidate features</strong></p>
+                    <ul class="list-unstyled">
+                      <li>
+                        <i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Multiple Choice Question</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Video Interview</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Screen Recording</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Real world IDE</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Libraries / Frameworks / Projects as Assignments</li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-6">
+                    <p><strong>Recruiter features</strong></p>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Recruiter Dashboard</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Online Project Library</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        View / Execute Candidates Solution</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        View Screen Recordings</li>
+                      <li><i class="fa fa-check text-success" aria-hidden="true"></i>
+                        Launch test in 2 minutes time.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="button" class="btn btn-secondary btn-block" (click)="backToHomePage()">Close</button>
+                  </div>
+                  <div class="col-6">
+                    <a [routerLink]="['/signup']" class="btn btn-primary btn-block">Join Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<ng-template #testQuestionModal let-c="close" let-d="dismiss">
+	<div class="modal-banner">
+    <div class="content">
+      <button type="button" class="close h5 text-white" (click)="c('Close click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="inner-content">
+        <h3 class="title">Coding Test Demo: Marvel Super Heroes</h3>
+      </div>
+    </div>
+  </div>
+  <div class="modal-pre-body">
+    <div><span class="strong">Test type:</span>&nbsp;&nbsp;Angular (Easy level)</div>
+  </div>
+	<div class="modal-description mx-auto" style="width:100%">
+		<div style="height: 323px;" class="challenge-wrapper position-relative rounded mb-24">
+        <div class="scroll-area">
+            <div class="challenge__section">
+              <p class="strong">Question:</p>
+              <div>
+                <p>Create an app which consumes Marvel API to list all the characters.</p>
+                <p class="strong">Task:</p>
+                <ul>
+                  <li>Consume Marvel API to fetch all the characters.</li>
+                  <li>Implement a Search filter to allow user to search characters by name.</li>
+                </ul>
+                <div class="alert alert-warning">
+                  <strong>Hint:</strong> Try uncommenting the below lines to see the code in action.
+                  <code>Line No 25 - 31 of <var>app.component.ts</var></code>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+	</div>
+	<div class="modal-actions">
+    <button type="button" class="btn btn-primary btn-block" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

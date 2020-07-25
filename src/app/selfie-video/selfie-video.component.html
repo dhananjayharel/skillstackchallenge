@@ -1,0 +1,322 @@
+<div class="l-page l-page--screen bg-banner">
+  <div class="container">
+    <div class="l-page__header">
+      <app-logo [type]="'header-logo'" ></app-logo>
+    </div>
+    <div class="l-page__content">
+      <div class="l-page_content__loading" *ngIf="_interviewRecState ==='LOADING'">
+        <div class="card m__test f-14">
+          <div class="card-body p-36">
+            <div id="loader-wrapper">
+              <div id="loader"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="l-page__content__inner px-sm-0" *ngIf="_interviewRecState === 'INITIAL'">
+        <div class="card m__test f-14">
+          <div class="card-body p-36">
+            <div class="m-test__top">
+              <div class="row mb-36 hidden-xs">
+                <div class="col-12 mx-auto text-center d-flex justify-content-center">
+                  <div *ngIf="!onlineTest['hideMcqTest'] && !visitedEarlier" class="align-middle test-taken">
+                    <i class="kk-icon kk-icon--code"></i><br/>
+                    <span><strong>{{ mcqDuration }}</strong> mins MCQ Test</span>
+                    <br>
+                    <span class="text-success"><strong>Done</strong></span>
+                  </div>
+                  <div *ngIf="!onlineTest['hideMcqTest'] && !visitedEarlier" class="align-self-center strong mx-2">
+                    &
+                  </div>
+                  <div *ngIf="!visitedEarlier" class="align-middle test-taken">
+                    <i class="kk-icon kk-icon--code"></i><br/>
+                    <span><strong>{{onlineTest.durationHours > 0 ? onlineTest.durationHours+'hr,' : ''}} {{onlineTest.durationMins}}</strong> mins Coding Test</span>
+                    <br><span class="text-success"><strong>Done</strong></span>
+                  </div>
+                  <div *ngIf="!visitedEarlier" class="align-self-center strong mx-2">
+                    &
+                  </div>
+                  <div class="align-middle">
+                    <i class="kk-icon kk-icon--video"></i><br/>
+                    <span><strong>{{ onlineTest.videoTestDuration }}</strong> mins Video Interview Test<br/>
+                      <span class="text-danger"><strong>Pending</strong></span>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-36">
+                <!--<div class="col-sm-12 mx-auto text-center">
+                  <div *ngIf="!visitedEarlier" class="greeting mb-3">
+                    <span class="text-primary h3 font-thin strong">
+                      Congratulations 
+                    </span> <span class="h4">{{candidate.fullname}}</span>
+                  </div>
+                  <div class="welcome">
+                    <p *ngIf="!visitedEarlier" class="f-18">You have finished with your coding test <strong><em>{{onlineTest.name}}</em></strong>.</p>
+                    <p *ngIf="visitedEarlier" class="f-18">
+                      Regarding your test: {{onlineTest.name}}
+                    </p>
+                    <p class="f-16">Whats Left:
+                    </p>
+                    <ul class="list-unstyled">
+                      <li><i class="kk-icon video-interview-icon"></i><span class="f-18"><b>Video Interview</b></span></li>
+                    </ul>
+                    <p class="f-14" style="white-space:pre-line">
+                      If you have a webcam, then click on "<span class="f-16"><b>Start Video Interview</b></span>".
+                      Otherwise click on "<span class="f-16"><b>Interview from Mobile</b></span>" to take the interview from your mobile.
+                    </p>
+                  </div>
+                </div> -->
+                <div class="col-12">
+                    <p class="strong">
+                        The next module is the Video test.<br/>
+                        Before you start, please read the following:
+                    </p>
+                    <ul class="m-list m-list--fa">
+                        <li class="m-list__item">
+                            <i class="fa fa-arrow-right text-primary"></i>
+                            In the video Test, you will be asked few questions which you need to answer facing the camera in a loud and clear voice. 
+                        </li>
+                        <li class="m-list__item">
+                            <i class="fa fa-arrow-right text-primary"></i>
+                            You can take the Video Test from your webcam or from your mobile phone - whichever is convenient to you.
+                        </li>
+                        <li class="m-list__item">
+                            <i class="fa fa-arrow-right text-primary"></i>
+                            If you have a webcam, then click on "Start Video Interview".<br/>
+                            Otherwise click on "Interview from Mobile" to take the interview from your mobile.
+                        </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="m-test__body mb-54">
+              <div class="row">
+                <div class="col-sm-12 col-md-5  mb-3 mb-md-0 text-center text-md-right">
+                  <button class="btn btn-primary btn-round" [disabled]="!candidate" color="primary" (click)="_startVideoRecording()"> 
+                    Start Video Interview
+                  </button>
+                </div>
+                <div class="col-sm-12 col-md-2 text-center mb-3 mb-md-0">Or</div>
+                <div class="col-sm-12 col-md-5 text-center text-md-left">
+                  <button class="btn btn-primary btn-round" [disabled]="!candidate" color="primary" (click)="openAlternateSourceModal()"> 
+                    Interview from Mobile
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-36" *ngIf="isPreviewTest">
+                <div class="col text-center">
+                  <a href="javascript:void(0);" (click)="_interviewRecState = 'PREVIEW_COMPLETE'">End Preview</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="l-page__content__inner" *ngIf="['BEFORESTART', 'STARTED', 'STOPPED', 'SUBMITTING', 'SUBMITTED', 'PREVIEW_COMPLETE'].includes(_interviewRecState)">
+        <div class="card  bounceInRight m__test f-14">
+          <div class="card-body p-36">
+            <div class="row" *ngIf="_interviewRecState==='STARTED'">
+              <div class="col text-center mb-36" >
+                <h4 class="mb-24 title-text"> {{candidate.fullname}}: Video Interview for {{onlineTest.name}} </h4>
+                <div class="clock" id="clockdiv" [innerHTML]="ellapsedTime"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div [ngClass]="_interviewRecState==='STARTED' ? 'col-lg-6':'d-none'" class="questions-wrapper">
+                <div class="questions-tabs board board-auto">
+                  <div class="alert alert-info my-16">
+                    Please read out the question, then give your answer. When done, move to the next question. 
+                  </div>
+                  <ul class="nav nav-tabs mb-0" id="myTab">
+                    <div class="liner"></div>
+                    <li  *ngFor="let _question of questions; index as i">
+                      <a (click)="setCurrentQuestion(i)" class="{{currentQuestionIndex === i ? 'active' : ''}}">
+                        <span class="round-tabs one">
+                            {{i+1}}
+                        </span> 
+                      </a>
+                    </li>      
+                  </ul>
+                </div>
+                <div class="questions-block bg-gray">
+                  <div class="bg-gray scroll-area">
+                    <div [innerHTML]="questions[currentQuestionIndex]"></div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="_interviewRecState!=='PREVIEW_COMPLETE'" class="col-lg-6">
+                <div *ngIf="showVideo" class="video-recording-wrapper">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <video #video class="embed-responsive-item"></video>
+                  </div>
+                </div>
+                <div class="video-preview-wrapper">
+                  <div class="embed-responsive embed-responsive-16by9">
+                      <video #previewVideo class="embed-responsive-item"></video>
+                  </div>
+                </div>
+                <div *ngIf="_interviewRecState==='STARTED'"  class="actions-wrapper">
+                  <hr/>
+                  <button *ngIf="currentQuestionIndex !== 0" class="btn btn-primary btn-round" color="primary"(click) ="prevQuestion()"> 
+                    Prev
+                  </button>
+                  <button *ngIf="currentQuestionIndex !== (questions.length-1)" class="btn btn-primary btn-round" color="primary"(click) ="nextQuestion()"> 
+                    Next 
+                  </button>
+      
+                  <button *ngIf="currentQuestionIndex === (questions.length-1) && startClicked" class="btn btn-primary btn-round pull-right" color="primary"(click) ="finishRecording()"> 
+                    Finish
+                  </button>
+                  <!--   <button class="btn btn-primary btn-sm btn-round" color="primary" (click)="openAlternateSourceModal()"> 
+                    Submit Later
+                  </button> -->
+                </div>
+								<div *ngIf="!startClicked" class="row">	
+									<button style="margin-top:12%" (click)="_startRecording()" class="btn btn-info btn-round text-center" type="button">
+										<i class="fa fa-play-circle"></i>&nbsp;Start Recording
+									</button>
+                </div>
+              </div>
+              <div *ngIf="_interviewRecState==='SUBMITTING'" class="col-lg-6 mx-auto text-center">
+                <circle-progress
+                  class="mb-36"
+                  [percent]="videoUploadStatus"
+                  [radius]="100"
+                  [titleFontSize]="30"
+                  [outerStrokeWidth]="16"
+                  [innerStrokeWidth]="16"
+                  [space]="-16"
+                  [outerStrokeColor]="'#4882c2'"
+                  [innerStrokeColor]="'#e7e8ea'"
+                  [animateTitle]="true"
+                  [subtitleColor]="'#000000'"            
+                  [animationDuration]="0"
+                  [animation]="false"
+                  ></circle-progress>
+                  <p class="f-18 mb-16">Done! Your video is getting uploaded</p>
+                  <p class="f-14">Once uploaded, video will be automatically sent to the recruiter. You can click on the Play button to preview your video.</p>
+              </div>
+              <div *ngIf="_interviewRecState==='SUBMITTED'" class="col-lg-6 mx-auto text-center">
+                  <i class="kk-icon kk-icon--success mb-36"></i>
+                  <p class="f-16">Congratulations! You have finished your interview.</p>
+              </div>
+              <div *ngIf="_interviewRecState==='PREVIEW_COMPLETE'" class="col-lg-6 mx-auto text-center">
+                  <i class="kk-icon kk-icon--success mb-24"></i>
+                  <p class="f-36">Thank You - Preview has ended!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-page__content__inner" *ngIf="_interviewRecState==='SMSSENT'">
+        <div class="card  bounceInRight m__test f-14">
+          <div class="card-body p-36">
+              <app-centerpagecontent
+              [iconClass]="'kk-icon kk-icon--sms-success'"
+              [text]="'The invite has been successfully sent to your mobile no.'"></app-centerpagecontent>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-page__content__inner" *ngIf="_interviewRecState==='MAILSENT'">
+        <div class="f-14">
+          <div class="" *ngIf="!isPreviewTest" style="white-space: pre-line;">
+              <app-centerpagecontent
+              [iconClass]="'kk-icon kk-icon--mail-success'"
+              [text]="'The Video Interview invite has been sent successfully to your email id. \nTo complete the Test, please launch the invite link from a camera-enabled device like your phone.'"></app-centerpagecontent>
+          </div>
+					<div class="" *ngIf="isPreviewTest" style="white-space: pre-line;">
+              <app-centerpagecontent
+              [iconClass]="'kk-icon kk-icon--mail-success'"
+              [text]="'The Video Interview invite has been sent successfully to your email id. \nTo complete the Preview, please launch the invite link from a camera-enabled device like your phone.'"></app-centerpagecontent>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #otherAltSourceMedium let-c="close" let-d="dismiss">
+  <div class="modal-header border-bottom">
+    Interview from Mobile
+    <button type="button" class="close" (click)="c('Close click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row opional-share-video-url strong">
+      <div class="col-md-12">
+        <p class="f-12 mb-24">Please enter your email address where we can send you the Video Interview invite link to access from your mobile</p>
+      </div>   
+      <div class="col-md-12"> 
+        <form (ngSubmit)="onShareVideoUrlSubmit()" #shareVideoUrlForm="ngForm">
+          <!--<div class="form-group">
+            <div class="row text-left">
+              <div class="col-md-4">
+                <label>Please select:</label>
+              </div>
+              <div class="col">
+                <div class="radio ml-36 d-inline-block">
+                  <label><input class="mr-11" type="radio" [(ngModel)]="shareform.type" name="type" value="email">Email</label>
+                </div>
+                <div class="radio ml-36 d-inline-block">
+                  <label><input class="mr-11" type="radio" [(ngModel)]="shareform.type" name="type" value= "mobile">Mobile</label>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div *ngIf="shareform.type == 'email'" class="form-group">
+            <div class="row text-left">
+              <div class="col-md-12">
+                <input type="email" class="form-control form-control-lg" id="name"
+                required placeholder="Enter email id"
+                [(ngModel)]="shareform.email" name="email"
+                email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                #email="ngModel">
+              </div>
+            </div>              
+            <div [hidden]="email.valid || email.pristine"
+              class="text-danger">
+              Email is required or not valid.
+            </div>
+          </div>
+        
+        
+          <div *ngIf="shareform.type == 'mobile'" class="form-group">
+            <div class="row text-left">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <select class="form-control form-control-lg" id="selCountry"
+                      placeholder="country code"
+                      required
+                      [(ngModel)]="shareform.selCountry" name="selCountry"
+                      #selCountry="ngModel">
+                      <option *ngFor="let country of countries" [value]="country.value">{{country.key}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="integer" class="form-control form-control-lg" id="mobile"
+                    required
+                    placeholder="Enter mobile no"
+                    pattern="[0-9]{10}"
+                    [(ngModel)]="shareform.mobile" name="mobile"
+                    #mobile="ngModel">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div [hidden]="mobile.valid || mobile.pristine" class="text-danger">
+              Mobile No is required or not valid.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-round pull-right" [disabled]="!shareVideoUrlForm.form.valid">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

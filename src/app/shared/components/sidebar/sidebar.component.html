@@ -1,0 +1,27 @@
+<div class="sidebar bg-primary">
+    <div class="logo-wrapper d-none d-md-block mx-2 mt-4 mb-5">
+        <app-logo [type]="'header-logo'" ></app-logo>
+    </div>
+    <nav [ngClass]="{sidebarPushRight: isActive}">
+        <div class="list-group">
+            <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item text-white">
+                <i class="kk-icon kk-icon--dashboard"></i>{{ 'dashboard' | translate }}
+            </a>
+            <a [routerLink]="['/test']" [routerLinkActive]="['router-link-active']" class="list-group-item text-white">
+                <i class="kk-icon kk-icon--test"></i>{{ 'tests' | translate }}
+            </a>
+            <!--<a [routerLink]="['/environment']" [routerLinkActive]="['router-link-active']" class="list-group-item text-white">
+                <i class="kk-icon kk-icon--environment"></i>{{ 'environments' | translate }}
+            </a>
+            <a [routerLink]="['/environment']" [routerLinkActive]="['router-link-active']" class="list-group-item text-white">
+                <i class="kk-icon kk-icon--user"></i>{{ 'Candidate' | translate }}
+            </a>
+            <a [routerLink]="['/environment']" [routerLinkActive]="['router-link-active']" class="list-group-item text-white">
+                <i class="kk-icon kk-icon--report"></i>{{ 'Report' | translate }}
+            </a>
+            <a class="list-group-item bg-primary text-white hidden-lg-up" [routerLink]="['/login']" >
+                <i class="fa fa-fw fa-power-off"></i> Log Out
+            </a>-->
+        </div>
+    </nav>
+</div>

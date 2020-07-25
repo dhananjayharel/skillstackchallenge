@@ -1,0 +1,83 @@
+.candidate-section {
+    background: #F4F4F4;
+    border: 1px solid #CCC;
+    padding: 5px 10px;
+
+    .card {
+        border-radius: 0px;
+        margin: 10px 0px;
+        padding: 10px 5px 0px 5px;
+
+        div[class^='col'] {
+            padding: 10px 5px;
+        }
+        .view-solution-bar {
+            background: #F4F4F4;
+            border: 1px solid #CCC;
+
+            .toggle-solution-link {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.diff2html-wrapper,
+.viewsolution-wrapper {
+    display: block;
+    width: auto;
+    float: none;
+}
+
+.slider {
+	overflow-y: hidden;
+	max-height: 500px; /* approximate max height */
+
+	// transition-property: all;
+	// transition-duration: .5s;
+    // transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition: all .5s ease-in-out;
+    &.closed {
+        max-height: 0;
+
+        &.py-3 {
+            padding: 0 !important;
+        }
+    }
+}
+
+div[class*="candidate-action-trigger-"] {
+    
+    > i {
+
+        &:before {
+            content: "\F107";
+        }
+    }
+
+    > .fa-angle-up {
+
+        &:before {
+            content: "\F106";
+        }
+    }
+}
+
+.candidate-filter .active {
+    background-color: #f6f6f6;
+    -webkit-transition: background-color 200ms ease-out;
+    -moz-transition: background-color 200ms ease-out;
+    -o-transition: background-color 200ms ease-out;
+    transition: background-color 200ms ease-out;
+}
+
+.blinking{
+	animation:blinkingText 0.8s infinite;
+}
+@keyframes blinkingText{
+	0%{		color: #fff;	}
+	49%{	color: #fff;	}
+	50%{	color: transparent;	}
+	99%{	color:transparent;	}
+	100%{	color: #fff;	}
+}

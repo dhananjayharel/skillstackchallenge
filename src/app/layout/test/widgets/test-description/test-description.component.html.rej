@@ -1,0 +1,14 @@
+diff a/src/app/layout/test/widgets/test-description/test-description.component.html b/src/app/layout/test/widgets/test-description/test-description.component.html	(rejected hunks)
+@@ -127,12 +127,6 @@
+                         </div>
+                         <div class="col-6  mb-2">
+                             <strong>{{onlineTest.enableWebCamRecording ? 'Enabled' : 'Disabled'}}</strong>
+-                        </div>	
+-                        <div class="col-6  mb-2">
+-                            Type of Test (Web based / RDP):
+-                        </div>						
+-                        <div class="col-6  mb-2">
+-                            <strong>{{onlineTest.isWebBasedTest ? 'Web Based' : 'RDP machine'}}</strong>
+                         </div>	                        
+                         <div class="col-6 mb-2">
+                                 Created:

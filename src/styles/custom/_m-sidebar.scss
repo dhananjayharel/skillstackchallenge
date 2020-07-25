@@ -1,0 +1,124 @@
+
+.sidebar{
+    border-radius: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 194px;
+    width: 194px;
+    margin-left: -194px;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+    -webkit-transition: all 0.2s ease-in-out;
+       -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+
+    .list-group{
+
+        a.list-group-item{
+            border: 0;
+            border-radius: 0;
+            color: #999;
+            text-decoration: none;
+            padding-left: 36px;
+            display: flex;
+            align-items: center;
+            background: $blue;
+        }
+        a:hover{
+            background: darken($blue, 25%);
+            color: $white;
+        }
+        a.router-link-active{
+            background: lighten($blue, 5%);
+            color: $white;
+        }
+    }
+    .sidebar-dropdown{
+        *:focus{
+            border-radius: none;
+            border:none;
+        }
+        .panel-title{
+            font-size : 1rem;
+            height : 50px;
+            margin-bottom:0;
+            a{
+                color : #999;
+                text-decoration : none;
+                font-weight:400;
+                span{
+                    position: relative;
+                    display: block;
+                    padding: .75rem 1.5rem;
+                    padding-top:1rem;
+                }
+            }
+            a:hover,a:focus{
+                color: $white;
+                outline: none;
+                outline-offset: -2px;
+            }
+        }
+        .panel-title:hover{
+            background: darken($blue, 5%);
+        }
+        .panel-collapse{
+            border-radius :0;
+            border : none;
+            .panel-body{
+                .list-group-item{
+                    border-radius : 0;
+                    border: 0 solid transparent;
+                    a{
+                        color:#999;
+                    }
+                    a:hover{
+                        color: $white;
+                    }
+                }
+                .list-group-item:hover{
+                    background : darken($blue, 5%);
+                }
+            }
+        }
+    }
+}
+.nested-menu {
+    .list-group-item {
+        cursor: pointer;
+    }
+    .nested {
+        list-style-type: none;
+    }
+    ul.submenu {
+        display: none;
+        height: 0;
+    }
+    & .expand {
+        ul.submenu {
+            display: block;
+            list-style-type: none;
+            height: auto;
+            li {
+                a {
+                    color: $white;
+                    padding: 10px;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 992px) {
+    .sidebar {
+        top: 62px;
+        left: 0px;
+    }
+}

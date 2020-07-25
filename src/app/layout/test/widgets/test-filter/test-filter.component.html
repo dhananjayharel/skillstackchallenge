@@ -1,0 +1,93 @@
+<div #filter [hidden]="isMobile" class="m-filter col-12 bg-secondary d-md-block py-3">
+	<div class="row">
+		<div class="col-12 col-md-auto border-md-right">
+			<div class="left-filter-wrapper">
+				<div class="row">
+					<div class="col-12 col-sm">
+							<label class="col-form-label col-form-label-sm text-light"> Sort by: </label>
+					</div>
+					<div class="col">
+						<select [ngModel]="keyText" name="keyText" (ngModelChange)="updateFilterData({filter: $event})" class="form-control form-control-sm input-round" placeholder="Filter">
+							<option disabled [ngValue]="null" >Filter</option>
+							<option *ngFor="let key of keyFilter" [ngValue]="key.value">
+								{{ key.name }}
+							</option>
+						</select>
+					</div>
+					<div class="col">
+						<select [ngModel]="orderText" name="orderText" (ngModelChange)="updateFilterData({order: $event})" class="form-control form-control-sm input-round" placeholder="Order">
+							<option disabled [ngValue]="null" >Order</option>
+							<option *ngFor="let order of orderFilter" [ngValue]="order.value">
+								{{ order.name }}
+							</option>
+						</select>
+					</div>
+					<div class="col-sm-1">
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr class="m-separator m-separator--vertical"/>
+		<div class="col">
+			<div class="row">
+				<div class="col-sm-3">
+				    <label class="col-form-label col-form-label-sm text-light"> Filter by: </label>
+				</div>
+				<div class="col-sm-8">
+          <select [ngModel]="categoryInput"
+            name="category" 
+            (ngModelChange)="updateFilterData({category: $event})" 
+            class="form-control form-control-sm input-round" 
+            placeholder="Category">
+              <option [ngValue]="null" >All</option>
+              <option *ngFor="let category of categoryData" [ngValue]="category.value">
+              {{ category.name }}
+              </option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 d-none d-md-block text-right">
+			<div class="px-2">
+				<button type="button" (click)="openModal(createTestModal)"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Test</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-12 d-md-none mt-3">
+	<div class="row">
+		<div class="col col-md-6">
+			<button type="button" (click)="filter.hidden = !filter.hidden"  class="btn btn-sm btn-round btn-info"><span class="fa fa-filter"></span>&nbsp;Filter</button>
+		</div>
+		<div class="col col-md-6 text-right">
+			<button type="button" (click)="openModal(createTestModal)"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Test</button>
+		</div>
+	</div>
+</div>
+
+<ng-template #createTestModal let-c="close" let-d="dismiss">
+	<div class="modal-header strong">
+		Add Test
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 text-center mb-3">
+						<button type="button" (click)="goTo('CREATE_FROM_LIBRARY')"  class="btn btn-lg btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Choose Test from Library</button>
+					</div>
+					<div class="col-12 text-center mb-3 text-uppercase">
+						Or
+					</div>
+					<div class="col-12 text-center mx-auto">
+						<button type="button" (click)="goTo('CREATE_NEW')"  class="btn btn-link strong"><span class="fa fa-plus"></span>&nbsp;Create Test from Scratch</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

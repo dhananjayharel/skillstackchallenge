@@ -1,0 +1,41 @@
+<div class="m-environment-input border">
+	<div class="row no-gutters">
+		<div class="col-md-10 offset-1">
+		  <div class="search-wrapper mt-4 mb-3">
+		    <div class="input-group input-group-round">
+		      <input [(ngModel)]="queryString"  type="text" class="form-control input-round bg-grey-3" placeholder="Search container...">
+		      <div class="input-group-addon" ><i class="fa fa-search"></i></div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	<div class="row no-gutters">
+		<div class="col-md-12 environment-input-wrapper">
+			<div *ngIf="loading" class="spinner">
+			    <div class="double-bounce1"></div>
+			    <div class="double-bounce2"></div>
+			</div>
+
+			<div *ngIf="!loading" class="list-group environment-input kk-cards">
+			    <a class="list-group-item border-right-0 border-left-0 list-group-item-action flex-column align-items-start position-relative"  
+			    *ngFor="let environment of environments | searchenvironmentpipe: queryString; index as i" [attr.data-index]="i" (click)="writeValue(environment.id)"
+			    [ngClass]="{'selected active': _envId == environment.id}">
+			        <div class="middlebar__content">
+			        	<div _ngcontent-c12="" class="m-sticker badge badge-success"> 
+			                <div _ngcontent-c12="" class="m-sticker__label">
+			                    <div _ngcontent-c12="" class="m-sticker__label__text">
+			                      PHP 
+			                    </div>
+			                </div>
+			            </div>
+			            <div class="category"><small>PHP</small></div>
+			            <div class="d-flex w-100 justify-content-between">
+			                <strong class="text-info mb-1">{{environment.name}}</strong>
+			            </div>
+			            <p class="mb-1">{{returnSanitizedDescription(i)}}</p>
+			        </div>      
+			    </a>
+			</div>
+		</div>
+	</div>
+</div>

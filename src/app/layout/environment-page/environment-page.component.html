@@ -1,0 +1,66 @@
+<div class="l-page__content__inner l-page__content__inner--full-width">
+    <app-page-header [heading]="'Environments'" [icon]="'fa fa-cogs'"></app-page-header>
+
+    <div class="row">    
+        <div class="col-md-10">
+		    <div class="input-group">
+                
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search environment...">
+                <span (click)="searchEnvironment()" class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                      <span class="fa fa-search"></span>
+                </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2">
+          <a [routerLink]="['/environment/add']"  class="btn btn-success"><span class="fa fa-plus"></span>Add Environment</a>
+        </div>
+	</div>
+
+  <div class="row">
+    <section class="content">
+      <div class="col-md-12 ">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="table-container">
+              <table class="table table-filter">
+                <tbody>
+                  <tr data-status="ongoing" *ngFor="let env of envs" >
+                    
+                    <td *ngIf="showEnvs == 'all' || env.status == showEnvs" >
+                      <div class="media">
+                        <a href="#" class="pull-left test-icon" [routerLink]="['/environment/view', env.id]">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </a>
+                        <div class="media-body">
+                          <span class="media-meta pull-right" [routerLink]="['/environment/view', env.id]">{{env.created |date: 'd MMM, y H:m'}}</span>
+                          <h4 class="title" [routerLink]="['/environment/view', env.id]">
+
+                            {{env.name}}
+                            
+                          </h4>
+                          <span class="pull-right delete text-danger" (click)="onDelete(env.id)">
+                              <strong><i class="fa fa-trash-o"></i></strong> 
+                            </span>
+                          <p class="summary" [routerLink]="['/environment/view', env.id]">
+                            {{env.description}}
+                          </p>
+                        </div>
+                      </div>
+                    </td> 
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+  </div>
+</div>
+

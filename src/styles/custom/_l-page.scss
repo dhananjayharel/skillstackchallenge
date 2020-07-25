@@ -1,0 +1,71 @@
+$page-margin-top: 84px;
+$page-margin-bottom: 40px;
+$page-padding: 46px;
+
+.l-page {
+
+	&--screen {
+		min-height: 100vh;
+		min-width: 98.77vw;
+		
+		.l-page__header {
+			padding-top: 24px;
+			margin-bottom: 24px;
+
+			.header {
+				@include media-breakpoint-up(sm) { 
+					background: $dark;
+				}
+
+				@include media-breakpoint-up(md) { 
+					background: $primary;
+				}
+			}
+		}
+
+		.l-page__content {
+			padding-bottom: 60px;
+			margin-top:84px;
+		}
+	}
+
+	&__header {
+
+		.header {
+			background: $primary;
+			
+			@include media-breakpoint-up(md) { 
+				background: $secondary;
+			}
+		}
+	}
+
+	&__content {
+		
+		&__inner {
+			
+			margin-top: $page-margin-top;
+			margin-bottom: $page-margin-bottom;
+
+			@include media-breakpoint-up(sm) { 
+				padding: 0;
+			}
+			@include media-breakpoint-up(md) { 
+				padding: 0 $page-padding;
+			}
+
+			&--full-width {
+				padding: 0;
+				margin: 0;
+			}
+
+			.page-header {
+				margin-bottom: $page-margin-top;
+			}
+
+			&__middle-bar {
+				width: 326px;
+			}
+		}
+	}
+}

@@ -1,0 +1,182 @@
+<div class="l-page">
+  <div class="l-page__content">
+    <div class="l-page__content__inner">
+      <app-page-header [heading]="'My Profile'" [icon]="'fa fa-user'"></app-page-header>
+      <div *ngIf="editUser" class="row">
+        <div class="col-auto mx-auto text-center">
+          <div class="summary mb-5">
+            <!--<img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163ff136c61%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163ff136c61%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+            class="bg-secondary rounded-bottom mb-4" />-->
+            <div class="summary-text">
+              <h5>{{editUser.fullname}}</h5>
+              <span>{{editUser.email}}</span>
+            </div>
+          </div>
+          <div class="card card--profile text-left">
+            <div class="card-title strong">
+              Basic Information
+
+              <hr class="my-4" />
+            </div>
+            <div class="card-body p-0">
+              <form role="form" [formGroup]="editUserForm" novalidate
+                (ngSubmit)="onEditUser(editUserForm.value, editUserForm.valid)">
+                <div class="form-content">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="fullname" class="control-label">Full Name</label>
+                        <input id="fullname" type="text" formControlName="fullname"
+                          class="form-control  input-secondary-bg input-round"
+                          placeholder="Full Name">
+                        <small
+                          [hidden]="editUserForm.controls.fullname.valid || (editUserForm.controls.fullname.pristine && !submitted)"
+                          class="text-danger">
+                          Full Name is not valid.
+                        </small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input formControlName="email"
+                          class="form-control input-secondary-bg input-round" id="email"
+                          placeholder="Email" required
+                          pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+                        <small
+                          [hidden]="editUserForm.controls.email.valid || (editUserForm.controls.email.pristine && !submitted)"
+                          class="text-danger">
+                          Email is not valid.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="country" class="control-label">Country</label>
+                        <select class="form-control input-secondary-bg input-round"
+                          formControlName="country" required placeholder="Country">
+                          <option [ngValue]="null" >Country</option>
+                          <option *ngFor="let countryItem of countryOptions" [ngValue]="countryItem.value">
+                           {{ countryItem.label }}
+                          </option>
+                        </select>
+                        <small
+                          [hidden]="editUserForm.controls.country.valid || (editUserForm.controls.country.pristine && !submitted)"
+                          class="text-danger">
+                          Country is not valid.
+                        </small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="phoneno" class="control-label">Phone Number</label>
+                        <input type="text" formControlName="phoneno"
+                          class="form-control input-secondary-bg  input-round" id="phoneno"
+                          placeholder="Phone Number">
+                        <small
+                          [hidden]="editUserForm.controls.phoneno.valid || (editUserForm.controls.phoneno.pristine && !submitted)"
+                          class="text-danger">
+                          Phone Number is not valid.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="companyname" class="control-label">Company Name</label>
+                        <input type="text" formControlName="companyname"
+                          class="form-control input-secondary-bg input-round "
+                          id="companyname" placeholder="Company Name">
+                        <small
+                          [hidden]="editUserForm.controls.companyname.valid || (editUserForm.controls.companyname.pristine && !submitted)"
+                          class="text-danger">
+                          Company Name is not valid.
+                        </small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="companysize" class="control-label">Company Size</label>
+                        <select class="form-control input-secondary-bg input-round"
+                          formControlName="companysize" required placeholder="Company Size">
+                          <option [ngValue]="null" >Company Size</option>
+                          <option [ngValue]="'1-100'" >1 - 100</option>
+                          <option [ngValue]="'100-200'" >100 - 200</option>
+                          <option [ngValue]="'200-500'" >200 - 500</option>
+                          <option [ngValue]="'500-1000'" >500 - 1000</option>
+                          <option [ngValue]="'1000-5000'" >1000 - 5000</option>
+                          <option [ngValue]="'5000+'" >5000+</option>
+                        </select>
+                        <small
+                          [hidden]="editUserForm.controls.companysize.valid || (editUserForm.controls.companysize.pristine && !submitted)"
+                          class="text-danger">
+                          Company Size is not valid.
+                        </small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="jobtitle" class="control-label">Job Title</label>
+                        <input type="text" formControlName="jobtitle"
+                          class="form-control input-secondary-bg input-round" id="jobtitle"
+                          placeholder="Job Title">
+                        <small
+                          [hidden]="editUserForm.controls.jobtitle.valid || (editUserForm.controls.jobtitle.pristine && !submitted)"
+                          class="text-danger">
+                          Job Title is not valid.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group mb-5">
+                        <label class="control-label">Password</label><br />
+                        <a (click)="openUpdatePasswordModal()" href="javascript:void(0);">Change
+                          Password.</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <input formControlName="id" type="hidden" />
+
+                  <!--div class="form-group">
+                    <input type="password" class="form-control input-underline input-lg" formControlName="password" required placeholder="Password" validateEqual="confirmPassword" reverse="true">
+                    <small [hidden]="editUserForm.controls.password.valid || (editUserForm.controls.password.pristine && !submitted)" class="text-danger">
+                      Password is required.
+                    </small> 
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-underline input-lg" formControlName="confirmPassword" required placeholder="Confirm Password"  validateEqual="password" required>
+                    <small [hidden]="editUserForm.controls.confirmPassword.valid || (editUserForm.controls.confirmPassword.pristine && !submitted)" class="text-danger">
+                      Password mismatch.
+                    </small> 
+                  </div-->
+                </div>
+                <div class="row">
+                  <div class="col-4 offset-8">
+                    <button type="submit" [disabled]="loading"
+                      class="btn btn-block btn-primary btn-round">Submit</button>
+                    <img *ngIf="loading"
+                      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    &nbsp;
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #updatePasswordModal let-c="close" let-d="dismiss">
+  <div class="modal-header">Update Password</div>
+  <div class="modal-body">
+    <app-update-password [email]="editUser.email" (onPasswordUpdated)="onPasswordUpdated($event)">
+    </app-update-password>
+  </div>
+</ng-template>

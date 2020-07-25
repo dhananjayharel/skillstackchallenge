@@ -1,0 +1,35 @@
+<div class="container-fluid px-0">
+  <div class="row">
+    <div class="col-sm-12">
+      <app-env-filter></app-env-filter>
+    </div>
+  </div>
+  <div class="row  no-gutters">
+    <div class="col-auto border-right">
+        <div class="l-page__content__inner__middle-bar">
+            <div class="row no-gutters">
+                <div class="col-md-10 offset-1">
+                    <div class="mt-4 mb-3">
+                      <div class="input-group input-group-round">
+                        <input [ngModel]="filterData.where.name" name="searchKeyword" (keyup.enter)="searchByName($event)" type="text" class="form-control form-control-ico form-control-ico--search bg-grey-3 input-round" placeholder="Search Environments...">
+                        <div class="input-group-addon" ><i class="fa fa-search"></i></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row no-gutters">
+                <div class="col-sm-12 scroll-area animated bounceInLeft">
+                  <app-env-sidebar [environments]="environments" ></app-env-sidebar> 
+                </div>
+              </div>
+        </div>
+        
+    </div>
+    <div class="col">
+        <div class="main-content">
+            <router-outlet></router-outlet>
+            <app-env-description  [environment]="environments[selectedIndex] ? environments[selectedIndex] : null"></app-env-description>
+        </div>
+    </div>
+  </div>
+</div>

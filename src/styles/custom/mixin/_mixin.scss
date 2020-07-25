@@ -1,0 +1,62 @@
+@mixin slant-bg($color1, $color2) {
+  // background-color: $white;
+  // background-image: -webkit-linear-gradient(277deg, $color1 50%, $color2  50%);
+  // min-height: 200px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 200px 100vw;
+  border-color: transparent transparent $color2 transparent;
+  margin-bottom: -10px;
+
+  @include media-breakpoint-down(sm) {
+    border-width: 0 0 100px 100vw;
+  }
+}
+
+@mixin slant-bg-inverse($color1, $color2) {
+  // background-color: $white;
+  // background-image: -webkit-linear-gradient(83deg, $color1 50%, $color2  50%);
+  // min-height: 200px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 200px 100vw;
+  border-color: $color1 transparent transparent transparent;
+}
+
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%; 
+  list-style: none;       
+  
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%; 
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+  
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: 
+          rotate($rot * 1deg) 
+          translate($circle-size / 2) 
+          rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}

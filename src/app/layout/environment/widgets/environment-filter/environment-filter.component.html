@@ -1,0 +1,52 @@
+<div class="m-filter bg-secondary py-3">
+	<div class="row no-gutters">
+		<div class="col-auto border-right">
+			<div class="l-page__content__inner__middle-bar">
+				<div class="row">
+					<div class="col text-right">
+							<label class="col-form-label col-form-label-sm text-light"> Sort by: </label>
+					</div>
+					<div class="col">
+						<select [ngModel]="filter.order.name" name="name" (ngModelChange)="updateFilterData({name: $event})" class="form-control form-control-sm input-round" placeholder="Name">
+							<option [ngValue]="null" >Name</option>
+							<option *ngFor="let name of nameOrderData" [ngValue]="name.value">
+								{{ name.name }}
+							</option>
+						</select>
+					</div>
+					<div class="col">
+						<select [ngModel]="filter.order.created" name="created" (ngModelChange)="updateFilterData({created: $event})" class="form-control form-control-sm input-round" placeholder="Date">
+							<option [ngValue]="null" >Date</option>
+							<option *ngFor="let date of dateOrderData" [ngValue]="date.value">
+								{{ date.name }}
+							</option>
+						</select>
+					</div>
+					<div class="col-1">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="form-row px-2">
+				<div class="col-sm-3 text-right">
+				    <label class="col-form-label col-form-label-sm text-light"> Filter by: </label>
+				</div>
+				<div class="col-sm-8">
+					<select [ngModel]="filter.where.category" name="category" (ngModelChange)="updateFilterData({category: $event})" class="form-control form-control-sm input-round" placeholder="Category">
+						<option [ngValue]="null" >Category</option>
+						<option *ngFor="let category of categoryData" [ngValue]="category.value">
+						 {{ category.name }}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4 text-right">
+			<div class="px-2">
+				<a [routerLink]="['/environment/add']"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>Add Environment</a>
+			</div>
+		</div>
+	</div>
+</div>

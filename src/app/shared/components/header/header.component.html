@@ -1,0 +1,28 @@
+<div class="header">
+    <nav class="navbar navbar-dark bg-inverse navbar-toggleable-md">
+        <button class="navbar-toggler navbar-toggler-right d-md-none" (click)="toggleSidebar()" (blur)="hideSidebar()">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="logo-wrapper navbar-brand mx-auto d-md-none">
+            <app-logo [type]="'header-logo'" ></app-logo>
+        </div>
+       <div class="col offset-8 col-3 text-right">
+			<button type="button" (click)="addTest()"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Test</button>
+		</div>
+        <ul class="navbar-nav ml-auto">
+        
+            <li class="nav-item dropdown" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link d-flex align-items-center" ngbDropdownToggle>
+                    <i class="kk-icon kk-icon--avatar"></i> {{fullname}} <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/profile']"><i class="fa fa-fw fa-user"></i> View/Edit Profile</a>
+                    <hr/>
+                    <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/price-plan']"><i class="fa fa-fw fa-th-large"></i> Upgrade Plans</a>
+                    <hr/>
+                    <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>

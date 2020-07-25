@@ -1,0 +1,9 @@
+diff a/src/app/layout/test/operations/add/basic/basictab.component.html b/src/app/layout/test/operations/add/basic/basictab.component.html	(rejected hunks)
+@@ -89,7 +89,6 @@
+                         <label class="control-label" for="testname">GitHub URL (for stackblitz editor)</label>  
+                         <input class="form-control input-md" #GitHubUrl="ngModel" [required]="basicData.isWebBasedTest == true" id="GitHubUrl" name="GitHubUrl" type="text" placeholder="GitHub URL" [(ngModel)]="basicData.GitHubUrl">   
+                         <div class="text-danger" [hidden]="testname.valid">Test Name is required</div>
+-                    </div>					
+                     </div>
+ -->					
+                     <div [hidden]="this.formDataService.getMode() === 'EDIT' || basicData.isWebBasedTest == true " class="form-group clearfix">

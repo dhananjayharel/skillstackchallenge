@@ -1,0 +1,358 @@
+<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+<section id="banner" class="bg-primary pb-120 m-banner">
+    <div class="container pt-36">
+        <nav class="navbar navbar-dark navbar-expand-lg navbar-primary bg-primary p-0 mb-36">
+            <app-logo class="navbar-brand" [type]="'header-logo'" ></app-logo>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon fa fa-bars text-white f-36"></span>
+            </button>
+            <div id="navbarNavDropdown" class="navbar-collapse collapse">
+                <ul class="navbar-nav ml-auto header-links text-uppercase">
+                    <li class="nav-item dropdown">
+                        <a (click)="scrollTo('banner')" class="nav-link" href="javascript:void()">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="scrollTo('why-kk')" class="nav-link" href="javascript:void()">Why Skillstack?</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a (click)="scrollTo('how-it-works')" class="nav-link"  href="javascript:void()">HOW IT WORKS</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a (click)="scrollTo('products-kk')" class="nav-link" href="javascript:void()">PRODUCT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" class="btn btn-default btn-round btn-glow" (click)="goToLogin()">Register / Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+        
+        <div class="row align-items-center {{animatePulse}}">
+            <div class="col-12 col-lg-7 text-uppercase text-white">
+                <div class="banner-text">
+                    <div class="banner-text-inner">
+                        <div class="f-48 mb-36 fw-600">
+                            Make Your Tech interviews a breeze
+                        </div>
+                        <div class="f-18 mb-54 font-thin strong">
+                            SkillStack is the best tool to assess the skills of a programmer before interviewing them
+                        </div>
+                    </div>
+                </div>
+                <a href="/app/trynow" target="_blank" class="btn btn-default btn-glow btn-round text-primary strong text-uppercase f-18 btn-banner"> 
+                    Try Now
+                </a>
+            </div>
+            <div class="d-none d-lg-block col-0 col-lg-5">
+                <i class="kk-icon kk-icon--home-banner"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="why-kk" class="pb-24 why-kk">
+    <div class="container">
+        <div class="f-36 text-center mt-24 font-thin strong">What makes <span class="text-primary fw-600 font-regular">SkillStack </span>different</div>
+            <div class="justify-content-center row pb-24 ">
+                <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+            </div>
+        <div class="row">
+            <div class="col-12 col-lg-6 text-center real-project-section feature animated visibility-off">
+                <div class="text-primary f-24 strong mb-24 fw-600">
+                        Real-world Projects
+                </div>
+                <!-- <div class="mx-auto bg-gray-6 rounded-circle w-250x250 position-relative">
+                    <i class="kk-icon kk-icon--code-lg center_item"></i>
+                </div> -->
+                <div class="mx-auto bg-gray-6 w-250 ">
+                    <img src="https://image.shutterstock.com/z/stock-vector-vector-illustration-of-colored-icon-in-flat-line-style-linear-cute-and-happy-man-with-laptop-561122098.jpg" width="100%" />
+                </div>
+                <hr class="border-grey-separator w-250 mx-auto" />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 f-16">
+                        <strong>Test your candidates on actual IDEs like Visual Studio and Eclipse</strong><br/>
+                        No more "web challenges" gimmickry.<BR>Watch your candidates solve real-world problems in any environment of your choice.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-lg-6 text-center video-interview-section feature animated visibility-off">
+                <div class="text-primary f-24 strong mb-24 fw-600">
+                    Video Interviews
+                </div>
+                <!-- <div class="mx-auto bg-gray-6 rounded-circle w-250x250 position-relative">
+                    <i class="kk-icon kk-icon--video-lg center_item"></i>
+                </div> -->
+                <div class="mx-auto bg-gray-6 w-250 ">
+                    <img src="https://image.freepik.com/free-vector/mobile-phone-takin-a-selfie_1347-137.jpg" width="100%" />
+                </div>
+                <hr class="border-grey-separator w-250 mx-auto" />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8 f-16">
+                        <strong>Watch self-recorded videos of your candidates answering your questions</strong><br/>
+                        Gain more insight on your candidate's communication skills and authenticity by watching their "selfie" video recordings. 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-36 m-stack">
+    <div class="container" >
+        <div class="row">
+            <div class="col-12 col-lg-6  m-stack__caption strong">
+                We test your candidates on the latest stacks in actual IDEs - right in the browser.
+            </div>
+            <div class="col-lg-6 language-image animated visibility-off">
+                <img src="/assets/images/languages.png" width="100%" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-howitworks></app-howitworks>
+
+<section id="products-kk" class="pb-36 m-feature">
+    <div class="container">
+        <div class="f-36 text-center mt-24 strong font-thin">Product <span class="text-primary font-regular">Overview</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+        <div id="products-kk-0" class="row align-items-top pb-54">
+            <div class="col-lg-5 text animated">
+                <div class="strong f-24">Tests based on real-world projects</div><br/>
+                <div class="f-16">Choose a test from our library or create your own in minutes.
+                        Each test contains an exclusive VM + Stack + IDE of your 
+                        choice - all accessible right in the browser.
+                </div>
+            </div>
+            <div class="col-lg-7 animated image visibility-off">
+                <img src="/assets/images/why-kk-3.png" width="100%" />
+            </div>
+        </div>
+        <div id="products-kk-1" class="row align-items-top justify-content-end pb-54 {{animatePulse}}">
+            
+            <div class="col-lg-5 order-1 order-md-2 text animated">
+                <div class="strong f-24">Granular analytics</div><br/>
+                <div class="f-16">
+                    Watch every keystroke and mouse movement. Run your candidate's code live. See diffs. Configure test cases for auto-scoring too!
+                </div>
+            </div>
+            <div class="col-lg-7 animated  image  visibility-off order-2 order-md-1">
+                <img src="/assets/images/why-kk-2.png" width="100%" />
+            </div>
+        </div>
+        <div id="products-kk-2" class="row align-items-top justify-content-start pb-54 {{animatePulse}}">
+            <div class="col-lg-5 text animated">
+                <div class="strong f-24">Video interviews</div><br/>
+                <div class="f-16">
+                    Choose video questions for each test from our library or add your own. Ask questions specific to the coding test or general questions too. The candidate can record answers from their desktop or mobile.
+                </div>
+            </div>
+            <div class="col-lg-7 animated image visibility-off">
+                <img src="/assets/images/why-kk-1.png" width="100%" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<app-testimonials></app-testimonials>
+
+<section id="press" class="mt-24 animated visibility-off">
+    <div class="container">
+        <div class="f-36 text-center strong font-thin">Press<span class="text-primary font-regular"> & Media</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-16 text-center">
+                <p class="f-18 text-black">
+                    SkillStack is still in beta, but our flagship product Programmr has already received rave reviews from the top US tech news sites. Programmr has helped 800,000+ devs get good at programming, so we know a thing or two about this space! :)
+                </p>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-lg-3 text-center mb-24 mx-auto">
+                <img height="50px" src="/assets/images/tc.jpg" />
+                <p class="text-black d-none">
+                    
+                </p>
+            </div>
+            <div class="col-lg-3 text-center mb-24 mx-auto">
+                <img height="50px" src="/assets/images/fc.jpg" />
+                <p class=" text-black d-none">
+                    
+                </p>
+            </div>
+            <div class="col-lg-3 text-center mb-24 mx-auto">
+                <img height="50px" src="/assets/images/es.png" />
+                <p class="text-black d-none">
+                    
+                </p>
+            </div>
+            <div class="col-lg-3 text-center mb-24 mx-auto">
+                <img height="50px" src="/assets/images/tnw.png" />
+                <p class="text-black d-none">
+                    
+                </p>
+            </div>
+            <div class="col-12 mb-16 text-center">
+                <p class="f-18 text-black">
+                    
+                </p>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+
+
+<section id="specific-skillset" class="mt-24">
+    <div class="container">
+        <div class="f-36 text-center strong font-thin">Looking for  <span class="text-primary font-regular">specific skillsets?</span></div>
+        <div class="justify-content-center row pb-24">
+            <div class="bb-5 wth-50 ht-10">&nbsp;</div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 h5 text-center">
+                Coming Soon: We're adding tests on these technologies to our library shortly.
+            </div>
+        </div>
+
+
+        <div class="row justify-content-start">
+            <div class="col-12">
+                <i class="devicon devicon-android-plain-wordmark colored"></i>
+                <i class="devicon devicon-apple-original colored"></i>
+
+            </div>
+            <div class="col-12">
+                <i class="devicon devicon-amazonwebservices-plain-wordmark"></i>
+                <i class="devicon devicon-oracle-original colored"></i>
+                <i class="devicon devicon-apache-line-wordmark"></i>
+            </div>
+            <div class="col-12">
+                <i class="devicon devicon-angularjs-plain colored"></i>
+                <i class="devicon devicon-react-original-wordmark colored"></i>
+                <i class="devicon devicon-vuejs-plain-wordmark colored"></i>
+                <i class="devicon devicon-bootstrap-plain-wordmark colored"></i>
+                <i class="devicon devicon-html5-plain-wordmark colored"></i>
+                <i class="devicon devicon-css3-plain-wordmark colored"></i>
+                <i class="devicon devicon-less-plain-wordmark colored"></i>
+                <i class="devicon devicon-sass-original colored"></i>
+                <i class="devicon devicon-mocha-plain colored"></i>
+                <i class="devicon devicon-backbonejs-plain-wordmark colored"></i>
+
+            </div>
+            <div class="col-12">
+                <i class="devicon devicon-python-plain-wordmark colored"></i>
+                <i class="devicon devicon-django-plain-wordmark colored"></i>
+                <i class="devicon devicon-drupal-plain-wordmark colored"></i>
+                <i class="devicon devicon-nodejs-plain-wordmark colored"></i>
+                <i class="devicon devicon-php-plain colored"></i>
+                <i class="devicon devicon-ruby-plain-wordmark colored"></i>
+                <i class="devicon devicon-symfony-original-wordmark colored"></i>
+                <i class="devicon devicon-yii-plain-wordmark colored"></i>
+                <i class="devicon devicon-wordpress-plain-wordmark colored"></i>
+                <i class="devicon devicon-zend-plain-wordmark colored"></i>
+                <i class="devicon devicon-cplusplus-plain-wordmark colored"></i>
+                <i class="devicon devicon-cplusplus-plain-wordmark colored"></i>
+                <i class="devicon devicon-express-original-wordmark colored"></i>
+                <i class="devicon devicon-erlang-plain-wordmark colored"></i>
+                <i class="devicon devicon-go-line colored"></i>
+
+            </div>
+            <div class="col-12">
+                <i class="devicon devicon-amazonwebservices-plain-wordmark text-primary"></i>
+            </div>
+        </div>
+        
+        <!-- <div class="row mb-54">
+            <div class="col-12">
+                <ul class='circle-container'>
+                    <li><img src='/assets/images/ai.png' alt="..." /> 
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/ar.png' alt="..." />
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/big-data.png' alt="..." />
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/unity.png' alt="..." />
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/ai.png' alt="..." />
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/machine-learning.png' alt="..." />
+                        <span class="title">Ai Technology</span></li>
+                    <li><img src='/assets/images/krazykoder.png' alt="..." /></li>
+                </ul>
+            </div>
+        </div> -->
+
+    </div>    
+</section>
+
+<!-- <div class="ht-120 bg-white">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 41"><polygon class="a" points="0 0, 0 41, 400 41, 400 40, 0 0"></polygon></svg>
+</div> -->
+<section id="" class="bg-grey pt-24 m-pre-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-24 text-center">
+                <p><i class="kk-icon kk-icon--rocket"></i></p>
+                <h3 class="my-54">Ready to <span class="text-primary strong">make your hiring a breeze?</span></h3>
+                <button id="get-started-btn" class="btn btn-grey btn-round text-uppercase f-16 animated visibility-off">
+                    Try SKILLSTACK NOW - Free for 3 Months
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="footer" class="bg-footer footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h4 class="footer-head">Menu</h4>
+                <ul class="list-unstyled">
+                    <li class="footer-link">
+                        <a (click)="scrollTo('banner')" href="javascript:void(0);">Home</a>
+                    </li>
+                    <li class="footer-link">
+                        <a (click)="scrollTo('why-kk')" href="javascript:void(0);">Why Skillstack?</a>
+                    </li>
+                    <li class="footer-link">
+                        <a (click)="scrollTo('how-it-works')" href="javascript:void(0);">How it works</a>
+                    </li>
+                    <li class="footer-link">
+                        <a (click)="scrollTo('products-kk')" href="javascript:void(0);">Products</a>
+                    </li>
+                    <li class="footer-link">
+                        <a (click)="goToLogin()" href="javascript:void(0);">Register / Login</a>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="offset-lg-4 col-lg-4">
+                <h4  class="footer-head text-uppercase">Contact Us</h4>
+                <p>
+                    Programmr Technologies Inc.<br/>
+                    616 Corporate Way Suite 2<br/>
+                    Valley Cottage, NY 10989<br/>
+                </p>
+                <p>
+                    support@skillstack.com
+                </p>
+                <p>
+                    (646) 801-3988
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

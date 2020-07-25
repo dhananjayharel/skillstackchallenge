@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="413" height="413" viewBox="0 0 413 413">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2e80b7;
+        filter: url(#drop-shadow-1);
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        font-size: 30px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        font-family: "Montserrat-Bold";
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .cls-4 {
+        font-family: "Montserrat";
+      }
+    </style>
+
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset in="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.746" result="dropBlur"/>
+      <feFlood flood-opacity="0.05"/>
+      <feComposite operator="in" in2="dropBlur" result="dropShadowComp"/>
+      <feComposite in="SourceGraphic" result="shadowed"/>
+    </filter>
+  </defs>
+  <g>
+    <path d="M267.500,122.500 C347.581,122.500 412.500,187.419 412.500,267.500 C412.500,347.581 347.581,412.500 267.500,412.500 C187.419,412.500 122.500,347.581 122.500,267.500 C122.500,187.419 187.419,122.500 267.500,122.500 Z" class="cls-1"/>
+    <text x="98" y="217" class="cls-2"><tspan class="cls-2"><tspan class="cls-3">Krazy</tspan><tspan class="cls-4">Koder</tspan></tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,393 @@
+<app-launch-machine-widget *ngIf="environment && candidateAmiId && _autoLaunchMachine"
+	[amiId] = "candidateAmiId" 
+	[environment] = "environment" 
+	[onlinetestId] = "testOnline.id"
+	[autoLaunch] = "_autoLaunchMachine"
+	[launchMode] = "'RECRUITER'"
+	(onMachineCancelled) = "onLaunchMachineCancel($event)"
+	(onMachineLaunched) = "enableGitDiff($event)"> </app-launch-machine-widget>
+
+
+
+<div class="card mb-3">
+	<div class="card-body">
+		<div class="row f-14 strong text-center">
+			<div class="col text-left">
+				Name
+			</div>
+			<div class="col">
+				Start Time
+			</div> 
+			<div class="col">
+				Session Duration
+			</div> 
+			<div class="col">
+				Score
+			</div>
+			<div class="col">
+				Code
+			</div>
+			<div class="col-auto"></div>
+		</div>
+	</div>
+</div>
+<div *ngIf="candidates.length === 0" class="card mb-3">
+	<div class="card-body">
+		<i class="fa fa-info-circle"></i>&nbsp;No Results found.
+	</div>
+</div>
+<div *ngFor="let candidate of candidates; let i = index" [attr.data-index]="i" class="card mb-3">
+	<div class="card-body">
+		<div class="row align-items-center h-100 f-14 text-center" >
+			<div class="col text-left">
+				<span class="text-primary">{{candidate.fullname}}</span>
+			</div>
+			<!-- <div class="col text-center">
+				<span *ngIf="candidate.timeline">
+					{{ candidate.timeline[0]['date'] | date :  "MMMM d, y" }}
+				</span>
+			</div>
+			<div class="col text-center">
+				<span class="text-primary">{{testOnline.name}}</span>
+			</div> -->
+			<div class="col text-center">
+				<span *ngIf="candidate.status!=='ongoing'" class="h6 f-12 badge badge-pill"> {{ candidateStatusText[candidate.status] }}</span>
+				<span *ngIf="candidate.status==='ongoing'" class="h6 f-12 badge badge-warning blinking">{{candidateStatusText[candidate.status]}}</span>
+			</div>
+			<div class="col text-center" *ngIf="candidate.score===-1 || candidate.status ==='invited' || candidate.status ==='ongoing' || candidate.status ==='expired';else other_content">
+				<h3 class="text-info">?</h3>
+			</div>
+			<ng-template #other_content>
+				<div class="col text-center" *ngIf="candidate.score!==-1 || candidate.status ==='accepted' || candidate.status ==='rejected' || candidate.status ==='completed' || candidate.status ==='Waiting for evaluation'">
+					<!-- <span *ngIf="candidate.score==10" class="badge badge-pill badge-success">{{candidate.score}}</span>
+					<span *ngIf="candidate.score==0" class="badge badge-pill badge-danger">{{candidate.score}}</span> -->
+					<circle-progress
+						[radius]="18"
+						[percent]="candidate.score"
+						[radius]="100"
+						[titleColor]="'#2E80B7'"
+						[titleFontSize]="12"
+						[showSubtitle]="false"
+						[outerStrokeWidth]="4"
+						[innerStrokeWidth]="4"
+						[space]="-4"
+						[outerStrokeColor]="'#4882c2'"
+						[innerStrokeColor]="'#e7e8ea'"
+						[animation]="true"
+						[animateTitle]="true"
+						[animationDuration]="300"
+						></circle-progress>
+					<hr class="mt-0"/>
+					<a href="javascript:void(0);" class="small strong" (click)="openEvaluateModal(i)" >
+						Edit Score
+					</a>
+					<a *ngIf="candidate.testcase_summary" href="javascript:void(0);" class="small strong" (click)="viewTestcaseSummary(i)" >
+						Summary
+					</a>
+					
+				</div>
+			</ng-template>
+			
+			<div (click)="toggleActionBar(i,$event)" class="col-auto cursor-pointer f-18 candidate-action-trigger-{{i}}"> <i class="fa fa-lg fa-angle-up"></i> </div>
+		</div>
+		<div class="slider candidate-action-{{i}} row py-3">
+			
+			<div class="col-sm-12">
+				<ul id="reportbuttons" class="list-group" >
+					<!-- <li *ngIf="candidate.AmiId" class="list-group-item"> -->
+						<!-- <div class="row"> -->
+							<!-- <div class="col-6 mx-auto text-center"> -->
+								<!-- {{candidate.email}} -->
+							<!-- </div> -->
+						<!-- </div> -->
+					<!-- </li> -->
+					<!-- <li class="list-group-item"> -->
+						<!-- <div class="row"> -->
+							<!-- <div class="col-6 mx-auto text-center"> -->
+								<!-- <button (click)="showCandidateTimelineModal(candidate.fullname, candidate.timeline)" class="btn btn-link d-none d-md-block">Show Candidate timeline</button> -->
+								<!-- <button (click)="showCandidateTimelineModal(candidate.fullname, candidate.timeline)" class="btn btn-link d-md-none">Show Candidate timeline</button> -->
+							<!-- </div> -->
+						<!-- </div> -->
+					<!-- </li> -->
+					<li class="list-group-item col-lg-3 col-sm-12">
+						<div class="row">
+							<div class="col-lg-10 col-sm-12 mx-auto">
+								<div [style.visibility]="candidate.AmiId ? 'visible' : 'hidden'" >
+									<div class="viewsolution-wrapper mb-2 d-none d-md-block">
+										<button type="button" class="btn btn-outline-secondary btn-block btn-round"  (click)="viewSolution(candidate)" >
+											<i class="fa fa-desktop"></i>&nbsp;Execute Solution
+										</button>
+									</div>
+									<div class="viewsolution-wrapper mb-2 d-md-none">
+										<button type="button" class="btn btn-outline-secondary btn-block btn-round"  (click)="viewSolution(candidate)" >
+											<i class="fa fa-desktop"></i>&nbsp;Execute Solution
+										</button>
+									</div>								
+									<div *ngIf="testOnline.id" class="diff2html-wrapper d-none d-md-block">
+										<button type="button" class="btn btn-outline-secondary btn-block btn-round" (click)="diff2Html.init()" >
+											<i class="fa fa-code"></i>&nbsp;View Code Submission
+										</button>
+										<app-diff2html
+										#diff2Html
+										[branchName] =  "candidate.isCloned ? candidate.originalTestToken : candidate.testToken"
+										[gitUrl] = "candidate.isCloned ? candidate.originalTestId : candidate.onlineTestId"
+										[openInNewTab] = "true">
+										</app-diff2html>
+									</div>
+									<div *ngIf="testOnline.id" class="diff2html-wrapper d-md-none">
+										<button type="button" class="btn btn-outline-secondary btn-block btn-round" (click)="gitDiffMobileView()" >
+											<i class="fa fa-code"></i>&nbsp;View Code Submission
+										</button>
+									</div>
+								</div>
+								<div *ngIf="testOnline['hideMcqTest']" class="text-center">
+									--
+								</div>
+								<div *ngIf="candidate.mcqQuestionResponse" class="mcqsolution-wrapper mb-2">
+									<button type="button" class="btn btn-outline-secondary btn-block btn-round"  (click)="viewMCQSolution(i)" >
+										<i class="fa fa-desktop"></i>&nbsp;View MCQ Results
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  class="list-group-item col-lg-3 col-sm-12">
+						<div class="row">
+							<div class="col-lg-10 col-sm-12 mx-auto">
+								<div *ngIf="candidate.ScreenRecordingUrl"  class="viewsolution-wrapper mb-2">
+									<button class="btn btn-outline-secondary btn-block btn-round mb-2" (click)="playYouTubeVideo(candidate.fullname, candidate.ScreenRecordingUrl)">
+										<i class="fa fa-camera"></i>&nbsp;View Screen Recording
+									</button>
+								</div>
+								<div *ngIf="testOnline['hideVideoTest']" class="text-center">
+									--
+								</div>
+								<div *ngIf="!testOnline['hideVideoTest'] && candidate.videoUrl" class="viewsolution-wrapper">
+									<button type="button" class="btn btn-outline-secondary btn-block btn-round" (click)="playVideo(candidate.videoUrl, candidate.fullname)" >
+										<i class="fa fa-play-circle"></i>&nbsp;Video Interview
+									</button>
+								</div>
+								<div *ngIf="!testOnline['hideVideoTest'] && !candidate.videoUrl && candidate.videoAwaited">
+									<i class="fa fa-info-circle" aria-hidden="true"></i> Video Test in Progress
+								</div>
+							</div>
+						</div>
+					</li>
+					<li  class="list-group-item col-lg-3 col-sm-12">
+						<div class="row">
+							<div class="col-lg-10 col-sm-12 mx-auto">
+								<div *ngIf="candidate.PipeVideoRecordingUrl" class="viewsolution-wrapper">
+									<button type="button" class="btn btn-outline-secondary btn-block btn-round" (click)="playPipeVideo(candidate.PipeVideoRecordingUrl, candidate.fullname)" >
+										<i class="fa fa-play-circle"></i>&nbsp;WebCam Rcording
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>					
+					
+					
+					<li  class="list-group-item col-lg-3 col-sm-12">							
+								<div class="row">
+									<div class="col-lg-6 col-sm-4 mb-2" >
+										<button type="button"  [style.visibility]="(candidate.status == 'invited') ? 'hidden' : 'visible'"  class="btn btn-outline-success btn-block btn-round" (click)="updateCandidateStatus(candidate, 'Accepted')" >
+											<i class="fa fa-check"></i>&nbsp;Accept
+										</button> <br class="d-sm-none" />
+									</div>
+									<div class="col-lg-6 col-sm-4 mb-2" >
+										<button type="button" [style.visibility]="(candidate.status == 'invited') ? 'hidden' : 'visible'" class="btn btn-outline-danger btn-block btn-round" (click)="updateCandidateStatus(candidate, 'Rejected')" >
+											<i class="fa fa-times"></i>&nbsp;Reject
+										</button> <br class="d-sm-none" />
+									</div>
+									</div><div class="row">
+									<div class="col-lg-6 col-sm-4 mb-2">
+										<a href="javascript:void(0);" class="btn btn-outline-secondary btn-block btn-round" aria-hidden="true" (click)="resend(candidate)" > 
+											<i class="fa fa-envelope"></i>&nbsp;Re-Invite
+										</a>
+									</div>
+									<div class="col-lg-6 col-sm-4 mb-2 text-center">
+								<button (click)="showCandidateTimelineModal(candidate.fullname, candidate.timeline)" class="btn btn-link d-none d-md-block">Show Candidate timeline</button>
+								<button (click)="showCandidateTimelineModal(candidate.fullname, candidate.timeline)" class="btn btn-link d-md-none">Show Candidate timeline</button>
+							    </div>
+							</div>
+								
+						
+						
+					</li>
+				</ul>
+			</div>
+			<div class="col-6">
+				<div id="candidate-timeline-{{i}}" class="slider closed">
+					<app-timeline [timelines]="candidate.timeline"></app-timeline>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="loading" class="spinner">
+	<div class="double-bounce1"></div>
+	<div class="double-bounce2"></div>
+</div>
+
+<ng-template #loadingContainerModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		Execute Solution
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		Please wait loading the test.
+	</div>
+</ng-template>
+
+<ng-template #candidateTimelineModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		{{candidatetimelinetitle}}
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		<app-timeline [timelines]="candidatetimeline"></app-timeline>
+	</div>
+</ng-template>
+
+<ng-template #executeSolutionModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		Oops!
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		Executing Solutions needs a desktop or laptop
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #gitDiffModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		Oops!
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		Viewing Code Diffs needs a desktop or laptop.
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #youtubePlayerModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		{{youTubeScreenRecordingTitle}}
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div style="display:block" class="modal-body mx-auto">
+			<iframe [src]="youTubeScreenRecordingUrl | safe" width="100%" height="480" frameborder="0" title="Untitled" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-ready="true"></iframe>
+	</div>
+</ng-template>
+
+<ng-template #vimeoPlayerModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		{{currentVideoTitle}}
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+		<app-vimeoplayer
+		[videoId] = "currentVideoId"
+		[title] = "currentVideoTitle"
+		[onLoadPlay] = "true">
+		</app-vimeoplayer>
+	</div>
+</ng-template>
+
+<ng-template #pipePlayerModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		{{currentVideoTitle}}
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto text-center">
+	   <video style="width:48%" controls autoplay #pipeVideo src="{{pipevideoUrl}}"></video>
+	</div>
+</ng-template>
+
+<ng-template #evaluateMarksModal let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		Edit Score:
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="form-row align-items-center my-6 mx-3">
+				<div class="col">
+					<label class="sr-only" for="inlineFormInputGroup">Assign Marks:</label>
+					<div class="input-group">
+						<input #score type="number" min="0" max="100"  (click)="scoreError=false" class="form-control bg-grey input-round"  id="inlineFormInputGroup" placeholder="in percentage">
+					</div>
+				</div>
+				<div class="col-auto">
+					<button  (click)="evaluateCurrentCandidateMarks(score)" type="button" class="btn btn-sm btn-primary" >Update Score</button>
+					<button id="evaluateModalCloseBtn" type="button" class="btn btn-sm btn-secondary" (click)="c('Close click')">Cancel</button>
+				</div>
+			</div>
+			<div class="form-row" [hidden]="(score.value >= 0 && score.value <= 100)|| scoreError == false">
+				<div class="col small text-center text-danger"> Number should be in the range of 1-100.</div>
+			</div>
+		</form>
+	</div>
+</ng-template>
+
+<ng-template #testcaseSummary let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		Summary
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto">
+	
+	<ul>
+	<li *ngIf="!currentCandidate.testcase_summary" class="text-danger"> Oops! No data available</li>
+	<ng-template ngFor let-item [ngForOf]="currentCandidate.testcase_summary">
+		
+		<li *ngIf="item.test">
+		
+			{{item.test}} was <span [ngClass]="(item.status=='passed')?'badge badge-success':'badge badge-danger'">{{item.status}}</span>
+				
+		</li>
+	</ng-template>
+	</ul>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #mcqResultModal let-c="close" let-d="dismiss">
+	<div class="modal-header" *ngIf="currentCandidate.mcqQuestionResponse" >
+		{{currentCandidate.name}} MCQ Response
+		<button type="button" class="close" (click)="c('Close click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body mx-auto text-center">
+		<app-quiz [mode]="'result'" [quizJson]="currentCandidate.mcqQuestionResponse"></app-quiz>
+	</div>
+</ng-template>
+
+	
