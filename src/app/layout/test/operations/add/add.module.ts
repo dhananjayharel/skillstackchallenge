@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TinymceModule } from 'ng2-tinymce-alt';
-import { UiSwitchModule } from 'angular2-ui-switch/src';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AddPageRoutingModule } from './add-routing.module';
 import { AddComponent } from './add.component';
@@ -28,7 +27,6 @@ import { TestEnvironmentInputModule } from '../../widgets/test-environment-input
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    UiSwitchModule,
     FileUploadModule,
     TinymceModule.withConfig({
       plugins: ['lists', 'code'],

@@ -8,48 +8,48 @@ export class EnvironmentService {
     constructor(private http: Http) { }
 
     getAll(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 	
 	    getAllEnvs(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/getallenvs?id='+id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/getallenvs?id='+id, this.jwt()).map((response: Response) => response.json());
     }
 	
 	
 	   getBaseAmiDetails(amiId: string) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/getbaseamidetails?id='+amiId, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/getbaseamidetails?id='+amiId, this.jwt()).map((response: Response) => response.json());
     }
 	
 	  createAmi(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/createami?id='+id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/createami?id='+id, this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(environment: Environment) {
-        return this.http.post(appConfig.SERVER_URL+'/api/environments', environment, this.jwt()).map((response: Response) => response.json());
+        return this.http.post(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments', environment, this.jwt()).map((response: Response) => response.json());
     }
 
     count(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/count'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/count'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
     getPublicIP(instanceId=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/candidates/getmachinepublicip?instanceid='+instanceId, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/candidates/getmachinepublicip?instanceid='+instanceId, this.jwt()).map((response: Response) => response.json());
     }
 
     update(environment: Environment) {
-         return this.http.put(appConfig.SERVER_URL+'/api/environments/' + environment.id, environment, this.jwt()).map((response: Response) => response.json());
+         return this.http.put(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/' + environment.id, environment, this.jwt()).map((response: Response) => response.json());
      }
 
     delete(id: number) {
-        return this.http.delete(appConfig.SERVER_URL+'/api/environments/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
         cloneEnvironments(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/api/environments/cloneenvs?id=' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/environments/cloneenvs?id=' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

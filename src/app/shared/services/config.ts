@@ -1,1 +1,2 @@
-export const SERVER_URL = 'http://ec2-54-227-189-97.compute-1.amazonaws.com:4000';
+export const SERVER_URL = 'https://www.skillstack.com';
+export const SERVER_PATH="skillstackapi";

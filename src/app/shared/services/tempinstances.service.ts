@@ -8,27 +8,27 @@ export class TempInstanceService {
     constructor(private http: Http) { }
 
     getAll(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/tempinstances'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/api/tempinstances/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(candidate: TempInstance) {
-        return this.http.post(appConfig.SERVER_URL+'/api/tempinstances', candidate, this.jwt()).map((response: Response) => response.json());
+        return this.http.post(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances', candidate, this.jwt()).map((response: Response) => response.json());
     }
 
     count(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/tempinstances/count'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances/count'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
      update(candidate: TempInstance) {
-         return this.http.put(appConfig.SERVER_URL+'/api/tempinstances/' + candidate.id, candidate, this.jwt()).map((response: Response) => response.json());
+         return this.http.put(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances/' + candidate.id, candidate, this.jwt()).map((response: Response) => response.json());
      }
 
     delete(id: number) {
-        return this.http.delete(appConfig.SERVER_URL+'/api/tempinstances/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/tempinstances/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

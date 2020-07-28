@@ -8,22 +8,22 @@ export class OnlineTestService {
     constructor(private http: Http) { }
 
     getAll(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/api/onlinetests' +
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/onlinetests' +
             this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
         return this.http.get(appConfig.SERVER_URL +
-            '/api/onlinetests/' + id, this.jwt()).map((response: Response) => response.json());
+            '/'+appConfig.SERVER_PATH+'/onlinetests/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(onlineTest: OnlineTest) {
         return this.http.post(appConfig.SERVER_URL +
-            '/api/onlinetests', onlineTest, this.jwt()).map((response: Response) => response.json());
+            '/'+appConfig.SERVER_PATH+'/onlinetests', onlineTest, this.jwt()).map((response: Response) => response.json());
     }
 
     count(filter=null) {
-        return this.http.get(appConfig.SERVER_URL + '/api/onlinetests/count' +
+        return this.http.get(appConfig.SERVER_URL + '/'+appConfig.SERVER_PATH+'/onlinetests/count' +
             this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
@@ -33,7 +33,7 @@ export class OnlineTestService {
     }
 
     getPresignedUploadUrl(path: string, type: string) {
-        return this.http.get(appConfig.SERVER_URL + '/api/onlinetests/getPresignedUploadUrl?path=' + path + '&type=' + type,
+        return this.http.get(appConfig.SERVER_URL + '/'+appConfig.SERVER_PATH+'/onlinetests/getPresignedUploadUrl?path=' + path + '&type=' + type,
             this.jwt()).map((response: Response) => response.json());
     }
 
@@ -46,15 +46,15 @@ export class OnlineTestService {
             }
         }
         queryParam = queryParam.substring(0, queryParam.length - 1);
-        return this.http.post(appConfig.SERVER_URL+'/api/onlinetests/clonetest?'+queryParam, this.jwt()).map((response: Response) => response.json());
+        return this.http.post(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/onlinetests/clonetest?'+queryParam, this.jwt()).map((response: Response) => response.json());
     }
 
     update(onlineTest: OnlineTest) {
-        return this.http.put(appConfig.SERVER_URL+'/api/onlinetests/' + onlineTest.id, onlineTest, this.jwt()).map((response: Response) => response.json());
+        return this.http.put(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/onlinetests/' + onlineTest.id, onlineTest, this.jwt()).map((response: Response) => response.json());
     }
 
     delete(id: number) {
-        return this.http.delete(appConfig.SERVER_URL+'/api/onlinetests/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/onlinetests/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

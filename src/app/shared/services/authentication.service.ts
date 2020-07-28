@@ -18,7 +18,7 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
         let body = JSON.stringify({ 'email': email, 'password': password });
-        return this.http.post(appConfig.SERVER_URL+'/api/Users/login', 
+        return this.http.post(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/Users/login', 
             body, this.jwt())
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -37,7 +37,7 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentUserData');
         localStorage.removeItem('isLoggedin');
-        return this.http.post(appConfig.SERVER_URL +'/api/Users/logout',this.jwt())
+        return this.http.post(appConfig.SERVER_URL +'/'+appConfig.SERVER_PATH+'/Users/logout',this.jwt())
             .map((response: Response) => {
                 console.log(response);
                
@@ -50,7 +50,7 @@ export class AuthenticationService {
 
     requestForgotPassword(email: string) {
         let body = JSON.stringify({ 'email': email });
-        return this.http.post(appConfig.SERVER_URL +'/api/Users/request-password-reset', body,
+        return this.http.post(appConfig.SERVER_URL +'/'+appConfig.SERVER_PATH+'/Users/request-password-reset', body,
         this.jwt())
             .map((response: Response) => {
                 console.log(response);
@@ -60,7 +60,7 @@ export class AuthenticationService {
 
     resetPassword(password: string, email: string, id: string) {
         let body = JSON.stringify({ 'email': email, 'password': password });
-        return this.http.post(appConfig.SERVER_URL +'/api/Users/reset?access_token='+id, body,
+        return this.http.post(appConfig.SERVER_URL +'/'+appConfig.SERVER_PATH+'/Users/reset?access_token='+id, body,
         this.jwt())
             .map((response: Response) => {
                 console.log(response);
@@ -70,13 +70,13 @@ export class AuthenticationService {
 
     confirmAccount(uid: number, id: string) {
         return this.http.get(
-            appConfig.SERVER_URL + '/api/Users/confirm?uid=' + uid + '&token=' + id,
+            appConfig.SERVER_URL + '/'+appConfig.SERVER_PATH+'/Users/confirm?uid=' + uid + '&token=' + id,
             this.jwt()
         ).map((response: Response) => response.json());
     }
 
     getUser(uid: number, id: string) {
-        return this.http.get(appConfig.SERVER_URL+'/api/Users/' + uid + '?access_token='+id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/Users/' + uid + '?access_token='+id, this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {
