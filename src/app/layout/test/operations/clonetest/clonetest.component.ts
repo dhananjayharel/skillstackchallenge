@@ -62,13 +62,13 @@ export class ClonetestComponent implements OnInit {
       .subscribe( response => {
         console.log(response);
         this.alertService.success('The online test is cloned successfully');
-        this.router.navigate(['/test']);
+        this.router.navigate(['/challenge']);
       });
     }
   }
 
   onCancel() {
-    this.router.navigate(['/test']);
+    this.router.navigate(['/challenge']);
   }
 
   @HostListener('window:beforeunload')

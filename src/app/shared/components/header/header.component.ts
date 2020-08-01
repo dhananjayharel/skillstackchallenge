@@ -56,7 +56,8 @@ export class HeaderComponent implements OnInit {
         this.translate.use(language);
     }
 	
-  addTest(){	    
-		this.router.navigate(['/test/add']);
+  addTest(){	 
+ 
+		this.router.navigate(['/challenge/add']); 
    }
 }

@@ -149,7 +149,7 @@ export class TestPageComponent implements OnInit {
             data => {
                 this.tests = data;
                 this.loading = false;
-                console.log(data);
+               // console.log(data);
                 if(this.route.snapshot.paramMap.has('testid')){ 
                     console.log("FOUND PARAM TESTID="+this.route.snapshot.params['testid']);
                     let testid = Number(this.route.snapshot.params['testid']);

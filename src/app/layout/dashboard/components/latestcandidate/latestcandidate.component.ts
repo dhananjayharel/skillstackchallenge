@@ -55,7 +55,7 @@ export class LatestcandidateComponent implements OnInit {
   goToOnlineTest(_candidate) {
     console.log(_candidate)
     // _candidate.onlineTestId
-    this.router.navigate(['/test/view/' +  _candidate.onlineTestId], { queryParams: { activeTab: 'candidates' } });
+    this.router.navigate(['/challenge/view/' +  _candidate.onlineTestId], { queryParams: { activeTab: 'candidates' } });
   }
 
   updateCandidateStatus(_candidate, status) {

@@ -26,6 +26,8 @@ import {
 import {
     Router
 } from '@angular/router';
+import {Inject} from "@angular/core";
+import {DOCUMENT} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-test-description',
@@ -48,14 +50,19 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
     @ViewChild('inviteCandidateModal') inviteCandidateModal: any;
     @ViewChild('launchMachineModal') launchMachineModal: any;
     @ViewChild('previewonMobile') previewonMobile: any;
+	@ViewChild('launchEmbedChallengeModal') launchEmbedChallengeModal: any;
     @ViewChild('t') t;
-
+     private dom: Document;
+	 private copymessage = "Copy to clipboard";
     constructor(private _sharedService: SharedtestactionsService,
         private alertService: AlertService,
         private modalService: NgbModal,
         private onlineTestService: OnlineTestService,
         private candidateService: CandidateService,
-        private router: Router) {
+        private router: Router,
+		@Inject(DOCUMENT) dom: Document
+		) {
+			this.dom=dom;
         this._sharedService.activeTest$.subscribe(
             data => {
                 this.onlineTest = data;
@@ -146,7 +153,7 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
             this.onlineTestService.delete(testId)
                 .subscribe(
                     data => {
-                        this.router.navigate(['/test']);
+                        this.router.navigate(['/challenge']);
                         this.alertService.success('The test ' + this.onlineTest.name + ' was deleted successfully.');
                         //this._sharedService.refresh();
 
@@ -189,7 +196,7 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
 
     goBack() {
         // this._sharedService.setSidebarVisibility(true);
-        this.router.navigate(['/test']);
+        this.router.navigate(['/challenge']);
     }
 
     showCandidatesPanel() {
@@ -219,7 +226,8 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
         if (currentUser.userId) {
             const filter = {
                 'where': {
-                    'onlineTestId': this.onlineTest.id
+                    'onlineTestId': this.onlineTest.id,
+					'testAttempted':true
                 }
             };
             this.fetchCandidates(filter);
@@ -231,7 +239,7 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
         this.candidateService.getAll(filter)
             .subscribe(
                 data => {
-                    console.log(data);
+                   // console.log(data);
                     for (let i = 0; i < data.length; i++) {
                         data[i].isSolutionViewed = false;
                         if (data[i].AmiId) {
@@ -247,20 +255,39 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
     }
 
     previewTest() {
-      let msg = 'Launch a preview for this test?\nThis will boot up a machine for you to go through the complete candidate experience for this test.';
+      let msg = 'Launch a preview for this Challenge?\nThis will launch the widget in new tab.';
       if (this.onlineTest.isWebBasedTest) {
-        msg = 'Launch a preview for this test?';
+        msg = 'Launch a preview for this Challenge?';
       }
         const r = confirm(msg);
         if (r === true) {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            window.open("http://www.skillstack.com/embedchallenges/?courseid=java21ssh&examplepath=echotest&challenge=" + this.onlineTest.id + "&&loggedin=false", '_blank');
+            window.open("https://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + this.onlineTest.id + "&&loggedin=false", '_blank');
 
         }
     }
 
     previewOnMobile() {
         this.openModal(this.previewonMobile, {});
+    }
+	
+	EmbedChallenge(){
+		 this.copymessage = "copy on clipboard";
+		 this.openModal(this.launchEmbedChallengeModal, {});
+	}
+	
+	  copyElementText(id) {
+		 
+        var element = null; // Should be <textarea> or <input>
+        try {
+            element = this.dom.getElementById(id);
+            element.select();
+            this.dom.execCommand("copy");
+        }
+        finally {
+           this.dom.getSelection().removeAllRanges;
+		   this.copymessage = "copied!!!";
+        }
     }
 
     openCandidate($event) {

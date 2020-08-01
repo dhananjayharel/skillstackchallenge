@@ -19,6 +19,7 @@ export class BasicTabComponent implements OnInit {
     title = 'Add Basic Data';
     basicData: BasicData;
     public categoryData: any[];
+	public levels = [1,2,3,4,5];
     form: any;
     private _id: number;
     public loading: boolean;
@@ -81,11 +82,11 @@ export class BasicTabComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/test/view/'+this._id]);
+        this.router.navigate(['/challenge/view/'+this._id]);
     }
 	
 	addMoreTestcases(){
-		this.basicData.testcases.push({"input":"","output":"","error":"","priority":""})
+		this.basicData.testcases.push({"input":"","output":"","error":"","priority":1})
 	}
 	removeLastTestcase(){
 		this.basicData.testcases.pop();

@@ -8,11 +8,11 @@ export class CandidateService {
     constructor(private http: Http) { }
 
     getAll(filter=null) {
-        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/candidates'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/challengesessions'+this._addFilterText(filter), this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
-        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/candidates/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(appConfig.SERVER_URL+'/'+appConfig.SERVER_PATH+'/challengesessions/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     create(candidate: Candidate) {

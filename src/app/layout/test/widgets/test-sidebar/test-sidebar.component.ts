@@ -66,7 +66,7 @@ export class TestSidebarComponent implements OnInit {
     //this.selectedItem = index;
    // this._sharedService.showActiveTest(this.tests[index]);
     //this._sharedService.setSidebarVisibility(false);
-    this.router.navigate(['/test/view/'+index]);
+    this.router.navigate(['/challenge/view/'+index]);
   }
 
   resetFilter() {

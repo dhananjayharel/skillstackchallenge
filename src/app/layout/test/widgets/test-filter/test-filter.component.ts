@@ -96,9 +96,9 @@ export class TestFilterComponent implements OnInit {
 
   public goTo(mode) {
     if (mode === 'CREATE_NEW') {
-      this.router.navigate(['/test/add']);
+      this.router.navigate(['/challenge/add']);
     } else {
-      this.router.navigate(['/test/clone']);
+      this.router.navigate(['/challenge/clone']);
     }
     this.modalReference.close();
   }

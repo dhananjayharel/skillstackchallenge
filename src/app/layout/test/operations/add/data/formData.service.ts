@@ -47,7 +47,7 @@ export class FormDataService {
             testLevel: this.formData.testLevel ? this.formData.testLevel : 'middle',
             category: this.formData.category ? this.formData.category : '',
 			problemDefination:this.formData.problemDefination ? this.formData.problemDefination : 'middle',
-			testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":"1"},{"input":"22","output":"22","error":"22","priority":"22"}],
+			testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":1},{"input":"22","output":"22","error":"22","priority":1}],
             GitHubUrl:this.formData.GitHubUrl ? this.formData.GitHubUrl : ''
         };
         return basicData;
@@ -168,7 +168,7 @@ export class FormDataService {
         .subscribe(
             data => {
                 console.log(data);
-                this.router.navigate(['/test']);
+                this.router.navigate(['/challenge']);
                 this.alertService.success('The ' + data.name + ' is successfully created.');
                 // this.isSubmitted.next(true);
             },
@@ -185,7 +185,7 @@ export class FormDataService {
         this._onlineTestService.update(inputObj)
         .subscribe(
             data => {
-                this.router.navigate(['/test/view/'+data.id]);
+                this.router.navigate(['/challenge/view/'+data.id]);
                 this.alertService.success('The ' + data.name + ' is successfully updated.');
                 // this.isSubmitted.next(true);
             },

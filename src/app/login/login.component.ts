@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.subcribeToFormChanges();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = '/test';
+        this.returnUrl = '/challenge';
     }
 
     subcribeToFormChanges() {
