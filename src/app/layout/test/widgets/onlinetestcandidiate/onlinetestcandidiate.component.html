@@ -27,7 +27,7 @@
 			<div class="col">
 				Code
 			</div>
-			<div class="col-auto"></div>
+			<!-- <div class="col-auto"></div> -->
 		</div>
 	</div>
 </div>
@@ -40,7 +40,7 @@
 	<div class="card-body">
 		<div class="row align-items-center h-100 f-14 text-center" >
 			<div class="col text-left">
-				<span class="text-primary">{{candidate.ipaddress}}</span>
+				<span class="text-primary">({{candidate.ipaddress}})</span>
 			</div>
 			<div class="col text-center">
 				<span class="text-primary">{{candidate.testStartTime | date: 'M/d/yy hh:mm' }}</span>
@@ -57,11 +57,11 @@
 				<span class="text-primary">{{testOnline.name}}</span>
 			</div> -->
 			<div class="col text-center">
-				<span  class="text-primary"> 75%</span>
+				<span  class="text-primary" style="border: 5px solid #2E80B7;padding: 10px;"> 75%</span>
 				
 			</div>
 			<div class="col text-center">
-				<a href="javascript:void(0);"><span  class="text-primary" (click)="openSolution(candidate.tempdirid)"> Link</span></a>
+				<a href="javascript:void(0);" style="text-decoration: underline;"><span  class="text-primary" (click)="openSolution(candidate.tempdirid)"> Link</span></a>
 				
 			</div>
 		
@@ -96,7 +96,7 @@
 				</div>
 			</ng-template>
 			
-			<div (click)="toggleActionBar(i,$event)" class="col-auto cursor-pointer f-18 candidate-action-trigger-{{i}}"> <i class="fa fa-lg fa-angle-up"></i> </div>
+			<!-- <div (click)="toggleActionBar(i,$event)" class="col-auto cursor-pointer f-18 candidate-action-trigger-{{i}}"> <i class="fa fa-lg fa-angle-up"></i> </div> -->
 		</div>
 		<div class="slider candidate-action-{{i}} row py-3 closed">
 			
@@ -277,5 +277,26 @@
 		<app-quiz [mode]="'result'" [quizJson]="currentCandidate.mcqQuestionResponse"></app-quiz>
 	</div>
 </ng-template>
+<ng-template #launchEmbedChallengeModal let-c="close" let-d="dismiss">
+  <div class="modal-body">
+  <div>
 
+</div>
+<textarea id="elem1" style="width:100%;height:100px;">&lt;iframe id="ifrm" src="https://www.skillstack.com/embedchallenges/?courseid=java21ssh&examplepath=echotest&challenge={{onlineTest.id}}&loggedin=false" width="100%" height="600"&gt;&lt;/iframe&gt;</textarea>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="copyElementText('elem1')">{{copymessage}}</button> <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #previewonMobile let-c="close" let-d="dismiss">
+<div class="modal-header">Oops!</div>
+  <div class="modal-body">
+    Previewing a test needs a desktop or laptop.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
 	

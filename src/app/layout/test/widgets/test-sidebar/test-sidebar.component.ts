@@ -1,7 +1,13 @@
 import { Component, Input, Output, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { OnlineTest } from 'models';
 import {SharedtestactionsService } from '../../sharedtestactions.service';
+import {
+    OnlineTestService,
+    AlertService,
+} from './../../../../shared';
 import { Router }              from '@angular/router';
+import {Inject} from "@angular/core";
+import {DOCUMENT} from "@angular/platform-browser";
 import {
     NgbModal,
     ModalDismissReasons
@@ -12,16 +18,28 @@ import {
   styleUrls: ['./test-sidebar.component.scss']
 })
 export class TestSidebarComponent implements OnInit {
+	     private dom: Document;
+		 private currentTestId = 0;
+	 private copymessage = "Copy to clipboard";
   @Input() public tests: OnlineTest[];
   @Output() onTestSelect: EventEmitter<string> = new EventEmitter();
   @ViewChild('previewSnapshot') previewSnapshot: any;
+      @ViewChild('launchMachineModal') launchMachineModal: any;
+    @ViewChild('previewonMobile') previewonMobile: any;
+	@ViewChild('launchEmbedChallengeModal') launchEmbedChallengeModal: any;
   private selectedItem = 0;
     public tempImgUrl = '';
   private modalReference: any;
   private closeResult: string;
   constructor(private _sharedService: SharedtestactionsService,
     private router: Router,
-    private modalService: NgbModal) { }
+	        private alertService: AlertService,
+        private modalService: NgbModal,
+        private onlineTestService: OnlineTestService,
+		@Inject(DOCUMENT) dom: Document
+	) {
+	this.dom=dom;
+	}
 
   ngOnInit() {
   }
@@ -79,5 +97,63 @@ export class TestSidebarComponent implements OnInit {
     }
     this._sharedService.setTestFilter(_filter);
 }
+
+    previewTest(testid) {
+      let msg = 'Launch a preview for this Challenge?\nThis will launch the widget in new tab.';
+     
+        const r = confirm(msg);
+        if (r === true) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            window.open("https://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + testid + "&&loggedin=false", '_blank');
+
+        }
+    }
+
+    previewOnMobile() {
+        this.openModal(this.previewonMobile, {});
+    }
+	
+	EmbedChallenge(testId){
+		 this.copymessage = "copy on clipboard";
+		 this.currentTestId = testId;
+		 this.openModal(this.launchEmbedChallengeModal, {});
+	}
+	
+	  copyElementText(id) {
+		 
+        var element = null; // Should be <textarea> or <input>
+        try {
+            element = this.dom.getElementById(id);
+            element.select();
+            this.dom.execCommand("copy");
+        }
+        finally {
+           this.dom.getSelection().removeAllRanges;
+		   this.copymessage = "copied!!!";
+        }
+    }
+	
+
+
+
+
+    onDelete(testId: number) {
+
+        const r = confirm('Are you sure you want to delete this test:' + testId + '?');
+        if (r === true) {
+            this.onlineTestService.delete(testId)
+                .subscribe(
+                    data => {
+                        this.router.navigate(['/challenge']);
+                        this.alertService.success('The test ' + testId + ' was deleted successfully.');
+                        //this._sharedService.refresh();
+
+                    },
+                    error => {
+                        const err = JSON.parse(error._body);
+                        this.alertService.error(err.error.message);
+                    });
+        }
+    }
 
 }

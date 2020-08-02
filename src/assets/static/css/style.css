@@ -12758,12 +12758,12 @@ input[type=checkbox]:checked + label.fa:before {
 }
 @media (min-width: 576px) {
   .l-page--screen .l-page__header .header {
-    background: #282B3A;
+    background-color: rgb(46, 128, 183);
   }
 }
 @media (min-width: 768px) {
   .l-page--screen .l-page__header .header {
-    background: #2E80B7;
+    background-color: rgb(46, 128, 183);
   }
 }
 .l-page--screen .l-page__content {
@@ -12771,11 +12771,11 @@ input[type=checkbox]:checked + label.fa:before {
   margin-top:84px;
 }
 .l-page__header .header {
-  background: #2E80B7;
+ background-color: rgb(46, 128, 183);
 }
 @media (min-width: 768px) {
   .l-page__header .header {
-    background: #333749;
+    background-color: rgb(46, 128, 183);
   }
 }
 .l-page__content__inner {
