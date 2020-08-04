@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, O
 import { Candidate, Environment, OnlineTest } from '../../../../../models';
 import { CandidateService, EnvironmentService, AlertService, PushNotificationService ,AwsService } from './../../../../shared';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 @Component({
     selector: 'onlinetest-candidiates-view',
@@ -68,6 +69,7 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
                 private environmentService: EnvironmentService,
                 private notifyService: PushNotificationService,
                 private awsService: AwsService,
+				private http: Http,
                 private modalService: NgbModal) { }
 
     ngOnInit() {
@@ -112,23 +114,19 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
         this.filterPanel(this.filter);
     }
 
-    socketServerInit () {
-        this.notifyService.initializeConnection(this.publicIp);
-        this.notifyService.onGitCheckoutStatusAck().subscribe(obj => {
-            console.log(obj);
-            this.alertService.success(obj.candidateName +
-                '\'s code is successfully switched on RDP machine.');
-            // if (this.candidateQueue) {
-            //     this.gitCheckOut(this.candidateQueue);
-            //     this.candidateQueue = null;
-            // }
-        });
-    }
+
 
     onLaunchMachineCancel($event) {
         console.log($event);
         this._autoLaunchMachine = $event.autoLaunch;
     }
+	getScore(testId,tmpDir){
+		console.log("in getScore"+testId+" "+tmpDir);
+		
+		return "00";
+	
+		
+	}
 
     ngOnDestroy() {
         this.onDestroyed.emit(true);
@@ -233,7 +231,7 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
              this.publicIp = $event.publicIp;
              this.rdpLink = $event.rdpLink;
              this._saveSession();
-             this.socketServerInit();
+             //this.socketServerInit();
 			  const r = confirm('Machine is up and running and the code is successfully switched on RDP machine.\nopen the RDP link in new tab ?');
 
         if (r === true) {
@@ -370,6 +368,7 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
     }
 
     calculateDiff(started: string,finished:string){
+		console.log("in diff");
         let d2 = new Date(started).getTime();
         let d1 = new Date(finished).getTime(); //time in milliseconds
         var timeDiff = d1 - d2;

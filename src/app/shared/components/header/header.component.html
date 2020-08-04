@@ -3,13 +3,13 @@
         <button class="navbar-toggler navbar-toggler-right d-md-none" (click)="toggleSidebar()" (blur)="hideSidebar()">
             <span class="navbar-toggler-icon"></span>
         </button> 
-        <div class="logo-wrapper navbar-brand mx-auto d-md-none">
+        <div class="logo-wrapper navbar-brand">
             <app-logo [type]="'header-logo'" ></app-logo>
         </div>
-       <div class="col offset-8 col-3 text-right">
+       <div class="col offset-6 col-3 text-right">
 			<button type="button" (click)="addTest()"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Test</button>
 		</div>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
         
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link d-flex align-items-center" ngbDropdownToggle>

@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
         // subscribe to form changes  
         this.subcribeToFormChanges();
 
-        this.returnUrl = '/dashboard'; 
+        this.returnUrl = '/test'; 
 
         let currentUserData = JSON.parse(localStorage.getItem('currentUserData'));
         this.editUser = JSON.parse(localStorage.getItem('currentUserData'));

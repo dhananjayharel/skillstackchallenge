@@ -318,7 +318,7 @@ export class CandidateComponent implements OnInit, OnDestroy {
         this.subcribeToFormChanges();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = '/dashboard';
+        this.returnUrl = '/test';
     }
 
     subcribeToFormChanges() {

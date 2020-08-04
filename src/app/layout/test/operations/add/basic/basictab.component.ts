@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild }   from '@angular/core';
+import { Component, OnInit,AfterViewInit, ViewChild }   from '@angular/core';
 import { Router }              from '@angular/router';
 import { BasicData }            from '../data/formData.model';
 import { FormDataService }     from '../data/formData.service';
@@ -15,25 +15,29 @@ declare var require: any;
     ,templateUrl: './basictab.component.html'
 })
 
-export class BasicTabComponent implements OnInit {
+export class BasicTabComponent implements OnInit, AfterViewInit {
     title = 'Add Basic Data';
     basicData: BasicData;
     public categoryData: any[];
 	public levels = [1,2,3,4,5];
     form: any;
     private _id: number;
-    public loading: boolean;
+    private problem = "1232133123";
+	public loading: boolean;
     private submitted = false;
     @ViewChild('basicDataForm') templateForm: any;
-
     constructor(private router: Router,
         private formDataService: FormDataService,
         private _onlineTestService: OnlineTestService,
         private alertService: AlertService) {
             this.loading = true;
     }
+	ngOnInit() { //alert('parent - ngAfterViewInit'); 
+	}
 
-    ngOnInit() {
+
+    ngAfterViewInit() {
+
         const languageOptions = require('../../../../../shared/static/language.json');
         this.categoryData = languageOptions.map(item => {
             return {
@@ -48,7 +52,8 @@ export class BasicTabComponent implements OnInit {
                     this._id = data.id;
                     this.basicData = this.formDataService.getBasicData();
                     this.loading = false;
-                }
+				    
+                } 
             );
             this.formDataService.fetchOnlineTest();
         } else {
@@ -82,7 +87,7 @@ export class BasicTabComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['/challenge/view/'+this._id]);
+        this.router.navigate(['/challenge']);
     }
 	
 	addMoreTestcases(){
