@@ -3,10 +3,10 @@
     *ngFor="let test of tests; let i = index" [attr.data-index]="i"
     >
         <div class="middlebar__content" >
-            <div class="m-sticker badge {{test.testLevel === 'junior' ? 'badge-success' : (test.testLevel === 'middle' ? 'badge-primary' : 'badge-danger')}}"> 
+            <div class="m-sticker badge {{test.category === 'java' ? 'badge-success' : (test.category === 'py' ? 'badge-primary' : 'badge-danger')}}"> 
                 <div class="m-sticker__label">
-                    <div class="m-sticker__label__text {{test.testLevel}}">
-                        {{test.testLevel}} 
+                    <div class="m-sticker__label__text {{test.testLevel}} center">
+					    {{test.category === 'py' ? 'python' : test.category}} 
                     </div>
                 </div>
             </div>
@@ -15,10 +15,11 @@
                     <img *ngIf="!test.codingTestImage" width="60" src="https://via.placeholder.com/700?text=codig%20test%20thumbail" />
                     <img *ngIf="test.codingTestImage" class="cursor-pointer" width="60" [src]="test.codingTestImage"/>
                 </div>
-                <div class="col col-8" (click)="onTestClick(test.id)">
-                    <div class="category w-100">
-                        <small class="text-uppercase">{{test.category}} Challenge</small>                     
-                    </div>
+                <div class="col col-8" >
+				<a class="texte" [routerLink]="['/challenge/edit', test.id, 'basic']">
+                    <!-- <div class="category w-100"> -->
+                        <!-- <small class="text-uppercase">{{test.category}} Challenge</small>                      -->
+                    <!-- </div> -->
 					<div _ngcontent-c12="" class="d-flex clearfix justify-content-between">
                         <strong _ngcontent-c12="" class="text-info mb-1">{{test.name}}</strong>
                     </div>
@@ -26,6 +27,7 @@
                         <strong class="text-info mb-1"></strong>
                     </div>
                     <p class="mb-1">{{returnSanitizedDescription(i)}}</p>
+					</a>
                 </div>
 				<div class="col col-4" style="font-weight:bold;font-size:1.1em">       <div class="">
                 <ul class="list-inline action-list mt-2 mb-0" style="display:flex">

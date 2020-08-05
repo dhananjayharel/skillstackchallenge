@@ -5,3 +5,26 @@
 	}
 }
 
+.m-sticker__label {
+    position: relative;
+    display: flex;
+    width: 20px;
+    top: 10%;
+    left: 6px;
+    margin: auto;
+}
+
+.m-sticker {
+    position: absolute;
+    width: 20px;
+    height: 80%;
+    display: flex;
+    left: 6px;
+    border: 0;
+    top: 10%;
+    bottom: 10%;
+}
+.texte{
+text-decoration: none;
+color: #495057;
+}

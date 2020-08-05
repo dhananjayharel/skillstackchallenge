@@ -3,8 +3,8 @@
     <div *ngIf="testSummaryStatus" class="test-summary">
         <ol class="breadcrumb" style="font-size: 15px;">
             <li class="breadcrumb-item">
-                <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/challenge']">Challenges >> Result for  {{onlineTest.category}} Challenge : {{onlineTest.name}}</a>
-            </li>
+                <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/challenge']">Challenges </a> >> Result for  {{onlineTest.category === 'py' ? 'python' : onlineTest.category }} Challenge : {{onlineTest.name}}
+            </li>                                                                         
 
         </ol>
         <!-- <div class="row">
