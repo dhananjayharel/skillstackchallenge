@@ -137,7 +137,7 @@ export class TestSidebarComponent implements OnInit {
 
 
 
-    onDelete(testId: number) {
+    onDelete(testId: number,index:number) {
 
         const r = confirm('Are you sure you want to delete this test:' + testId + '?');
         if (r === true) {
@@ -146,7 +146,8 @@ export class TestSidebarComponent implements OnInit {
                     data => {
                         this.router.navigate(['/challenge']);
                         this.alertService.success('The test ' + testId + ' was deleted successfully.');
-                        //this._sharedService.refresh();
+						this.tests.splice(index,1); 
+                        this._sharedService.refresh();
 
                     },
                     error => {
