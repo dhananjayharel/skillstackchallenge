@@ -30,6 +30,7 @@ import { TestEnvironmentInputModule } from '../../widgets/test-environment-input
     FileUploadModule,
     TinymceModule.withConfig({
       plugins: ['lists', 'code'],
+	  auto_focus:false,
       statusbar: false,
       menubar: false
     }),

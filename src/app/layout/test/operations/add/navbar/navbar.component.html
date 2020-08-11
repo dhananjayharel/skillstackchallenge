@@ -1,9 +1,13 @@
 <div *ngIf="!_editMode" class="row">
-    <div class="col"></div>
-    <div class="col-9">
-       
-    </div>
-    <div class="col"></div>
+  <div class="col">
+        <ul role="tablist" class="nav nav-tabs mb-0 justify-content-start">
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link " [routerLink]="['basic']" role="tab">
+                   Create Challenge
+                </a>
+            </li>
+        </ul>
+		</div>
 </div>
 
 <div *ngIf="_editMode" class="row">
@@ -11,7 +15,7 @@
         <ul role="tablist" class="nav nav-tabs mb-0 justify-content-start">
             <li class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link " [routerLink]="['basic']" role="tab">
-                    Basic
+                   Edit Challenge
                 </a>
             </li>
         </ul>

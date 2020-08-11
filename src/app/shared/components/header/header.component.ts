@@ -57,7 +57,6 @@ export class HeaderComponent implements OnInit {
     }
 	
   addTest(){	 
- 
 		this.router.navigate(['/challenge/add']); 
    }
 }

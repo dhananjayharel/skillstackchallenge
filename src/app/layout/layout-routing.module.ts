@@ -8,11 +8,7 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            { path: 'test', loadChildren: './test/test-page.module#TestPageModule' },
-            { path: 'test/view/:testid', loadChildren: './test/test-page.module#TestPageModule' },
-            { path: 'test/clone', loadChildren: './test/operations/clonetest/clonetest.module#ClonetestModule' },
-            { path: 'test/add', loadChildren: './test/operations/add/add.module#AddOnlineTestPageModule' },
-            { path: 'test/edit/:id', loadChildren: './test/operations/add/add.module#AddOnlineTestPageModule' },
+
             { path: 'challenge', loadChildren: './test/test-page.module#TestPageModule' },
             { path: 'challenge/view/:testid', loadChildren: './test/test-page.module#TestPageModule' },
             { path: 'challenge/clone', loadChildren: './test/operations/clonetest/clonetest.module#ClonetestModule' },
@@ -25,6 +21,11 @@ const routes: Routes = [
             { path: 'environment/edit/:id', loadChildren: './environment-page/operations/add/add.module#AddEnvironmentPageModule' },
             { path: 'environment/view', loadChildren: './environment-page/operations/view/view.module#ViewEnvironmentPageModule' },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+			            { path: 'test', loadChildren: './test/test-page.module#TestPageModule' },
+            { path: 'test/view/:testid', loadChildren: './test/test-page.module#TestPageModule' },
+            { path: 'test/clone', loadChildren: './test/operations/clonetest/clonetest.module#ClonetestModule' },
+            { path: 'test/add', loadChildren: './test/operations/add/add.module#AddOnlineTestPageModule' },
+            { path: 'test/edit/:id', loadChildren: './test/operations/add/add.module#AddOnlineTestPageModule' },
            // { path: 'buy-plan/:id', loadChildren: './buy-plan/buy-plan.module#BuyPlanModule' },
             { path: 'price-plan', loadChildren: './price-plan/price-plan.module#PricePlanModule' },
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }        ]

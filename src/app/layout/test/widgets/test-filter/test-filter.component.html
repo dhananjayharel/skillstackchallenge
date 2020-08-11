@@ -61,14 +61,14 @@
 			<button type="button" (click)="filter.hidden = !filter.hidden"  class="btn btn-sm btn-round btn-info"><span class="fa fa-filter"></span>&nbsp;Filter</button>
 		</div>
 		<div class="col col-md-6 text-right">
-			<button type="button" (click)="openModal(createTestModal)"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Test</button>
+			<button type="button" (click)="openModal(createTestModal)"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Challenge</button>
 		</div>
 	</div>
 </div>
 
 <ng-template #createTestModal let-c="close" let-d="dismiss">
 	<div class="modal-header strong">
-		Add Test
+		Add Challenge
 		<button type="button" class="close" (click)="c('Close click')">
 			<span aria-hidden="true">&times;</span>
 		</button>

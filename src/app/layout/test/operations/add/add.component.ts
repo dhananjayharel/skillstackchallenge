@@ -30,17 +30,17 @@ export class AddComponent implements OnInit {
         this.formData = this.formDataService.getFormData();
 
         if (this.formDataService.getMode() === 'EDIT') {
-            this.heading = 'Edit Test: ';
+            this.heading = 'Edit Challenge: ';
             this.formDataService.editTest$.subscribe(
                 data => {
                     console.log(data);
                     const basicData = this.formDataService.getBasicData();
-                    this.heading = 'Edit Test: ' + basicData.name;
+                    this.heading = 'Edit Challenge: ' + basicData.name;
                 }
             );
 
         } else {
-            this.heading = 'Add Test';
+            this.heading = 'Add Challenge';
         }
     }
 }
