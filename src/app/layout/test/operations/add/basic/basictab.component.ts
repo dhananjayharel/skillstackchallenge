@@ -61,8 +61,45 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
             this.loading = false;
         }
     }
-
+/*
     save(form: any): boolean {
+        if (!form.valid) {
+            return false;
+        }
+        console.log(this.basicData);
+        this.formDataService.setBasicData(this.basicData);
+        return true;
+    }
+	*/
+/*
+    goToNext(form: any) {
+        if (this.save(form)) {
+            this.submitted = true;
+            if (this.formDataService.getMode() === 'EDIT') {
+                this.formDataService.updateNewRecord();
+            } else {
+                 // Navigate to the question page
+				 this.formDataService.createNewRecord();
+            }
+        } else {
+            let elem = document.querySelector('.error');
+            // .focus();
+        }
+    }
+*/
+    onCancel() {
+        this.router.navigate(['/challenge']);
+    }
+	
+	addMoreTestcases(){
+		//this.basicData.testcases.push({"input":"","output":"","error":"","priority":1})
+	}
+	removeLastTestcase(){
+		//this.basicData.testcases.pop();
+	}
+	
+	
+	    save(form: any): boolean {
         if (!form.valid) {
             return false;
         }
@@ -78,27 +115,13 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
                 this.formDataService.updateNewRecord();
             } else {
                  // Navigate to the question page
-				 this.formDataService.createNewRecord();
+                this.router.navigate(['/challenge/add/testcase']);
             }
         } else {
             let elem = document.querySelector('.error');
             // .focus();
         }
     }
-
-    onCancel() {
-        this.router.navigate(['/challenge']);
-    }
-	
-	addMoreTestcases(){
-		this.basicData.testcases.push({"input":"","output":"","error":"","priority":1})
-	}
-	removeLastTestcase(){
-		this.basicData.testcases.pop();
-	}
-	
-	
-	
    
 
 

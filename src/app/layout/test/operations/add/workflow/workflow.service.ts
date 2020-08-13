@@ -6,6 +6,7 @@ import { STEPS }              from './workflow.model';
 export class WorkflowService {
     private workflow = [
         { step: STEPS.basic, valid: false },
+		{ step: STEPS.testcase, valid: false },
         { step: STEPS.question, valid: false },
         { step: STEPS.setting, valid: false },
         { step: STEPS.mcq, valid: false }

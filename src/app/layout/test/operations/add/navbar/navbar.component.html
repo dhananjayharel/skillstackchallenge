@@ -1,13 +1,37 @@
 <div *ngIf="!_editMode" class="row">
-  <div class="col">
-        <ul role="tablist" class="nav nav-tabs mb-0 justify-content-start">
-            <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link " [routerLink]="['basic']" role="tab">
-                   Create Challenge
-                </a>
-            </li>
-        </ul>
-		</div>
+    <div class="col"></div>
+    <div class="col-9">
+        <div class="board">
+            <div class="board-inner" id="status-buttons">
+                <ul class="nav nav-tabs" id="myTab">
+                    <div class="liner"></div>
+                    <!-- circular user icon -->
+                    <li>
+                        <a routerLink="/challenge/add/basic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab" title="Basic">
+                            <span class="round-tabs">
+                                1
+                            </span>
+                            <h5> Description </h5>
+                        </a>
+                    </li>
+
+                    <!-- circular tasks icon -->
+                     <li>
+                        <a routerLink="/challenge/add/testcase" routerLinkActive="active" data-toggle="tab" title="Testcase">
+                            <span class="round-tabs">
+                                2
+                            </span>
+                            <h5> Testcases </h5>
+                        </a>
+                    </li>
+       
+             
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
 </div>
 
 <div *ngIf="_editMode" class="row">
@@ -15,9 +39,16 @@
         <ul role="tablist" class="nav nav-tabs mb-0 justify-content-start">
             <li class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link " [routerLink]="['basic']" role="tab">
-                   Edit Challenge
+                    Description
                 </a>
             </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link " [routerLink]="['testcase']" role="tab">
+                    Testcases
+                </a>
+            </li>
+  
+   
         </ul>
     </div>
 </div>

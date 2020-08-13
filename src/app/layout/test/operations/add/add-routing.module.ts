@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AddComponent } from './add.component';
 import { BasicTabComponent }    from './basic/basictab.component';
+import {TestcaseTabComponent }    from './testcase/testcasetab.component';
 import { WorkflowGuard }        from './workflow/workflow-guard.service';
 import { WorkflowService }      from './workflow/workflow.service';
 import { PendingChangesGuard } from '../../../../shared/guard/pendingchanges.guard';
@@ -11,6 +12,8 @@ const routes: Routes = [
 		children: [
 			 // 1st Route
 		    { path: 'basic',  component: BasicTabComponent, canActivate: [WorkflowGuard], canDeactivate: [PendingChangesGuard] },
+			   // 2nd Route
+		    { path: 'testcase',  component: TestcaseTabComponent, canActivate: [WorkflowGuard], canDeactivate: [PendingChangesGuard] },
 		    // 6th Route
 		    { path: '**', component: BasicTabComponent, canActivate: [WorkflowGuard], canDeactivate: [PendingChangesGuard] }
 		],

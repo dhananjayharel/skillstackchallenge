@@ -12,7 +12,7 @@ import { OnlineTestService, ScriptService } from './../../../../shared';
 // import { NgJsonEditorModule } from 'ang-jsoneditor';
 /* Feature Components */
 import { BasicTabComponent } from './basic/basictab.component';
-
+import { TestcaseTabComponent } from './testcase/testcasetab.component';
 /* Shared Service */
 import { FormDataService } from './data/formData.service';
 import { WorkflowService } from './workflow/workflow.service';
@@ -38,7 +38,7 @@ import { TestEnvironmentInputModule } from '../../widgets/test-environment-input
     // NgJsonEditorModule,
 
   ],
-  declarations: [ AddComponent, NavbarComponent, BasicTabComponent ],
+  declarations: [ AddComponent, NavbarComponent, BasicTabComponent,TestcaseTabComponent ],
 
   providers: [ OnlineTestService, ScriptService, FormDataService, WorkflowService]
 })

@@ -1,6 +1,6 @@
 import { Injectable }                        from '@angular/core';
 import { OnlineTestService, AlertService } from './../../../../../shared';
-import { FormData, BasicData }       from './formData.model';
+import { FormData, BasicData, QuestionData }       from './formData.model';
 import { WorkflowService }                   from '../workflow/workflow.service';
 import { STEPS }                             from '../workflow/workflow.model';
 import { OnlineTest } from '../../../../../../models/onlinetests.interface';
@@ -47,7 +47,7 @@ export class FormDataService {
             testLevel: this.formData.testLevel ? this.formData.testLevel : 'middle',
             category: this.formData.category ? this.formData.category : '',
 			problemDefination:this.formData.problemDefination ? this.formData.problemDefination : 'middle',
-			testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":1},{"input":"22","output":"22","error":"22","priority":1}],
+			//testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":1},{"input":"22","output":"22","error":"22","priority":1}],
             GitHubUrl:this.formData.GitHubUrl ? this.formData.GitHubUrl : ''
         };
         return basicData;
@@ -60,12 +60,30 @@ export class FormDataService {
         this.formData.testLevel = data.testLevel;
         this.formData.category = data.category;
 		this.formData.problemDefination = data.problemDefination;
-		this.formData.testcases = data.testcases;
+		//this.formData.testcases = data.testcases;
      this.formData.GitHubUrl = data.GitHubUrl;
 		// this.formData.GitHubUrl = data.GitHubUrl;
         // Validate Personal Step in Workflow
         this.workflowService.validateStep(STEPS.basic);
     }
+
+    getQuestionData(): QuestionData {
+        // Return the work type
+        const question: QuestionData={
+         testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":1},{"input":"22","output":"22","error":"22","priority":1}]
+		}
+        return question;
+    }
+
+    setQuestionData(data: QuestionData) {
+        // Update the work type only when the Work Form had been validated successfully
+        this.isWorkFormValid = true;
+        this.formData.testcases = data.testcases;
+        // Validate Work Step in Workflow
+        this.workflowService.validateStep(STEPS.testcase);
+    }
+	
+	
 
 
 
@@ -94,11 +112,15 @@ export class FormDataService {
             _basicData.testLevel  = onlineTest.testLevel;
             _basicData.category  = onlineTest.category;
 			_basicData.problemDefination = onlineTest.problemDefination;
-            _basicData.testcases = onlineTest.testcases;
+          //  _basicData.testcases = onlineTest.testcases;
              _basicData.GitHubUrl =  onlineTest.GitHubUrl
             this.setBasicData(_basicData);
 
-      
+          
+            const _questionData = new QuestionData();
+            _questionData.testcases = onlineTest.testcases;
+
+            this.setQuestionData(_questionData);
 
         }
     }
@@ -145,8 +167,11 @@ export class FormDataService {
         _test.testLevel  = _basicData.testLevel;
         _test.category  = _basicData.category;
 		_test.problemDefination = _basicData.problemDefination;
-	    _test.testcases = _basicData.testcases;
+	   // _test.testcases = _basicData.testcases;
 		_test.GitHubUrl = _basicData.GitHubUrl;
+     
+	    const _questionData = this.getQuestionData();
+        _test.testcases = _questionData.testcases;
      
 
 
