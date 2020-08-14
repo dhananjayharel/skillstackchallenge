@@ -89,7 +89,9 @@ export class SignupComponent implements OnInit {
       this.loading = true;
       const freeDomains = require('../shared/static/freeDomains.json');
       const inputEmailDomain = model.email.replace(/.*@/, '');
-      if (freeDomains.includes(inputEmailDomain)) {
+      	  //dj: for now bypass business email verification
+	  if(false){ 
+     // if (freeDomains.includes(inputEmailDomain)) {
         this.alertService.error('Please use your company or business email to register an account.');
         this.loading = false;
         this.submitted = false;

@@ -210,7 +210,7 @@ export class FormDataService {
         this._onlineTestService.update(inputObj)
         .subscribe(
             data => {
-                this.router.navigate(['/challenge/view/'+data.id]);
+                this.router.navigate(['/challenge']);
                 this.alertService.success('The ' + data.name + ' is successfully updated.');
                 // this.isSubmitted.next(true);
             },

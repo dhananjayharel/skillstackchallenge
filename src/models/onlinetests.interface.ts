@@ -24,4 +24,5 @@ export interface OnlineTest {
   projectName: string;
   problemDefination:string
   isBasic: boolean;
+  category:string;
 }

@@ -15,32 +15,6 @@
                     </div>					
               
   
-                    <div class="form-group">
-                        <label class="control-label" for="testLevel">Level</label><br/>
-                        <div class="form-check form-check-inline icons-option mr-80">
-                            <label class="text-center">
-                                <input id="junior" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="junior">
-                                <label class="radio-option junior" for="junior"></label><br/>
-                                Low
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline icons-option mr-80">
-                            <label class="text-center">
-                                <input id="middle" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="middle">
-                                <label class="radio-option middle" for="middle"></label><br/>
-                                Medium
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline icons-option">
-                            <label class="text-center">
-                                <input id="senior" type="radio" #testLevel="ngModel" required name="testLevel" [(ngModel)]="basicData.testLevel" value="senior">
-                                <label class="radio-option senior" for="senior"></label><br/>
-                                High
-                            </label>
-                        </div>
-                        <div class="description text-primary"> Junior is generally for 0-2 years of experience, Middle is 2-5 years, Senior is 5+ years.</div>
-                        <div class="alert alert-danger" [hidden]="testLevel.valid">Online Test Level is required and must be valid</div>
-                    </div>
 
                     <div class="form-group">
                         <label class="control-label" for="category">Language</label>
@@ -71,7 +45,7 @@
 							</div>
 						</div> 
 						
-						<div class="description">Enter a valid Github url eg: "https://github.com/infoprogrammr/pythonaddition"<br>
+						<div class="description text-primary">Enter a valid Github url eg: "https://github.com/infoprogrammr/pythonaddition"<br>
 						</div>
                     </div>	
             <div class="form-group question-wrapper">

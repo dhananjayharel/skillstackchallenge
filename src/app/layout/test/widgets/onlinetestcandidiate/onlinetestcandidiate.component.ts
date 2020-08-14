@@ -372,8 +372,9 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
         let d2 = new Date(started).getTime();
         let d1 = new Date(finished).getTime(); //time in milliseconds
         var timeDiff = d1 - d2;
+		  var seconds = timeDiff % 60;;
         var diff = timeDiff / (1000 * 60);
-        return Math.floor(diff);
+        return Math.floor(diff)+":"+seconds;
     }
 
     private _getEnvironmentDetails (envid) {
@@ -504,9 +505,18 @@ export class OnlineTestCandidiateComponent implements OnInit, OnDestroy, OnChang
         const writeObj = {'publicIp': this.publicIp, 'rdpLink': this.rdpLink};
         window.sessionStorage.setItem('test-' + this.testOnline.id, JSON.stringify(writeObj));
     }
-	openSolution(tmpdir){
+	openSolution(tmpdir,clientip){
 		console.log("open solution code"+tmpdir);
-		   window.open("https://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + this.testOnline.id + "&viewsolution="+tmpdir+"&loggedin=false", '_blank');
+	
+             let msg = 'Launch the code of ('+clientip+') in a new tab ?';
+     
+          const r = confirm(msg);
+           if (r === true) {
+            window.open("https://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + this.testOnline.id + "&viewsolution="+tmpdir+"&loggedin=false", '_blank');
+
+        }
+   
+		  
 	}
 
     _getSession () {

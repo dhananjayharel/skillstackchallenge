@@ -44,6 +44,7 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
     private candidateAmiId: any;
     private candidateFilter = 'all';
     public loading = false;
+	private breadcrumb:string ="123";
     public videoTabTitle = 'Video Interview Questions';
     public mcqTabTitle = 'Multiple Choice Questions';
     @ViewChild('cloneTestModal') cloneModal: any;
@@ -66,6 +67,7 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
         this._sharedService.activeTest$.subscribe(
             data => {
                 this.onlineTest = data;
+			
                 if (this.onlineTest['hideVideoTab']) {
                     this.videoTabTitle += '-- Not Active';
                 }
@@ -82,6 +84,8 @@ export class TestDescriptionComponent implements OnChanges, OnInit, AfterViewIni
 
     ngOnInit() {
         if (!this.onlineTest['candidates']) {
+				let cat = (this.onlineTest.category === 'py')? 'python' : this.onlineTest.category;
+				this.breadcrumb="Result for "+cat+"  Challenge : "+this.onlineTest.name;
             this._prepareCandidateFetchList();
         }
     }

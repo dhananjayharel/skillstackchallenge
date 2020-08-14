@@ -9,8 +9,8 @@
     padding: 10px;">
 						  <div id="inputs-wrapper" class="form-item">
 						  <div><h3>Testcases:</h3>
-						  <div class="description">Create input/output testcases to test the user's solution.<br><br>
-
+						  <div class="description text-primary">Create input/output testcases to test the user's solution.<br><br>
+                         </div><div class="description"> 
 						When the user submits his solution, our engine will provide your specified inputs to the user's program and capture the outputs of his program.<br>
 						If the outputs of the user's program do not match your specified expected outputs, the testcase fails and the corresponding error message is displayed.<br>
 						Feel free to add as many testcases you want for extremely granular testing.<br>
@@ -25,7 +25,7 @@
 									Testcase Name required.
 								</div>
 						    </div> 
-						  <div class="description">Enter a suitable name for this testcase.<br>
+						  <div class="description text-primary">Enter a suitable name for this testcase.<br>
 							
 						  Example: Adding two positive numbers</div><br>
 						  <label> Inputs: </label> 
@@ -35,8 +35,8 @@
 									Testcase Input required.
 								</div>
 						    </div>
-						  <div class="description">Enter the input values to be given to the program. Multiple inputs should be comma separated.<br>
-						Example:<br>
+						  <div class="description text-primary">Enter the input values to be given to the program. Multiple inputs should be comma separated.<br>
+						 Example:<br>
 						5,7</div><br>
 
 						  <label> Expected Outputs: </label>
@@ -46,7 +46,7 @@
 									Ouput required.
 								</div>
 						    </div>
-						  <div class="description">Enter the expected output for the given inputs. Output lines should be comma separated.<br>
+						  <div class="description text-primary">Enter the expected output for the given inputs. Output lines should be comma separated.<br>
 						Example:<br>
 						13,true,9.0<br>Note that output lines ending with a ":" are filtered out while checking for expected outputs.<br>
 						You can use this mechanism to add prompts for the user.<br>
@@ -58,7 +58,8 @@
 						     <option disabled="disabled" selected [ngValue]="null" >Priority</option>
 							<option *ngFor="let level of levels" [ngValue]="level">{{level}}</option>
 						</select>
-						Set the priority for the testcase. will calculate the score based on the priority values of  passed testcases.
+						<div class="description text-primary">Set the priority for the testcase. will calculate the score based on the priority values of  passed testcases.
+					   </div>
 					   <br> <br> <br>
 						  
 						  <label> Error Message: </label><input class="form-control input-md" #testcaseerror="ngModel" required id="testcaseerror" name="testcaseerror-{{i}}" type="text" placeholder="error message" [(ngModel)]="testcase.error">
@@ -68,7 +69,8 @@
 								</div>
 						    </div>
 						  
-						  <div class="description">Enter an error message to be displayed if the output of the user's program does not match the expected output.<br>
+						  <div class="description text-primary">Enter an error message to be displayed if the output of the user's program does not match the expected output.<br>
+						  
 						Example: Your program fails when trying to add 2 positive numbers</div><br>
 						  <label style="display:none"> Marks 1: </label><input style="display:none" type="text" value="0" name="options[]/"><div style="display:none" class="description">Example: 5</div>
 						    <hr/>

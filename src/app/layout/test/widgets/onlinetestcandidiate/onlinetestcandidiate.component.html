@@ -43,7 +43,7 @@
 				<span class="text-primary">({{candidate.ipaddress}})</span>
 			</div>
 			<div class="col text-center">
-				<span class="text-primary">{{candidate.testStartTime | date: 'M/d/yy hh:mm' }}</span>
+				<span class="text-primary">{{candidate.testStartTime | date: 'M/d/yy HH:mm' }}</span>
 			</div>
 			<div class="col text-center">
 				<span class="text-primary"> {{calculateDiff(candidate.testStartTime, candidate.testSubmiTime)}} mins</span>
@@ -61,7 +61,7 @@
 				
 			</div>
 			<div class="col text-center">
-				<a href="javascript:void(0);" style="text-decoration: underline;"><span  class="text-primary" (click)="openSolution(candidate.tempdirid)"> Link</span></a>
+				<a href="javascript:void(0);" style="text-decoration: underline;"><span  class="text-primary" (click)="openSolution(candidate.tempdirid,candidate.ipaddress)"> Link</span></a>
 				
 			</div>
 		
