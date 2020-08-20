@@ -18,6 +18,7 @@ import { FormDataService } from './data/formData.service';
 import { WorkflowService } from './workflow/workflow.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TestEnvironmentInputModule } from '../../widgets/test-environment-input/test-environment-input.module';
+ import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { TestEnvironmentInputModule } from '../../widgets/test-environment-input
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
+		EditorModule,
     TinymceModule.withConfig({
       plugins: ['lists', 'code'],
 	  auto_focus:false,

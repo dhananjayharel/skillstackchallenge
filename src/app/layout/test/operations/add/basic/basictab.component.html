@@ -50,7 +50,7 @@
                     </div>	
             <div class="form-group question-wrapper">
                         <label class="control-label" for="description">Problem Definition</label>  
-                        <app-tinymce #description="ngModel" required minlength="200"  name="problemDefination" [(ngModel)]="basicData.problemDefination"></app-tinymce>
+                         <editor #description="ngModel" required minlength="200" apiKey="mec38rz45k52q9tfsmozwsd6zszgigbvq9hi6twzics7184w" initialValue={{basicData.problemDefination}} name="problemDefination" [(ngModel)]="basicData.problemDefination"></editor>
                         <!--input class="form-control input-md" #description="ngModel"  id="description" name="description" type="text" placeholder="Description" [(ngModel)]="questionData.description"-->
                         <div class="alert alert-danger" *ngIf="description.errors?.required">Problem definition is required</div>
                         <div class="alert alert-danger" *ngIf="description.errors?.minlength">Minimum character count required: {{ description.errors.minlength.actualLength }} / {{ description.errors.minlength.requiredLength }}.</div>
