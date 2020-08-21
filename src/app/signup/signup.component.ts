@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit {
   public events: any[] = [];
   public returnUrl: string;
   public countryOptions: any[];
+  private formStatus = true;
 
   constructor(private translate: TranslateService,
     private route: ActivatedRoute,
@@ -58,7 +59,6 @@ export class SignupComponent implements OnInit {
       // phoneno: [null,
       //   Validators.compose([Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(1), Validators.maxLength(10)])],
       companyname: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(100)])],
-      companysize: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(20)])],
       country: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(20)])],
       // jobtitle: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(20)])],
       });
@@ -84,8 +84,10 @@ export class SignupComponent implements OnInit {
 
   onSignUp(model: User, isValid: boolean) {
     console.log(isValid);
+	this.submitted = true;
     if (isValid) {
-      this.submitted = true;
+			this.formStatus=true;
+      
       this.loading = true;
       const freeDomains = require('../shared/static/freeDomains.json');
       const inputEmailDomain = model.email.replace(/.*@/, '');
@@ -113,6 +115,9 @@ export class SignupComponent implements OnInit {
       //     }
       //   );
     }
+	else{
+	this.formStatus=false;
+	}
   }
 
   doSignUp(model: User) {

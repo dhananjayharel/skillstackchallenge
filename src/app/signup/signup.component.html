@@ -22,12 +22,12 @@
                       class="form-control form-control-lg input-underline input-lg" id=""
                       placeholder="Full Name">
                     <div class="input-group-addon"><i class="kk-icon kk-icon--name"></i></div>
-                    <p [hidden]="signUpForm.controls.fullname.valid || (signUpForm.controls.fullname.pristine && !submitted)"
-                      class="w-100">
-                      <small class="text-danger">
-                        Full Name is not valid.
-                      </small>
-                    </p>
+            
+					<p class="w-100" *ngIf="signUpForm.controls.fullname.invalid && submitted" >
+							  <small class="text-danger">
+							Name is required.	
+									</small>
+					</p> 
                   </div>
 
                   <div class="input-group">
@@ -112,7 +112,7 @@
                       </small>
                     </p>
                   </div>
-
+<!--
                   <div class="input-group">
                     <select class="form-control form-control-lg input-underline input-lg"
                       formControlName="companysize" required placeholder="Company Size">
@@ -131,6 +131,7 @@
                       </small>
                     </p>
                   </div>
+				  -->
 
                   <!-- <div class="input-group">
                     <input type="text"
@@ -150,6 +151,7 @@
                         password?</small></a>
                   </div>
                 </div>
+		
                 <button type="submit" [disabled]="loading"
                   class="btn btn-primary btn-block btn-round btn-lg mb-4">
                   Sign Up
