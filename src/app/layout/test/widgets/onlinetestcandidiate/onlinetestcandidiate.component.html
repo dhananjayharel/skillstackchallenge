@@ -12,19 +12,19 @@
 <div class="card mb-3">
 	<div class="card-body">
 		<div class="row f-14 strong text-center">
-			<div class="col text-left">
+			<div class="col col-3 text-left text-truncate">
 				Name
 			</div>
-			<div class="col">
+			<div class="col col-2 text-truncate">
 				Start Time
 			</div> 
-			<div class="col">
+			<div class="col col-2 text-truncate">
 				Session Duration
 			</div> 
-			<div class="col">
+			<div class="col col-3 text-truncate">
 				Score
 			</div>
-			<div class="col">
+			<div class="col col-2 text-truncate">
 				Code
 			</div>
 			<!-- <div class="col-auto"></div> -->
@@ -39,13 +39,13 @@
 <div *ngFor="let candidate of candidates; let i = index" [attr.data-index]="i" class="card mb-3">
 	<div class="card-body">
 		<div class="row align-items-center h-100 f-14 text-center" >
-			<div class="col text-left">
+			<div class="col  col-3 text-left text-truncate">
 				<span class="text-primary">({{candidate.ipaddress}})</span>
 			</div>
-			<div class="col text-center">
+			<div class="col  col-2 text-center text-truncate">
 				<span class="text-primary">{{candidate.testStartTime | date: 'M/d/yy HH:mm' }}</span>
 			</div>
-			<div class="col text-center">
+			<div class="col  col-2 text-center text-truncate">
 				<span class="text-primary"> {{calculateDiff(candidate.testStartTime, candidate.testSubmiTime)}} mins</span>
 			</div>
 			<!-- <div class="col text-center">
@@ -56,11 +56,11 @@
 			<div class="col text-center">
 				<span class="text-primary">{{testOnline.name}}</span>
 			</div> -->
-			<div class="col text-center">
-				<div  class="text-primary" style="border: 5px solid #2E80B7;display:flex;height:55px;width:70px;margin:auto"> <span style="margin:auto">{{candidate.score}}%</span></div>
+			<div class="col col-3 text-center text-truncate">
+				<div  class="text-primary" style="border: 5px solid #2E80B7;display:flex;height:55px;width:67px;margin:auto"> <span style="margin:auto">{{candidate.score}}%</span></div>
 				
 			</div>
-			<div class="col text-center">
+			<div class="col  col-2 text-center text-truncate">
 				<a href="javascript:void(0);" style="text-decoration: underline;"><span  class="text-primary" (click)="openSolution(candidate.tempdirid,candidate.ipaddress)"> Link</span></a>
 				
 			</div>

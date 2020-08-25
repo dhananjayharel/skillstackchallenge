@@ -1,12 +1,12 @@
 <div class="header" style="background:rgb(46, 128, 183);">
     <nav class="navbar navbar-dark bg-inverse navbar-toggleable-md">
-        <button class="navbar-toggler navbar-toggler-right d-md-none" (click)="toggleSidebar()" (blur)="hideSidebar()">
+        <button class="navbar-toggler navbar-toggler-right d-none" (click)="toggleSidebar()" (blur)="hideSidebar()">
             <span class="navbar-toggler-icon"></span>
         </button> 
-        <div class="logo-wrapper navbar-brand">
+        <div class="logo-wrapper navbar-brand d-none d-md-block">
             <app-logo [type]="'header-logo'" ></app-logo>
         </div>
-       <div class="col offset-6 col-3 text-right">
+       <div class="addbutton col col-2 col-md-7 col-lg-8 col-sm-2 text-right" >
 			<button type="button" (click)="addTest()"  class="btn btn-sm btn-round btn-info"><span class="fa fa-plus"></span>&nbsp;Add Challenge</button>
 		</div>
         <ul class="navbar-nav">

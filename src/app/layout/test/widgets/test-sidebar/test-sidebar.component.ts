@@ -98,13 +98,16 @@ export class TestSidebarComponent implements OnInit {
     this._sharedService.setTestFilter(_filter);
 }
 
-    previewTest(testid) {
+    previewTest(testid,category) {
       let msg = 'Launch a preview for this Challenge?\nThis will launch the widget in new tab.';
      
         const r = confirm(msg);
         if (r === true) {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            window.open("https://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + testid + "&&loggedin=false", '_blank');
+			let protocol = "https";
+			if(category=="reactjs")
+				protocol="http";
+            window.open(protocol+"://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + testid + "&category="+category+"&loggedin=false", '_blank');
 
         }
     }
