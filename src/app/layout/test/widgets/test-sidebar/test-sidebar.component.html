@@ -24,9 +24,9 @@
                 </div>
                 <div class="col col-7" >
 				<a class="texte" [routerLink]="['/challenge/edit', test.id, 'basic']">
-                    <!-- <div class="category w-100"> -->
-                        <!-- <small class="text-uppercase">{{test.category}} Challenge</small>                      -->
-                    <!-- </div> -->
+                    <div class="category w-100"> 
+                        <small class="text-uppercase"> {{test.category === 'py' ? 'python' : test.category}} Challenge</small>                      
+                    </div> 
 					<div _ngcontent-c12="" class="d-flex clearfix justify-content-between">
                         <strong _ngcontent-c12="" class="text-info mb-1">{{test.name}}</strong>
                     </div>
@@ -161,6 +161,7 @@
 		</button>
 	</div>
   <div class="modal-body">
+  	<h5>Copy the below code and paste it anywhere in your site.</h5>
   <div>
 
 </div>
