@@ -25,6 +25,7 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
     private problem = "1232133123";
 	public loading: boolean;
     private submitted = false;
+	private currentProblemDefVal="";
     @ViewChild('basicDataForm') templateForm: any;
     constructor(private router: Router,
         private formDataService: FormDataService,
@@ -52,12 +53,13 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
                     this._id = data.id;
                     this.basicData = this.formDataService.getBasicData();
                     this.loading = false;
-				    
+				    this.currentProblemDefVal = this.basicData.problemDefination;
                 } 
             );
             this.formDataService.fetchOnlineTest();
         } else {
             this.basicData = this.formDataService.getBasicData();
+			this.currentProblemDefVal = this.basicData.problemDefination;
             this.loading = false;
         }
     }
@@ -133,10 +135,15 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
         // returning false will show a confirm dialog before navigating away
         let isDirty = false;
         for (let field in this.templateForm.form.controls) {
-            if (field !== 'environment' && this.templateForm.form.controls[field].dirty) {
+			
+            if (field !== 'problemDefination' && this.templateForm.form.controls[field].dirty) {
                 isDirty = true;
                 break;
             }
+			if(this.currentProblemDefVal!=this.templateForm.form.controls["problemDefination"].value){
+				  isDirty = true;
+                break;
+			}
         }
         return !isDirty || this.submitted;
     }

@@ -6,6 +6,7 @@ import { STEPS }                             from '../workflow/workflow.model';
 import { OnlineTest } from '../../../../../../models/onlinetests.interface';
 import { Router }              from '@angular/router';
 
+
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -15,6 +16,8 @@ export class FormDataService {
     private editTest = new Subject<OnlineTest> ();
     editTest$ = this.editTest.asObservable();
     private isSubmitted = new Subject<boolean> ();
+	private testName = new Subject<string> ();
+	testName$ = this.testName.asObservable();
     isSubmitted$ = this.isSubmitted.asObservable();
     private formData: FormData = new FormData();
     private isPersonalFormValid: boolean = false;
@@ -38,6 +41,9 @@ export class FormDataService {
 
     getEditTestObj(): OnlineTest {
         return this.editTestObj;
+    }
+	    getEditTestName(): string {
+        return this.editTestObj.name;
     }
 
     getBasicData(): BasicData {
@@ -121,7 +127,8 @@ export class FormDataService {
             _questionData.testcases = onlineTest.testcases;
 
             this.setQuestionData(_questionData);
-
+			this.testName.next(onlineTest.name);
+  
         }
     }
 
