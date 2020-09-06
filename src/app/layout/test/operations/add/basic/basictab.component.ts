@@ -134,16 +134,17 @@ export class BasicTabComponent implements OnInit, AfterViewInit {
         // returning true will navigate without confirmation
         // returning false will show a confirm dialog before navigating away
         let isDirty = false;
+		
         for (let field in this.templateForm.form.controls) {
 			
             if (field !== 'problemDefination' && this.templateForm.form.controls[field].dirty) {
                 isDirty = true;
                 break;
             }
-			if(this.currentProblemDefVal!=this.templateForm.form.controls["problemDefination"].value){
-				  isDirty = true;
-                break;
-			}
+			//if(this.currentProblemDefVal!=this.templateForm.form.controls["problemDefination"].value){
+				 //  isDirty = true;
+             //   break;
+			//}
         }
         return !isDirty || this.submitted;
     }

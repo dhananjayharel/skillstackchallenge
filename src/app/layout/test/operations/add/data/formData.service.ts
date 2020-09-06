@@ -76,7 +76,7 @@ export class FormDataService {
     getQuestionData(): QuestionData {
         // Return the work type
         const question: QuestionData={
-         testcases: this.formData.testcases ? this.formData.testcases : [{"input":"1","output":"1","error":"1","priority":1},{"input":"22","output":"22","error":"22","priority":1}]
+         testcases: this.formData.testcases ? this.formData.testcases : [{"input":"","output":"","error":"","priority":1},{"input":"","output":"","error":"","priority":1}]
 		}
         return question;
     }
@@ -218,7 +218,7 @@ export class FormDataService {
         .subscribe(
             data => {
                 this.router.navigate(['/challenge']);
-                this.alertService.success('The ' + data.name + ' is successfully updated.');
+                this.alertService.success('The challenge ' + data.name + ' is successfully updated successfully.');
                 // this.isSubmitted.next(true);
             },
             error => {

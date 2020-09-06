@@ -23,7 +23,7 @@
                     <img *ngIf="test.codingTestImage" class="cursor-pointer" width="60" [src]="test.codingTestImage"/>
                 </div>
                 <div class="col col-7" >
-				<a class="texte" [routerLink]="['/challenge/edit', test.id, 'basic']">
+				<a class="texte d-none d-md-block" (click)="previewTest(test.id,test.category)">
                     <div class="category w-100"> 
                         <small class="text-uppercase"> {{test.category === 'py' ? 'python' : test.category}} Challenge</small>                      
                     </div> 
@@ -35,6 +35,18 @@
                     </div>
                     <p class="mb-1">{{returnSanitizedDescription(i)}}</p>
 					</a>
+				<a class="texte d-md-none" (click)="previewOnMobile()">
+                    <div class="category w-100"> 
+                        <small class="text-uppercase"> {{test.category === 'py' ? 'python' : test.category}} Challenge</small>                      
+                    </div> 
+					<div _ngcontent-c12="" class="d-flex clearfix justify-content-between">
+                        <strong _ngcontent-c12="" class="text-info mb-1">{{test.name}}</strong>
+                    </div>
+                    <div class="d-flex clearfix justify-content-between">
+                        <strong class="text-info mb-1"></strong>
+                    </div>
+                    <p class="mb-1">{{returnSanitizedDescription(i)}}</p>
+					</a>					
                 </div>
 				<div class="col col-4" style="font-weight:bold;font-size:1.1em">       <div class="d-none d-md-block">
                 <ul class="col list-inline action-list mt-2 mb-0" style="display:flex">
@@ -57,7 +69,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item text-center text-primary d-md-none">
-                        <a class="action text-primary" (click)="previewTest()" >
+                        <a class="action text-primary" (click)="previewOnMobile()" >
                           
                             <span class="">Preview</span>               
                         </a>
@@ -101,7 +113,7 @@
 					<hr>
      
                     <li class="list text-center text-primary d-md-none">
-                        <a class="action text-primary" (click)="previewTest()" >
+                        <a class="action text-primary" (click)="previewOnMobile()" >
                           
                             <span class="">Preview</span>               
                         </a>
@@ -170,5 +182,14 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-success" (click)="copyElementText('elem1')">{{copymessage}}</button> <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<ng-template #previewonMobile let-c="close" let-d="dismiss">
+<div class="modal-header">Oops!</div>
+  <div class="modal-body">
+    Preview supported only on desktop.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>
 </ng-template>
