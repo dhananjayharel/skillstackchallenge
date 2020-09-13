@@ -201,7 +201,7 @@ export class FormDataService {
             data => {
                 console.log(data);
                 this.router.navigate(['/challenge']);
-                this.alertService.success('The ' + data.name + ' is successfully created.');
+                this.alertService.success('The challenge' + data.name + ' is added successfully.');
                 // this.isSubmitted.next(true);
             },
             error => {
@@ -218,7 +218,7 @@ export class FormDataService {
         .subscribe(
             data => {
                 this.router.navigate(['/challenge']);
-                this.alertService.success('The challenge ' + data.name + ' is successfully updated successfully.');
+                this.alertService.success('The challenge ' + data.name + ' is updated successfully.');
                 // this.isSubmitted.next(true);
             },
             error => {
