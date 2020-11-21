@@ -129,7 +129,7 @@ export class TestInputComponent implements OnInit, ControlValueAccessor    {
   }
 
   returnSanitizedDescription(index) {
-    const sanitizedStr = this.onlinetests[index].description.replace(/<(?:.|\n)*?>/gm, '')
+    const sanitizedStr = this.onlinetests[index].problemDefination.replace(/<(?:.|\n)*?>/gm, '')
     if (sanitizedStr.length > 30) {
         return sanitizedStr.replace(/\r?\n|\r/g, '').replace(/^(.{30}[^\s]*).*/, "$1").replace(/&nbsp;/gi," ") + '...'; 
     } else {

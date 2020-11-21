@@ -1,13 +1,13 @@
 <section class="l-page__content">
   <div class="l-page__content__inner">
 
-    <app-page-header [heading]="'Create Test from library'" [showHeading]="false" [icon]="'fa-th-list'"></app-page-header>
+    <app-page-header [heading]="'Create Challenge from library'" [showHeading]="false" [icon]="'fa-th-list'"></app-page-header>
     <div class="card">
       <div class="card-body">
           <form [formGroup]="cloneTestForm" novalidate (ngSubmit)="onFormSubmit()" class="m-form cloneTestForm" >
             <div class="m-form__fields">
               <div class="form-group">
-                  <label class="control-label" for="onlinetest">Available Tests</label>
+                  <label class="control-label" for="onlinetest">Available Challenges</label>
                   <app-test-input required
                   formControlName="onlineTestId"
                   id="onlinetest"

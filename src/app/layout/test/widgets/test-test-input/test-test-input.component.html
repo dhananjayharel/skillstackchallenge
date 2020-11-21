@@ -3,7 +3,7 @@
 		<div class="col-md-10 offset-1">
 		  <div class="search-wrapper mt-4 mb-3">
 		    <div class="input-group input-group-round">
-		      <input [(ngModel)]="queryString"  type="text" class="form-control input-round bg-grey-3" placeholder="Search available tests...">
+		      <input [(ngModel)]="queryString"  type="text" class="form-control input-round bg-grey-3" placeholder="Search available Challenges...">
 		      <div class="input-group-addon" ><i class="fa fa-search"></i></div>
 		    </div>
 			</div>
@@ -63,7 +63,7 @@
               <div class="col-3 justify-content-center align-self-center">
                 <button _ngcontent-c12="" class="btn btn-small btn-primary" type="button" (click)="writeValue(onlinetest.id)">
                   <i class="fa fa-check"></i>
-                  Use this Test
+                  Use this Challenge
                 </button>
               </div>
             </div>
@@ -98,12 +98,12 @@
 			</div>
 		</div>
 		<div class="form-group f-14">
-			<label class="strong">Objective</label>
+			<label class="strong"></label>
 			<div [innerHTML]="previewOnlineTest.objective"></div>
 		</div>
 		<div class="form-group f-14">
-			<label class="strong">Problem Definition</label>
-			<div [innerHTML]="previewOnlineTest.description"></div>
+			<label class="strong"></label>
+			<div [innerHTML]="previewOnlineTest.problemDefination"></div>
 		</div>
 		<div class="form-group f-14">
 			<label class="strong" *ngIf="previewOnlineTest.hints">Hints</label>
