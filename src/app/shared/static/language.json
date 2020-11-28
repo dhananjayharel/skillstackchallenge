@@ -14,5 +14,9 @@
 {
     "label": "ReactJS",
     "value": "reactjs"
+},
+{
+    "label": "Angular",
+    "value": "angular"
 }
 ]

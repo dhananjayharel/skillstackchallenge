@@ -105,7 +105,7 @@ export class TestSidebarComponent implements OnInit {
         if (r === true) {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 			let protocol = "https";
-			if(category=="reactjs")
+			if(category=="reactjs"||category=="angular")
 				protocol="http";
             window.open(protocol+"://www.skillstack.com/embedchallenges2/?courseid=java21ssh&examplepath=echotest&challenge=" + testid + "&category="+category+"&loggedin=false", '_blank');
 
