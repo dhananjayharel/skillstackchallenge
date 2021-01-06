@@ -43,7 +43,7 @@
     "ngx-paypal": "3.2.1",
     "recordrtc": "^5.4.6",
     "rxjs": "^5.1.0",
-    "tinymce": "^4.6.4",
+    "tinymce": "^5.6.0",
     "to-streamable": "^2.0.0",
     "vimeo": "^2.1.1",
     "vimeo-upload": "^0.1.6",
